@@ -82,7 +82,7 @@ csiro = csiro.join(csiro_wind[['W', 'DirW']])
 #buoy = buoy.drop_duplicates()
 #buoy_index = sorted(buoy.index.values)
 
-## In case spectrum reconstruction has been performed
+## In case spectral reconstruction has been performed
 #print('Concatinating and plotting data...')
 #
 #csiro_spec = pd.read_csv(op.join(p_data, 'spectra',
@@ -134,6 +134,7 @@ while i < 3:
         axs[i].plot(total_plot[total_plot.columns.values[i+3]], '.', markersize=1, color='red')
         axs[i].plot(total_plot[total_plot.columns.values[i+6]], '.', markersize=1, color='darkgreen')
         #axs[i].plot(total_plot[total_plot.columns.values[i+9]], '.', markersize=1, color='orange')
+        #axs[i].plot(total_plot[total_plot.columns.values[i+12]], '.', markersize=1, color='purple')
         axs[i].set_ylabel(labels[i], fontsize=12, fontweight='bold')
         axs[i].grid()
         axs[i].set_xlim(ini, end)
@@ -145,6 +146,7 @@ while i < 3:
         axs[i].plot(total_plot[total_plot.columns.values[i+3]], color='red', linewidth=1)
         axs[i].plot(total_plot[total_plot.columns.values[i+6]], color='darkgreen', linewidth=1)
         #axs[i].plot(total_plot[total_plot.columns.values[i+9]], color='orange', linewidth=1)
+        #axs[i].plot(total_plot[total_plot.columns.values[i+12]], color='purple', linewidth=1)
         axs[i].set_ylabel(labels[i], fontsize=12, fontweight='bold')
         axs[i].grid()
         axs[i].tick_params(direction='in')

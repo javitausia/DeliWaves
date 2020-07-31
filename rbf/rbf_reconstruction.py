@@ -19,8 +19,8 @@ p_data = op.abspath(op.join(op.dirname(__file__), '..', 'data',
                             'projects-swan'))
 
 # -------------- EDIT THIS PART --------------------------------------------- #
-name = 'SAF' # used name in the SWAN section
-resolution = str(0.0042) # used resolution in the SWAN section
+name = 'SAF'               # used name in the SWAN section
+resolution = str(0.0042)   # used resolution in the SWAN section
 # --------------------------------------------------------------------------- #
 
 # SUBSETS
@@ -88,9 +88,6 @@ datasets = []
 for ss in labels_input:
     dataset_ss = dataset_tot[ss]
     dataset_ss = dataset_ss.dropna(axis=0, how='any')
-    #new_labels = ['hs', 'per', 'dir', 'spr']
-    #for l, lab in enumerate(ss):
-    #     dataset_ss.rename(columns={lab: new_labels[l]}, inplace=True)
     datasets.append(dataset_ss)
     
 dataframes = []
@@ -152,5 +149,5 @@ for count, dat in enumerate(datasets):
 # SAVE final file
 reconstructed_dataframe = pd.concat(dataframes, axis=1)
 
-reconstructed_dataframe.to_pickle(op.join(p_data, 'reconstructed',
+reconstructed_dataframe.to_pickle(op.join(p_data, '..', 'reconstructed',
                                   'reconstructed_partitioned_'+name+'.pkl'))

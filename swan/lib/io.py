@@ -69,7 +69,7 @@ class SwanIO_STAT(SwanIO):
 
         # .swn file parameters
         sea_level = self.proj.params['sea_level']
-        jonswap_gamma = self.proj.params['jonswap_gamma']
+        #jonswap_gamma = self.proj.params['jonswap_gamma']
         coords_spherical = self.proj.params['coords_spherical']
         waves_period = self.proj.params['waves_period']
 
@@ -102,18 +102,18 @@ class SwanIO_STAT(SwanIO):
 
         # waves boundary conditions
         t += 'BOUND SHAPespec JONswap {0} {1} DSPR DEGR\n'.format(
-            jonswap_gamma, waves_period)
+            ws.gamma, waves_period)
         for ic in bnd:
             t += "BOUN SIDE {0} CONstant PAR {1:.3f} {2:.3f} {3:.3f} {4:.3f}\n".format(
                 ic, ws.hs, ws.per, ws.dir, ws.spr)
         t += "$\n"
         
         ############################# EDITED ##################################
-        t += "WIND {} {}".format(ws.vel, ws.dirw)
-        t += "\n$\n"
+        # t += "WIND {} {}".format(ws.vel, ws.dirw)
+        # t += "\n$\n"
 
         # numerics
-        # t += 'OFF QUAD\n'
+        t += 'OFF QUAD\n'
         # t += 'PROP BSBT\n'
         # t += 'WCAP\n'
         t += 'BREA\n'
