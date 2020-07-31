@@ -8,8 +8,6 @@ dependencies:
         - xarray
         - netcdf4
         - matplotlib
-	- imageio
-	- termcolor
         - scikit-learn
         - scipy
         - statsmodels
@@ -18,3 +16,5 @@ dependencies:
         - basemap-data-hires
         - spyder
         - notebook
+        - termcolor
+        - imageio
