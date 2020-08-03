@@ -21,22 +21,23 @@ p_data = op.abspath(op.join(op.dirname(__file__), '..', 'data',
 # -------------- EDIT THIS PART --------------------------------------------- #
 name = 'SAF'               # used name in the SWAN section
 resolution = str(0.0042)   # used resolution in the SWAN section
+num_cases = str(300)       # num cases in the SWAN section
 # --------------------------------------------------------------------------- #
 
 # SUBSETS
 subsetsea    = pd.read_pickle(op.join(p_data, name+'-SEA-'+resolution,
-                                      'sea_cases_300.pkl'))
+                                      'sea_cases_'+num_cases+'.pkl'))
 subsetsea    = subsetsea[['hs', 'per', 'dir', 'spr']]
 
 subsetswell  = pd.read_pickle(op.join(p_data, name+'-SWELL-'+resolution,
-                                      'swell_cases_300.pkl'))
+                                      'swell_cases_'+num_cases+'.pkl'))
 subsetswell  = subsetswell[['hs', 'per', 'dir', 'spr']]
 
 # TARGETS
 targetsea    = xr.open_dataset(op.join(p_data, name+'-SEA-'+resolution,
-                                       'sea_propagated_300.nc'))
+                                       'sea_propagated_'+num_cases+'.nc'))
 targetswell  = xr.open_dataset(op.join(p_data, name+'-SWELL-'+resolution,
-                                       'swell_propagated_300.nc'))
+                                       'swell_propagated_'+num_cases+'.nc'))
 
 # Reconstruction desired point
 lat = -34.14

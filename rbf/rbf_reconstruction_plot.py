@@ -110,7 +110,7 @@ total_plot = total[['Hs_Buoy', 'Tp_Buoy', 'Dir_Buoy',
                     'Hsea', 'Tpsea', 'Dirsea',
                     'Hswell1', 'Tpswell1', 'Dirswell1']]
         
-labels = ['Hs [m]', 'Tp [s]', 'Dir [º]']
+labels = ['$H_S$ [m]', '$T_P$ [s]', '$\u03B8$ [$\degree$]']
 
 validation_data = total_plot.copy()
 
@@ -122,7 +122,7 @@ total_plot = total_plot.loc[ini:end]
 fig, axs = plt.subplots(3, 1, figsize=(20,15), sharex=True)
 fig.subplots_adjust(hspace=0.05, wspace=0.1)
 fig.suptitle('Year: ' +str(year)+ ', ' +name+ ' buoy compared with propagated CSIRO',
-             fontsize=24, y=0.94, fontweight='bold')
+             fontsize=22, y=0.94, fontweight='bold')
 months = ['                        Jan', '                        Feb', '                        Mar', 
           '                        Apr', '                        May', '                        Jun', 
           '                        Jul', '                        Aug', '                        Sep', 
@@ -135,19 +135,19 @@ while i < 3:
         axs[i].plot(total_plot[total_plot.columns.values[i+6]], '.', markersize=1, color='darkgreen')
         #axs[i].plot(total_plot[total_plot.columns.values[i+9]], '.', markersize=1, color='orange')
         #axs[i].plot(total_plot[total_plot.columns.values[i+12]], '.', markersize=1, color='purple')
-        axs[i].set_ylabel(labels[i], fontsize=12, fontweight='bold')
+        axs[i].set_ylabel(labels[i], fontsize=14, fontweight='bold')
         axs[i].grid()
         axs[i].set_xlim(ini, end)
         axs[i].set_xticks(np.arange(pd.to_datetime(ini), pd.to_datetime(end), td(days=30.5)))
         axs[i].tick_params(direction='in')
-        axs[i].set_xticklabels(months, fontsize=12, fontweight='bold')
+        axs[i].set_xticklabels(months, fontsize=14, fontweight='bold')
     else:
         axs[i].plot(total_plot[total_plot.columns.values[i]], color='darkblue', linewidth=1)
         axs[i].plot(total_plot[total_plot.columns.values[i+3]], color='red', linewidth=1)
         axs[i].plot(total_plot[total_plot.columns.values[i+6]], color='darkgreen', linewidth=1)
         #axs[i].plot(total_plot[total_plot.columns.values[i+9]], color='orange', linewidth=1)
         #axs[i].plot(total_plot[total_plot.columns.values[i+12]], color='purple', linewidth=1)
-        axs[i].set_ylabel(labels[i], fontsize=12, fontweight='bold')
+        axs[i].set_ylabel(labels[i], fontsize=14, fontweight='bold')
         axs[i].grid()
         axs[i].tick_params(direction='in')
     fig.legend(['Buoy', 'CSIRO Agg', 'CSIRO Spec'], loc=(0.65, 0.04), ncol=3, fontsize=14)
