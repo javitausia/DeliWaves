@@ -226,7 +226,9 @@ class Forecast(object):
                            'Vwind'      : (['time', 'lat', 'lon'], 
                                            self.forecast.variables['vgrdsfc'][:,lat_index[0],lon_index[0]].data),
                            'WindSpeed'  : (['time', 'lat', 'lon'], 
-                                           self.forecast.variables['windsfc'][:,lat_index[0],lon_index[0]].data)},
+                                           self.forecast.variables['windsfc'][:,lat_index[0],lon_index[0]].data),
+                           'DirWind'    : (['time', 'lat', 'lon'],
+                                           self.forecast.variables['wdirsfc'][:,lat_index[0],lon_index[0]].data)},
                           coords = {'time' : self.times,
                                     'lat'  : self.forecast.variables['lat'][:][lat_index[0]],
                                     'lon'  : self.forecast.variables['lon'][:][lon_index[0]]})
@@ -290,10 +292,10 @@ class Forecast(object):
         # Reinitialize the attribute in coast
         self.coast_location = (latT, lonT)
         print('\n')
-        ilat = np.where((targetsea.Y.values < latT+0.005) & 
-                        (targetsea.Y.values > latT-0.005))[0][0]
-        ilon = np.where((targetswell.X.values < lonT+0.005) &
-                        (targetswell.X.values > lonT-0.005))[0][0]
+        ilat = np.where((targetsea.Y.values < latT+0.01) & 
+                        (targetsea.Y.values > latT-0.01))[0][0]
+        ilon = np.where((targetswell.X.values < lonT+0.01) &
+                        (targetswell.X.values > lonT-0.01))[0][0]
         targetsea   = targetsea.isel(X=ilon).isel(Y=ilat)
         targetswell = targetswell.isel(X=ilon).isel(Y=ilat)
         targetsea   = pd.DataFrame({'hs': targetsea.Hsig.values,
@@ -435,6 +437,7 @@ class Forecast(object):
         forecast['Uwind']     = forecast_data['Uwind']
         forecast['Vwind']     = forecast_data['Vwind']
         forecast['WindSpeed'] = forecast_data['WindSpeed']
+        forecast['DirWind']   = forecast_data['DirWind']
         print('\n')
         print('Saving the data in path="data/reconstructed/.." ... \n')
         forecast.to_pickle(op.join(p_data_swan, '..', 'reconstructed',
@@ -465,7 +468,7 @@ class Forecast(object):
         labels = ['$H_S$ [m]', '$T_P$ [s]', '$\u03B8$ [$\degree$]']
         ini = str(self.times[0])
         end = str(self.times[-1])
-        fig, axs = plt.subplots(3, 1, figsize=(20,15), sharex=True)
+        fig, axs = plt.subplots(5, 1, figsize=(20,20), sharex=True)
         fig.subplots_adjust(hspace=0.05, wspace=0.1)
         if coast:
             fig.suptitle('Forecast prediction in ' + str(self.coast_location) + ', COAST!',
@@ -480,25 +483,35 @@ class Forecast(object):
                 axs[i].plot(forecast[forecast.columns.values[i+3]], '.', markersize=8, color='red')
                 axs[i].plot(forecast[forecast.columns.values[i+6]], '.', markersize=8, color='darkgreen')
                 axs[i].plot(forecast[forecast.columns.values[i+9]], '.', markersize=8, color='orange')
-                axs[i].set_ylabel(labels[i], fontsize=12, fontweight='bold')
+                axs[i].set_ylabel(labels[i], fontsize=14, fontweight='bold')
                 axs[i].grid()
-                axs[i].set_xlim(ini, end)
-                axs[i].set_xticks(np.arange(pd.to_datetime(ini), pd.to_datetime(end), 
-                   datetime.timedelta(days=1)))
-                axs[i].set_xticklabels([str(day)[5:10] for day in np.arange(pd.to_datetime(ini), 
-                                                                            pd.to_datetime(end), 
-                                                                            datetime.timedelta(days=1))], 
-                            fontsize=18, fontweight='bold')
                 axs[i].tick_params(direction='in')
             else:
                 axs[i].plot(forecast[forecast.columns.values[i]], color='darkblue', linewidth=1)
                 axs[i].plot(forecast[forecast.columns.values[i+3]], color='red', linewidth=1)
                 axs[i].plot(forecast[forecast.columns.values[i+6]], color='darkgreen', linewidth=1)
                 axs[i].plot(forecast[forecast.columns.values[i+9]], color='orange', linewidth=1)
-                axs[i].set_ylabel(labels[i], fontsize=18, fontweight='bold')
+                axs[i].set_ylabel(labels[i], fontsize=14, fontweight='bold')
                 axs[i].grid()
                 axs[i].tick_params(direction='in')
             fig.legend(['Sea', 'Swell1', 'Swell2', 'Bulk'], 
                        loc=(0.63, 0.03), ncol=4, fontsize=14)
             i += 1
-            
+       
+        axs[3].plot(forecast['WindSpeed'], color='black', linewidth=1)
+        axs[3].set_ylabel('W [m/s]', fontsize=14, fontweight='bold')
+        axs[3].grid()
+        axs[3].tick_params(direction='in')
+        axs[4].plot(forecast['DirWind'], '.', markersize=8, color='black')
+        axs[4].set_ylabel('$\u03B8_W$ [$\degree$]', fontsize=14, fontweight='bold')
+        axs[4].grid()
+        axs[4].tick_params(direction='in')
+        axs[4].set_xlim(ini, end)
+        axs[4].set_xticks(np.arange(pd.to_datetime(ini), 
+                                    pd.to_datetime(end), 
+                                    datetime.timedelta(days=1)))
+        axs[4].set_xticklabels([str(day)[5:10] for day in np.arange(pd.to_datetime(ini), 
+                                                                    pd.to_datetime(end), 
+                                                                    datetime.timedelta(days=1))], 
+                               fontsize=18, fontweight='bold')
+        
