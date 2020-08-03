@@ -19,7 +19,7 @@ p_data = op.abspath(op.join(op.dirname(__file__), '..', 'data',
                             'projects-swan'))
 
 # -------------- EDIT THIS PART --------------------------------------------- #
-name = 'SAF'               # used name in the SWAN section
+name = 'CAN'               # used name in the SWAN section
 resolution = str(0.0042)   # used resolution in the SWAN section
 num_cases = str(300)       # num cases in the SWAN section
 # --------------------------------------------------------------------------- #
@@ -40,8 +40,8 @@ targetswell  = xr.open_dataset(op.join(p_data, name+'-SWELL-'+resolution,
                                        'swell_propagated_'+num_cases+'.nc'))
 
 # Reconstruction desired point
-lat = -34.14
-lon = 24.90
+lat = 43.46
+lon = -3.97
 
 lat = np.where((targetsea.Y.values<lat+0.005) & 
                (targetsea.Y.values>lat-0.005))[0][0]
