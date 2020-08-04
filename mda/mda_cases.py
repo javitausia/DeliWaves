@@ -8,7 +8,7 @@ from mda_functions import MaxDiss_Simplified_NoThreshold as MDA
 print('Reading, obtaining and plotting data...')
 
 # VARIABLES
-num_centroids = 300
+num_centroids = 10 # EDIT to select the desired number
 
 # DATAFRAME
 p_hind = op.abspath(op.join(op.dirname(__file__), '..', 'data', 'hindcast'))
