@@ -14,19 +14,23 @@ from time import time
 import warnings
 warnings.filterwarnings("ignore")
 
-t0 = time()
-
+# --------------------------------------------------------------------------- #
+# CHANGE THE io.py FILE AS IT IS EXPLAINED IN THE NOTEBOOK BEFORE RUNNING     #
+# --------------------------------------------------------------------------- #
 # dev library 
 sys.path.insert(0, op.join(op.dirname(__file__)))
-
 # swan wrap module
 from lib.wrap import SwanProject, SwanWrap_STAT
+# --------------------------------------------------------------------------- #
+
+t0 = time()
 
 # --------------------------------------------------------------------------- #
 # data
+num_cases = str(300) # EDIT to read file
 p_data = op.abspath(op.join(op.dirname(__file__), '..', 'data'))
 p_hind = op.join(p_data, 'hindcast')
-waves = pd.read_pickle(op.join(p_hind, 'sea_cases_300.pkl'))[::50]
+waves = pd.read_pickle(op.join(p_hind, 'sea_cases_'+num_cases+'.pkl'))
 
 waves.rename(columns={'Hsea'   : 'hs',
                       'Tpsea'  : 'per',
@@ -56,7 +60,8 @@ end_lat = -33.95
 # Depth auto-selection
 # This file can substituted by the local bathymetry GEBCO file or other
 # bathymetry file with the same aspect
-p_depth = op.join(p_data, 'bathymetry', 'GEBCO_2020.nc')
+p_depth = op.join(p_data, 'bathymetry', 
+                  'gebco_2020_n-33.0_s-35.0_w24.0_e26.0.nc')
 depth = xr.open_dataset(p_depth)
 depth = depth.sel(lat=slice(ini_lat,end_lat)).sel(lon=slice(ini_lon,end_lon))
 x_point = len(depth.lon.values)
@@ -122,9 +127,9 @@ sw.run_cases()
 waves_propagated = sw.extract_output()
 
 # save to netCDF file and cases propagated to dataframe
-waves.to_pickle(op.join(p_proj, n_proj, 'sea_cases_300.pkl'))
+waves.to_pickle(op.join(p_proj, n_proj, 'sea_cases_'+num_cases+'.pkl'))
 waves_propagated.to_netcdf(op.join(p_proj, n_proj, 
-                           'sea_propagated_300.nc'))
+                           'sea_propagated_'+num_cases+'.nc'))
 
 print('Time transcurred: ' + str(round((time()-t0)/3600, 2)) + ' h')
 
