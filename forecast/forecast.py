@@ -244,6 +244,14 @@ class Forecast(object):
                         (data.lat.values > lat-0.3))[0][0]
         ilon = np.where((data.lon.values < lon+0.3) &
                         (data.lon.values > lon-0.3))[0][0]
+        print('\n From the region selected, the closest point will be choosen. Wanna change? \n')
+        answer = bool(input('True | False: '))
+        if answer:
+            ilat = int(input('\n Select index position for the latitude: '))
+            ilon = int(input('Select index position for the longitude: '))
+            print('\n Saving the dataframe with the new selected coordinates... \n')
+        else:
+            print('\n Saving the dataframe with the closest coordinates... \n')
         data_dataframe = data.isel(lat=ilat).isel(lon=ilon).to_dataframe()
         data_dataframe = data_dataframe.where(data_dataframe<1000, 0)
             
