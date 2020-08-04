@@ -66,7 +66,7 @@ Forecast predictions have been also included worldwide. Everyday, thousands of s
 
 Using this code, a GIF as the one shown below will be obtained:
 
-![FoGIF](/images/forecast/forecast_git.gif)
+![FoGIF](/images/forecast/forecast.gif)
 
 And the predictions have the next aspect:
 
