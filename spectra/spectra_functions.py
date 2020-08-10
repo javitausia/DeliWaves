@@ -127,7 +127,10 @@ def spectra(data, gamma_values=False):
                                                  'time'],
                                            name='efth'))
     # Concat DataArrays
-    timesteps = int(len(data)/20)
+    if len(data)>20:
+        timesteps = int(len(data)/20)
+    else:
+        timesteps = 1
     timestep = int(len(data)/timesteps)
     print('Concatinating final spectrums in groups of {}...'.format(timestep))
     timestep_list = [ [], [], [], [] ]

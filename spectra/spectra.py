@@ -42,27 +42,39 @@ print(partitions.info())
 # If example data wants to be tested, please use this dataframe below!!!
 
 # ---------------------- TEST WAVE CONDITIONS ------------------------------- #
-test = pd.DataFrame({'Hsea':      [1.2,    1.5,    1.7,    2.6],
-                     'Tpsea':     [8.1,    8.8,    18,     18],
-                     'Dirsea':    [70.3,   90,    345,    70],
-                     'Sprsea':    [25.5,   30,     15,     30],
-                     'Hswell1':   [2.0,    2.5,    np.nan, np.nan],
-                     'Tpswell1':  [15.82,  18,     np.nan, np.nan],
-                     'Dirswell1': [350.6,  355,    np.nan, np.nan],
-                     'Sprswell1': [10.1,   10,     np.nan, np.nan],
-                     'Hswell2':   [0.8,    0.8,    np.nan, np.nan],
-                     'Tpswell2':  [19.52,  18,     np.nan, np.nan],
-                     'Dirswell2': [240.3,  180,    np.nan, np.nan],
-                     'Sprswell2': [6.56,   12,     np.nan, np.nan],
-                     'Hswell3':   [np.nan, np.nan, np.nan, np.nan],
-                     'Tpswell3':  [np.nan, np.nan, np.nan, np.nan],
-                     'Dirswell3': [np.nan, np.nan, np.nan, np.nan],
-                     'Sprswell3': [np.nan, np.nan, np.nan, np.nan],
-                     'Tm_02':     [12,     13,     16,     14]})
-gamma_values = [[3, 3, 3, 3],
-                [10, 10, 10, 10],
-                [10, 10, 10, 10],
-                [10, 10, 10, 10]]
+test = pd.DataFrame({'Hsea':      [1.5,     np.nan,    1.7,    2.6],
+                     'Tpsea':     [7.2,     np.nan,    18,     18],
+                     'Dirsea':    [70,      np.nan,    345,    70],
+                     'Sprsea':    [24,      np.nan,     15,     30],
+                     'Hswell1':   [2.0,     2.0,    np.nan, np.nan],
+                     'Tpswell1':  [16,      16,     np.nan, np.nan],
+                     'Dirswell1': [350,     250,    np.nan, np.nan],
+                     'Sprswell1': [12,      12,     np.nan, np.nan],
+                     'Hswell2':   [np.nan,  0.8,    np.nan, np.nan],
+                     'Tpswell2':  [np.nan,  18,     np.nan, np.nan],
+                     'Dirswell2': [np.nan,  80,    np.nan, np.nan],
+                     'Sprswell2': [np.nan,  12,     np.nan, np.nan],
+                     'Hswell3':   [np.nan,  np.nan, np.nan, np.nan],
+                     'Tpswell3':  [np.nan,  np.nan, np.nan, np.nan],
+                     'Dirswell3': [np.nan,  np.nan, np.nan, np.nan],
+                     'Sprswell3': [np.nan,  np.nan, np.nan, np.nan]})
+
+heights = test.copy().fillna(0.0)
+periods = test[['Tpsea', 'Tpswell1', 'Tpswell2', 'Tpswell3']].copy().fillna(np.inf)
+
+test['Tm_02'] = np.sqrt(
+        (heights['Hsea']**2 + heights['Hswell1']**2 +  
+         heights['Hswell2']**2 + heights['Hswell1']**2) / (heights['Hsea']**2 / periods['Tpsea']**2 + 
+                                                           heights['Hswell1']**2 / periods['Tpswell1']**2 +
+                                                           heights['Hswell2']**2 / periods['Tpswell2']**2 +
+                                                           heights['Hswell3']**2  /periods['Tpswell3']**2)
+        )
+
+gamma_values = [[3, 3, 3, 3],       # Sea1, Sea2, Sea3, Sea4
+                [10, 10, 10, 10],   # Swell1, Swell2, Swell3, Swell4
+                [10, 10, 10, 10],   # ...
+                [10, 10, 10, 10]]   # ...
+
 print(test.info())
 # --------------------------------------------------------------------------- #
 
