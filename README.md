@@ -66,7 +66,7 @@ The data is propagated nearshore and now, aggregated parameters wanne be obtaine
 
 - [Spectra](./spectra/spectra_notebook.ipynb): Spectrum and free surface explanatory notebook
 
-![sectra](/images/spectra/spectraexpla.png)
+![sectra](/images/spectra/spectraexlpa.png)
 
 ### 3.5 Forecast
 
