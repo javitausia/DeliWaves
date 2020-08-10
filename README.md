@@ -10,7 +10,7 @@ DeliWaves is an open-source software toolkit written in python that enables the 
 
 ## 1. Description
 
-In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in CalValWaves), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportiones, as once this initial dataframe exists, all the code can be run.
+In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in CalValWaves), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportioned, as once this initial dataframe exists, all the code can be run.
 
 ## 2. Data download
 
@@ -25,11 +25,12 @@ This repository proportionates code to perform the following actions:
 * MDA (Maximum Dissimilarity Algorithm)
 * [SWAN](http://swanmodel.sourceforge.net/download/download.htm) (Simulating WAves Nearshore)
 * RBF (Radial Basis Functions reconstruction)
+* Spectrum and Free Surface Reconstructions (SAFS)
 * Foecast (Predictions of the 7-days wave climate worldwide)
 
 ### 3.1 MDA
 
-The main goal of the workflow followed is the reconstruction of the wave climate in coastal areas and for this purpose, the first step is the selection of the maximum dissimilar cases in the initial dataset. This algotithm can be used for other objectives too. This is the first part that has to be performed and is briefly explained in:
+The main goal of the workflow followed is the reconstruction of the wave climate in coastal areas and for this purpose, the first step is the selection of the maximum dissimilar cases in the initial dataset. This algorithm can be used for other objectives too. This is the first part that has to be performed and is briefly explained in:
 
 - [MDA](./mda/mda_notebook.ipynb): MDA explanatory notebook
 
@@ -37,13 +38,15 @@ With this notebook, an image as the one shown below can be otained:
 
 ![mdass](/images/mda/mdass.png)
 
+The selection of the most dissimilar cases is essential as a hybrid downscaling method is proposed (see the pdf attached).
+
 ### 3.2 SWAN
 
 Once the most dissimilar cases have been selected, they are propagated to coastal waters obtaining results as the one shown in a region in the cantabric sea, in the north of Spain:
 
 ![liencres](/images/swan/liencres.png)
 
-These propagations are performed running a nummerical model and using the friendly software developed by the [TU Delft](https://www.tudelft.nl/) (Delft University of Technology) which is called [SWAN](http://swanmodel.sourceforge.net/download/download.htm) (Simulating WAves Nearshore). This software propagates windseas and swells to coast from offshore points as the one required for the development of this entire DeliWaves toolbox. The autocontent notebook can be found in:
+These propagations are performed by running a nummerical model, using the friendly software developed by the [TU Delft](https://www.tudelft.nl/) (Delft University of Technology) which is called [SWAN](http://swanmodel.sourceforge.net/download/download.htm) (Simulating WAves Nearshore). This software propagates windseas and swells to coast from offshore points as the one required for the development of this entire DeliWaves toolbox. The autocontent notebook can be found in:
 
 - [SWAN](./swan/swan_notebook.ipynb): SWAN explanatory notebook
 
@@ -59,7 +62,11 @@ This description matches perfectly the purpose of the study, as our goal is to o
 
 ### 3.4 Spectra and free surface reconstructions
 
-...
+The data is propagated nearshore and now, aggregated parameters wanne be obtained as they are useful for the global analysis. For this calculation, bulk equations as the shown in the [RBF](./rbf/rbf_notebook.ipynb) notebook can be used, but another way to calculate these parameters is using the spectrum described by the sea state. Spectra are essential in almost all coastal engineering studies, as they represent perfectly a sea state. The figure below shows all the neccessary information to understand what a spectrum is: First, it represents the distribution of frequencies and phases existent, also the directions if the 3d spectrum is studied, so given a buoy measure during a finite time period, the spectrum as the one shown can be obtained. The subplot with the different layers represents how all the components existent in one spectrum can be added together to reconstruct the free surface elevation and the big subplot in the right correlates the spectra and their surface elevations. All this is explained in the notebook though:
+
+- [Spectra](./spectra/spectra_notebook.ipynb): Spectrum and free surface explanatory notebook
+
+![sectra](/images/spectra/spectraexpla.png)
 
 ### 3.5 Forecast
 
