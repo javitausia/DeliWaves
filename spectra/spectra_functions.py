@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Aug  5 09:42:18 2020
+Created on Wed Aug 5 09:42:18 2020
 
 @author: tausiaj
 """
@@ -207,10 +207,10 @@ def plot_spectrum(specs, nplots=4, pcolor=True, time_plots=[0,1,2,3]):
 
 def surface(data, t):
     # Constantes
-    xlen    = 1000             # Length x-field
-    ylen    = 1000             # Length y-field
-    xmax    = 1000             # Max x-field
-    ymax    = 1000             # Max y-field
+    xlen    = 50               # Length x-field
+    ylen    = 50               # Length y-field
+    xmax    = 50               # Max x-field
+    ymax    = 50               # Max y-field
     delta_d = np.pi/30         # delta-space directions axis
     delta_f = 0.005            # delta-space frequency axis
     # Elevs for all times
