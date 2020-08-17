@@ -89,7 +89,11 @@ class Forecast(object):
         xx     = np.arange(0, len(lon), 3)
         yy     = np.arange(0, len(lat), 3)
         points = np.meshgrid(yy, xx)
-        for t in range(0, len(times), 8):
+	msg  = '\n Number of images to plot from the total? \n'
+	msg += 'TOTAL: {}, To plot: \n'.format(len(times))
+	num_images_plot = int(input(msg))
+	step = int(len(times)/num_images_plot) 
+        for t in range(0, len(times), step):
             if t>=1:
                 hs.remove()
                 dirr.remove()
