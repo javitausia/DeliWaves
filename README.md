@@ -4,19 +4,21 @@
 
 ### Calibration and validation of hindcast information
 
-DeliWaves is an open-source software toolkit written in python that enables the users to perform different actions with wave data. A description of what has been done can be seen in this paper:
+DeliWaves is an open-source software toolkit written in python that enables the users to perform different actions with wave reanalysis data. A description of what has been done can be seen in this paper:
 
 * Javier Tausia Hoyal, 2020. (attached)
 
 ## 1. Description
 
-In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in CalValWaves), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportioned, as once this initial dataframe exists, all the code can be run.
+In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in [CalValWaves](https://github.com/javitausia/CalValWaves)), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportioned, as once this initial dataframe exists, all the code can be run.
 
 ## 2. Data download
 
 As it has been previously mentioned, the only thing needed is an initial dataframe with the wave historic reanalysis. More information about this downloading will be posted, but while this part is added, the shape of this dataframe must be as the one shown below:
 
 ![dataframe](/images/data/dataframe.png)
+
+Notice that not all the variables are extrictly neccessary, but future methods could be added that use these variables, so when the data is downloaded, the saving of all the existent variables is recommended in the case that enough memory space exists.
 
 ## 3. Main contents
 
@@ -50,7 +52,9 @@ These propagations are performed by running a nummerical model, using the friend
 
 - [SWAN](./swan/swan_notebook.ipynb): SWAN explanatory notebook
 
-IMPORTANT!! A `swan_ser.exe` is included in path `/swan/lib/resources/swan_bin` that has been compiled in linux, but if this file do not work, here is shown how this compilation can be performed:
+A bathymetry file is needed for this propagation step, so the downloading of the bathymetry is also explained in the previously mentioned notebook.
+
+IMPORTANT!! A `swan_ser.exe` is included in path `swan/lib/resources/swan_bin/` that has been compiled in linux, but if this executable file did not work, here is explained how this compilation can be performed:
 
 Download and Compile SWAN numerical model:
 
@@ -68,7 +72,7 @@ Download and Compile SWAN numerical model:
   make ser
 ```
 
-Copy SWAN binary file to module resources
+now, copy SWAN binary file to module resources and:
 
 ```bash
   # Launch a python interpreter
