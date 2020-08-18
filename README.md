@@ -50,6 +50,38 @@ These propagations are performed by running a nummerical model, using the friend
 
 - [SWAN](./swan/swan_notebook.ipynb): SWAN explanatory notebook
 
+IMPORTANT!! A `swan_ser.exe` is included in path `/swan/lib/resources/swan_bin` that has been compiled in linux, but if this file do not work, here is shown how this compilation can be performed:
+
+Download and Compile SWAN numerical model:
+
+```bash
+  # you may need to install a fortran compiler
+  sudo apt install gfortran
+
+  # download and unpack
+  wget http://swanmodel.sourceforge.net/download/zip/swan4131.tar.gz
+  tar -zxvf swan4131.tar.gz
+
+  # compile numerical model
+  cd swan4131/
+  make config
+  make ser
+```
+
+Copy SWAN binary file to module resources
+
+```bash
+  # Launch a python interpreter
+  $ python
+
+  Python 3.6.9 (default, Apr 18 2020, 01:56:04) 
+  [GCC 8.4.0] on linux
+  Type "help", "copyright", "credits" or "license" for more information.
+  
+  >>> from hywaves import swan
+  >>> swan.set_swan_binary_file('swan.exe')
+```
+
 ### 3.3 RBF
 
 Radial basis function (RBF) interpolation is an advanced method in approximation theory for constructing high-order accurate interpolants of unstructured data, possibly in high-dimensional spaces. The interpolant takes the form of a weighted sum of radial basis functions. RBF interpolation is a mesh-free method, meaning the nodes (points in the domain) need not lie on a structured grid, and does not require the formation of a mesh. It is often spectrally accurate and stable for large numbers of nodes even in high dimensions. The figure below illustrates how various of these radial basis functions form jointly the required final function:
