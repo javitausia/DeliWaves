@@ -56,7 +56,7 @@ class Forecast(object):
         """
         
         print('Pulling the data from: \n')
-        url = 'https://nomads.ncep.noaa.gov:9090/dods/wave/mww3/'+date+'/multi_1.glo_30mext'+date+'_00z'
+        url = 'https://nomads.ncep.noaa.gov/dods/wave/mww3/'+date+'/multi_1.glo_30mext'+date+'_00z'
         print(url)
         print('\n')
         
@@ -89,10 +89,11 @@ class Forecast(object):
         xx     = np.arange(0, len(lon), 3)
         yy     = np.arange(0, len(lat), 3)
         points = np.meshgrid(yy, xx)
-	msg  = '\n Number of images to plot from the total? \n'
-	msg += 'TOTAL: {}, To plot: \n'.format(len(times))
-	num_images_plot = int(input(msg))
-	step = int(len(times)/num_images_plot) 
+        msg  = '\n Number of images to plot from the total? \n'
+        msg += 'TOTAL: {}, To plot: \n'.format(len(times))
+        print('\n \n')
+        num_images_plot = int(input(msg))
+        step = int(len(times)/num_images_plot)
         for t in range(0, len(times), step):
             if t>=1:
                 hs.remove()
@@ -250,7 +251,7 @@ class Forecast(object):
                         (data.lon.values > lon-0.3))[0][0]
         print('\n From the region selected, the closest point will be choosen. Wanna change? \n')
         answer = bool(input('True | False: '))
-        if answer:
+        if bool(answer):
             ilat = int(input('\n Select index position for the latitude: '))
             ilon = int(input('Select index position for the longitude: '))
             print('\n Saving the dataframe with the new selected coordinates... \n')
@@ -258,6 +259,8 @@ class Forecast(object):
             print('\n Saving the dataframe with the closest coordinates... \n')
         data_dataframe = data.isel(lat=ilat).isel(lon=ilon).to_dataframe()
         data_dataframe = data_dataframe.where(data_dataframe<1000, 0)
+        
+        print('DONE!! \n')
             
         return data, data_dataframe
     
