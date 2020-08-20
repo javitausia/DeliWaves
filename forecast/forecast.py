@@ -456,7 +456,7 @@ class Forecast(object):
         print('\n')
         print('Saving the data in path="data/reconstructed/.." ... \n')
         forecast.to_pickle(op.join(p_data_swan, '..', 'reconstructed',
-                                   'reconstructed_partitioned_'+name+'.pkl'))
+                                   'reconstructed_forecast_'+name+'.pkl'))
         print(forecast)
         print(colored('\n SAVED!!! \n', 'red', attrs=['blink']))
         
