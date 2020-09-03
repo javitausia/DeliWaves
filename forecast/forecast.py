@@ -250,7 +250,7 @@ class Forecast(object):
         ilon = np.where((data.lon.values < lon+0.3) &
                         (data.lon.values > lon-0.3))[0][0]
         print('\n From the region selected, the closest point will be choosen. Wanna change? \n')
-        answer = bool(input('True | False: '))
+        answer = bool(input('True | False (let box empy) : '))
         if bool(answer):
             ilat = int(input('\n Select index position for the latitude: '))
             ilon = int(input('Select index position for the longitude: '))
