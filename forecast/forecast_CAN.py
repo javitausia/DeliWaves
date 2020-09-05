@@ -83,7 +83,7 @@ class Forecast_CAN(object):
         
         # GIF generator
         print('Generating images and GIF in "path"... \n')
-        fig = plt.figure(figsize=(20,15))
+        fig = plt.figure(figsize=(15,15))
         m = Basemap(projection='cyl', llcrnrlat=-90, urcrnrlat=90, 
                                       llcrnrlon=0,   urcrnrlon=360,
                     resolution='l')
@@ -95,9 +95,9 @@ class Forecast_CAN(object):
         xx     = np.arange(0, len(lon), 3)
         yy     = np.arange(0, len(lat), 3)
         points = np.meshgrid(yy, xx)
-        msg  = '\n Number of images to plot from the total? \n'
+        msg  = 'Number of images to plot from the total? \n'
         msg += 'TOTAL: {}, To plot: \n'.format(len(times))
-        print('\n \n')
+        print('\n')
         num_images_plot = int(input(msg))
         step = int(len(times)/num_images_plot)
         for t in range(0, len(times), step):
@@ -271,6 +271,12 @@ class Forecast_CAN(object):
             num_recons_grid_msg = '\n Select the number of points to '
             num_recons_grid_msg += 'reconstruct in GRID ' + str(off_loni +1) + ' : \n'
             num_recons_grid = int(input(num_recons_grid_msg))
+            print('\n')
+            
+            # DATASETS
+            forecasts_list.append(forecast_data.isel(lat=0).isel(lon=off_loni))
+            forecast_data_new = forecast_data.isel(lat=0).isel(lon=off_loni).to_dataframe()
+            forecast_data_new = forecast_data_new.where(forecast_data_new<1000, 0)
             
             # Reconstructios
             for recons in range(num_recons_grid):
@@ -286,26 +292,29 @@ class Forecast_CAN(object):
                                 (targetsea.Y.values > lat_new-0.01))[0][0]
                 ilon = np.where((targetswell.X.values < lon_new+0.01) &
                                 (targetswell.X.values > lon_new-0.01))[0][0]
-                targetsea   = targetsea.isel(X=ilon).isel(Y=ilat)
-                targetswell = targetswell.isel(X=ilon).isel(Y=ilat)
-                targetsea   = pd.DataFrame({'hs': targetsea.Hsig.values,
-                                            'per': targetsea.TPsmoo.values,
-                                            'perM': targetsea.Tm02.values,
-                                            'dir': targetsea.Dir.values,
-                                            'spr': targetsea.Dspr.values})
-                seaedit         = subsetsea.mean()
-                seaedit['perM'] = 7.0
-                seaedit['spr']  = 22.0
-                targetsea       = targetsea.fillna(seaedit)
-                targetswell     = pd.DataFrame({'hs': targetswell.Hsig.values,
-                                                'per': targetswell.TPsmoo.values,
-                                                'perM': targetswell.Tm02.values,
-                                                'dir': targetswell.Dir.values,
-                                                'spr': targetswell.Dspr.values})
-                swelledit         = subsetswell.mean()
-                swelledit['perM'] = 12.0
-                swelledit['spr']  = 12.0
-                targetswell       = targetswell.fillna(swelledit)
+                
+                targetsea_new   = targetsea.isel(X=ilon).isel(Y=ilat)
+                targetswell_new = targetswell.isel(X=ilon).isel(Y=ilat)
+                
+                targetsea_new   = pd.DataFrame({'hs': targetsea_new.Hsig.values,
+                                                'per': targetsea_new.TPsmoo.values,
+                                                'perM': targetsea_new.Tm02.values,
+                                                'dir': targetsea_new.Dir.values,
+                                                'spr': targetsea_new.Dspr.values})
+                seaedit_new         = subsetsea.mean()
+                seaedit_new['perM'] = 7.0
+                seaedit_new['spr']  = 22.0
+                targetsea_new       = targetsea_new.fillna(seaedit_new)
+                
+                targetswell_new     = pd.DataFrame({'hs': targetswell_new.Hsig.values,
+                                                    'per': targetswell_new.TPsmoo.values,
+                                                    'perM': targetswell_new.Tm02.values,
+                                                    'dir': targetswell_new.Dir.values,
+                                                    'spr': targetswell_new.Dspr.values})
+                swelledit_new         = subsetswell.mean()
+                swelledit_new['perM'] = 12.0
+                swelledit_new['spr']  = 12.0
+                targetswell_new       = targetswell_new.fillna(swelledit_new)
                 
                 # print(colored('TARGETS: \n', 'blue', attrs=['blink', 'reverse']))
                 # print(colored('SEA', 'red', attrs=['blink']))
@@ -313,13 +322,8 @@ class Forecast_CAN(object):
                 # print(colored('SWELL', 'red', attrs=['blink']))
                 # print(targetswell.info())
                 # print('\n')
-            
-                # DATASETS
-                forecasts_list.append(forecast_data.isel(lat=0).isel(lon=off_loni))
-                forecast_data_new = forecast_data.isel(lat=0).isel(lon=off_loni).to_dataframe()
-                forecast_data_new = forecast_data_new.where(forecast_data_new<1000, 0)
                 
-                print(colored('Forecast in the selected region will be calculated!! \n',
+                print(colored('\n Forecast in the selected region will be calculated!! \n',
                               'blue', attrs=['blink', 'reverse']))
             
                 # Preprocess the data
@@ -329,6 +333,7 @@ class Forecast_CAN(object):
                 labels_output  = [['Hsea', 'Tpsea', 'Tm_02', 'Dirsea', 'Sprsea'],
                                   ['Hswell1', 'Tpswell1', 'Tm_02','Dirswell1', 'Sprswell1'],
                                   ['Hswell2', 'Tpswell2', 'Tm_02','Dirswell2', 'Sprswell2']]
+                
                 # Initialize the datasets to reconstruct
                 datasets = []
                 for ss in labels_input:
@@ -350,7 +355,7 @@ class Forecast_CAN(object):
                     if count==0:
                         # Calculating subset, target and dataset
                         subset  = subsetsea.to_numpy()
-                        target  = targetsea.to_numpy()
+                        target  = targetsea_new.to_numpy()
                         dat_index = dat.index
                         dataset = dat.to_numpy()
                         # Performing RBF
@@ -372,7 +377,7 @@ class Forecast_CAN(object):
                     else:
                         # Calculating subset, target and dataset
                         subset  = subsetswell.to_numpy()
-                        target  = targetswell.to_numpy()
+                        target  = targetswell_new.to_numpy()
                         dat_index = dat.index
                         dataset = dat.to_numpy()
                         # Performing RBF
@@ -438,73 +443,19 @@ class Forecast_CAN(object):
                 print(colored('\n SAVED!!! \n', 'red', attrs=['blink']))
                 
         # We concat all the datasets and create the dataset
-        forecast_dataset = xr.merge(forecasts_list)
-            
-#        forecast_dataset = xr.Dataset({
-#                'Hs'         : (['time', 'lat', 'lon'], forecast_total['Hs'].values.reshape(len(self.times), 
-#                                                                                            len(lats_list), 
-#                                                                                            len(lons_list))),
-#                'Tp'         : (['time', 'lat', 'lon'], forecast_total['Tp'].values.reshape(len(self.times), 
-#                                                                                            len(lats_list), 
-#                                                                                            len(lons_list))),
-#                'Dir'        : (['time', 'lat', 'lon'], forecast_total['Dir'].values.reshape(len(self.times), 
-#                                                                                             len(lats_list), 
-#                                                                                             len(lons_list))),
-#                'Hsea'       : (['time', 'lat', 'lon'], forecast_total['Hsea'].values.reshape(len(self.times), 
-#                                                                                              len(lats_list), 
-#                                                                                              len(lons_list))),
-#                'Tpsea'      : (['time', 'lat', 'lon'], forecast_total['Tpsea'].values.reshape(len(self.times), 
-#                                                                                               len(lats_list), 
-#                                                                                               len(lons_list))),
-#                'Dirsea'     : (['time', 'lat', 'lon'], forecast_total['Dirsea'].values.reshape(len(self.times), 
-#                                                                                                len(lats_list), 
-#                                                                                                len(lons_list))),
-#                'Hswell1'    : (['time', 'lat', 'lon'], forecast_total['Hswell1'].values.reshape(len(self.times), 
-#                                                                                                 len(lats_list), 
-#                                                                                                 len(lons_list))),
-#                'Tpswell1'   : (['time', 'lat', 'lon'], forecast_total['Tpswell1'].values.reshape(len(self.times), 
-#                                                                                                  len(lats_list), 
-#                                                                                                  len(lons_list))),
-#                'Dirswell1'  : (['time', 'lat', 'lon'], forecast_total['Dirswell1'].values.reshape(len(self.times), 
-#                                                                                                   len(lats_list), 
-#                                                                                                   len(lons_list))),
-#                'Hswell2'    : (['time', 'lat', 'lon'], forecast_total['Hswell2'].values.reshape(len(self.times), 
-#                                                                                                 len(lats_list), 
-#                                                                                                 len(lons_list))),
-#                'Tpswell2'   : (['time', 'lat', 'lon'], forecast_total['Tpswell2'].values.reshape(len(self.times), 
-#                                                                                                  len(lats_list), 
-#                                                                                                  len(lons_list))),
-#                'Dirswell2'  : (['time', 'lat', 'lon'], forecast_total['Dirswell2'].values.reshape(len(self.times), 
-#                                                                                                   len(lats_list), 
-#                                                                                                   len(lons_list))),
-#                'Uwind'      : (['time', 'lat', 'lon'], forecast_total['Uwind'].values.reshape(len(self.times), 
-#                                                                                               len(lats_list), 
-#                                                                                               len(lons_list))),
-#                'Vwind'      : (['time', 'lat', 'lon'], forecast_total['Vwind'].values.reshape(len(self.times), 
-#                                                                                               len(lats_list), 
-#                                                                                               len(lons_list))),
-#                'WindSpeed'  : (['time', 'lat', 'lon'], forecast_total['WindSpeed'].values.reshape(len(self.times), 
-#                                                                                                   len(lats_list), 
-#                                                                                                   len(lons_list))),
-#                'DirWind'    : (['time', 'lat', 'lon'], forecast_total['DirWind'].values.reshape(len(self.times), 
-#                                                                                                 len(lats_list), 
-#                                                                                                 len(lons_list)))},
-#            coords = {'time' : self.times,
-#                      'lat'  : lats_list,
-#                      'lon'  : lons_list})
+        # forecast_dataset = xr.merge(forecasts_list, compat='override')
+        # print(forecast_dataset)
         
-        print(forecast_dataset)
-        
-        return forecast_dataset
+        return forecasts_list
     
     
-    def plot_results(self, forecast_dataset):
+    def plot_results(self, forecasts_list):
         """
-            Explanation
+            This function plots the information
         """
         
         # Figure intialization
-        fig = plt.figure(figsize=(10,10))
+        fig = plt.figure(figsize=(15,15))
         
         ini_lon = -4.8
         end_lon = -2.8
@@ -530,10 +481,10 @@ class Forecast_CAN(object):
         # Filenames for the images
         filenames = []
         
-        # Longitude and latitude values
-        lat    = forecast_dataset.lat.values
-        lon    = forecast_dataset.lon.values
-        x, y   = m(*np.meshgrid(lon, lat))
+        # Now we construct the matrices for the lat and lon
+        lat  = np.array([fp['lat'].values for fp in forecasts_list])
+        lon  = np.array([fp['lon'].values for fp in forecasts_list])
+        lon  = np.where(lon>180, lon-360, lon)
         msg  = '\n Number of images to plot from the total? \n'
         msg += 'TOTAL: {}, To plot: \n'.format(len(self.times))
         print('\n \n')
@@ -541,22 +492,25 @@ class Forecast_CAN(object):
         step = int(len(self.times)/num_images_plot)
         for t in range(0, len(self.times), step):
             if t>=1:
-                quiv.remove()
+                for quiv in quivs:
+                    quiv.remove()
             print('Plotting time: {}...'.format(self.times[t]))
-            hs       = forecast_dataset.Hs.values.reshape(-1)
-            # hsea     = forecast_dataset.Hsea.values
-            # hswell1  = forecast_dataset.Hswell1.values
-            norm     = matplotlib.colors.Normalize(vmin=0, vmax=40)
-            cm       = matplotlib.cm.jet
-            direc    = forecast_dataset.Dir.values
-            U        = forecast_dataset.Tp.values * np.sin((360-direc)*np.pi/180)
-            V        = forecast_dataset.Tp.values * np.cos((360-direc)*np.pi/180)
-            quiv     = m.quiver(x, y, U, V, color=cm(norm(hs)))
-            if t==0:
-                #m.colorbar(location='right')
-                m.drawcoastlines()
-                m.fillcontinents(color='lightgrey', lake_color='aqua')
-                m.drawmapboundary(fill_color='navy')
+            hs       = [fp.isel(time=t).Hs.values for fp in forecasts_list]
+            norm     = matplotlib.colors.Normalize(vmin=0, vmax=3)
+            cmap     = matplotlib.cm.jet
+            sm       = matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
+            sm.set_array([]) 
+            direc    = [fp.isel(time=t).Dir.values for fp in forecasts_list]
+            tp       = [fp.isel(time=t).Tp.values for fp in forecasts_list]
+            U, V, new_direc = self.direc_transformation(direc=direc,
+                                                        tp=tp)
+            print('\n Recalculating directions... \n')
+            quivs = []
+            for tt in range(len(hs)):
+                quivs.append(m.quiver(lon[tt], lat[tt], 
+                                      U[tt], V[tt], 
+                                      color=cmap(norm(hs[tt]))))
+            m.colorbar(sm)
             plt.title(self.times[t], fontsize=18, fontweight='bold')
             fig.savefig(op.join(self.images_path, 
                                 '{}.png'.format(self.times[t])))
@@ -572,3 +526,34 @@ class Forecast_CAN(object):
                       attrs=['blink']))
         print('\n')
         
+        
+    def direc_transformation(self, direc, tp):
+        """
+            This simple function arranges the directions so the plot
+            is understandable in our region of interest
+        """
+        
+        direcs = []
+        us     = []
+        vs     = []
+        
+        for d, t in zip(direc, tp):
+            if d<90:
+                direcs.append(90-d)
+                us.append(- np.cos((90-d)*np.pi/180) * t)
+                vs.append(- np.sin((90-d)*np.pi/180) * t)
+            elif d<180:
+                direcs.append(360-(d-90))
+                us.append(- np.cos((360-(d-90))*np.pi/180) * t)
+                vs.append(- np.sin((360-(d-90))*np.pi/180) * t)
+            elif d<270:
+                direcs.append(180+(270-d))
+                us.append(- np.cos((180+(270-d))*np.pi/180) * t)
+                vs.append(- np.sin((180+(270-d))*np.pi/180) * t)
+            else:
+                direcs.append(90+(360-d))
+                us.append(- np.cos((90+(360-d))*np.pi/180) * t)
+                vs.append(- np.sin((90+(360-d))*np.pi/180) * t)
+        
+        return us, vs, direcs
+    
