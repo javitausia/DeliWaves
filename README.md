@@ -119,6 +119,10 @@ And the predictions have the next aspect:
 
 ![FoPred](/images/forecast/forecast.png)
 
+A detailed notebook in Cantabria is aldo added, obtaining forecast predictions in different requested beaches along the north shore of Spain with the form:
+
+![FoGIF](/images/forecast/forecast_CANgit.gif)
+
 ## 4. Installation
 
 ### 4.1 Create an environment in conda
