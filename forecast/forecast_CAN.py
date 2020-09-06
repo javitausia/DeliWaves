@@ -132,7 +132,7 @@ class Forecast_CAN(object):
         print('\n')
         
         
-    def select_region(self, zoom=6):
+    def plot_region(self, zoom=6):
         """ This plot helps the user see the region that will be saved
             so more than one single forecast node will be available
             ------------
@@ -219,14 +219,21 @@ class Forecast_CAN(object):
         return data
     
     
+    def select_recon_points(self):
+        """
+            Explanation
+        """
+        pass
+    
+    
     def forecast_reconstruction(self, p_data_swan, info, forecast_data):
         """ This method reconstruct the forecast information in the
             previously selected region
             ------------
             Parameters
+            p_data_swan: path to find the necessary data to 
+                         reconstruct (SWAN)
             info: dictionary with the important data variables:
-                    p_data_swan: path to find the necessary data to 
-                                 reconstruct (SWAN)
                     name: name of the region in folder
                     resolution: resolution of the region in folder
                     num_cases: num_cases of the region in folder
@@ -450,8 +457,15 @@ class Forecast_CAN(object):
     
     
     def plot_results(self, forecasts_list):
-        """
-            This function plots the information
+        """ This method plots the forecasts in the selected points
+            ------------
+            Parameters
+            forecasts_list : a python list with all the necessary forecast
+                             points reconstructed nearshore. This list 
+                             is the output of forecast_reconstruction()
+            ------------
+            Returns
+            the plotted forecasts in the chose points
         """
         
         # Figure intialization
@@ -504,7 +518,7 @@ class Forecast_CAN(object):
             tp       = [fp.isel(time=t).Tp.values for fp in forecasts_list]
             U, V, new_direc = self.direc_transformation(direc=direc,
                                                         tp=tp)
-            print('\n Recalculating directions... \n')
+            # Now, we plot the quivs!!
             quivs = []
             for tt in range(len(hs)):
                 quivs.append(m.quiver(lon[tt], lat[tt], 
