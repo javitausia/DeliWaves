@@ -247,7 +247,7 @@ class Forecast_CAN(object):
         forecasts_list = []
         
         # Here, we choose the locations we will use for the offshores
-        for off_loni in range(4):
+        for off_loni in range(3):
             
             # SUBSETS
             subsetsea    = pd.read_pickle(op.join(p_data_swan, 
@@ -281,8 +281,9 @@ class Forecast_CAN(object):
             print('\n')
             
             # DATASETS
-            forecasts_list.append(forecast_data.isel(lat=0).isel(lon=off_loni))
-            forecast_data_new = forecast_data.isel(lat=0).isel(lon=off_loni).to_dataframe()
+            offshore_forecast = forecast_data.isel(lat=0).isel(lon=off_loni)
+            forecasts_list.append(xr.where(offshore_forecast<1000, offshore_forecast, 0))
+            forecast_data_new = offshore_forecast.to_dataframe()
             forecast_data_new = forecast_data_new.where(forecast_data_new<1000, 0)
             
             # Reconstructios
@@ -471,10 +472,10 @@ class Forecast_CAN(object):
         # Figure intialization
         fig = plt.figure(figsize=(15,15))
         
-        ini_lon = -4.8
-        end_lon = -2.8
+        ini_lon = -4.6
+        end_lon = -3.1
         ini_lat = 43.2
-        end_lat = 44.2
+        end_lat = 44.1
         
         # Plot the Basemap
         m = Basemap(llcrnrlon=ini_lon,  
@@ -509,21 +510,31 @@ class Forecast_CAN(object):
                 for quiv in quivs:
                     quiv.remove()
             print('Plotting time: {}...'.format(self.times[t]))
-            hs       = [fp.isel(time=t).Hs.values for fp in forecasts_list]
-            norm     = matplotlib.colors.Normalize(vmin=0, vmax=3)
-            cmap     = matplotlib.cm.jet
-            sm       = matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
+            hsea      = [fp.isel(time=t).Hsea.values for fp in forecasts_list]
+            hswell1   = [fp.isel(time=t).Hswell1.values for fp in forecasts_list]
+            norm      = matplotlib.colors.Normalize(vmin=0, vmax=3)
+            cmap      = matplotlib.cm.hot_r
+            sm        = matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
             sm.set_array([]) 
-            direc    = [fp.isel(time=t).Dir.values for fp in forecasts_list]
-            tp       = [fp.isel(time=t).Tp.values for fp in forecasts_list]
-            U, V, new_direc = self.direc_transformation(direc=direc,
-                                                        tp=tp)
+            dirsea    = [fp.isel(time=t).Dirsea.values for fp in forecasts_list]
+            dirswell1 = [fp.isel(time=t).Dirswell1.values for fp in forecasts_list]
+            tpsea     = [fp.isel(time=t).Tpsea.values for fp in forecasts_list]
+            tpswell1  = [fp.isel(time=t).Tpswell1.values for fp in forecasts_list]
+            Usea, Vsea, new_direc_sea = self.direc_transformation(direc=dirsea,
+                                                                  tp=tpsea)
+            Uswell1, Vswell1, new_direc_swell = self.direc_transformation(direc=dirswell1,
+                                                                          tp=tpswell1)
             # Now, we plot the quivs!!
             quivs = []
-            for tt in range(len(hs)):
+            for tt in range(len(hsea)):
                 quivs.append(m.quiver(lon[tt], lat[tt], 
-                                      U[tt], V[tt], 
-                                      color=cmap(norm(hs[tt]))))
+                                      Usea[tt], Vsea[tt], 
+                                      width=0.004,
+                                      color=cmap(norm(hsea[tt]))))
+                quivs.append(m.quiver(lon[tt], lat[tt], 
+                                      Uswell1[tt], Vswell1[tt], 
+                                      width=0.002,
+                                      color=cmap(norm(hswell1[tt]))))
             m.colorbar(sm)
             plt.title(self.times[t], fontsize=18, fontweight='bold')
             fig.savefig(op.join(self.images_path, 
