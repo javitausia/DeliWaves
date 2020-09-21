@@ -13,7 +13,7 @@ from datetime import timedelta as td
 # plots
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from matplotlib import LinearSegmentedColormap
+from matplotlib.colors import LinearSegmentedColormap
 from pandas.plotting import register_matplotlib_converters
 from termcolor import colored
 
@@ -34,7 +34,8 @@ class Slopes(object):
                  reconstructed_depth = 10):
         """
             The initializator is essential as it constructs the main
-            object that we will later use for the SOM
+            object that we will later use for the visualization tools.
+            both the SOM and usual plots
             ------------
             Parameters
             reconctructed_data: it is a dataframe with the historical data
@@ -63,18 +64,18 @@ class Slopes(object):
         self.wf     =  wf
         self.name   =  name
         
-        # And now perform the pertinent actions
+        # And now, we perform the pertinent actions
         
         # 1. Omega calculation
         data_mean = self.data[['Hs_Agg', 'Tp_Agg']].copy()
         data_mean = data_mean.rolling(window=31*24).mean()
         data_mean['Omega'] = data_mean['Hs_Agg'] / \
                                (self.wf*data_mean['Tp_Agg'])
-        print('\n $\u03A9$ and rolling means calculated!! \n')
+        print('\n Rolling mean and $\u03A9$ calculated!! \n')
         
         # 2. Relative direction calculation and renaming
         # 2.1 Renaming for Agg o Spec
-        msg  =  '\n For aggregated parameters (Agg) usage say True, '
+        msg  =  '\n For aggregated parameters (Agg) usage say True \n, '
         msg +=  'for Spectral parameters (Spec), say False (empty box): \n'
         ans  =  bool(input(msg))
         if ans:
@@ -98,11 +99,12 @@ class Slopes(object):
                 ddirs.append(ddir - 360)
             elif ddir>0:
                 ddirs.append(ddir)
-            elif ddir>-180:
+            elif ddir>(-180):
                 ddirs.append(ddir)
             else:
                 ddirs.append(360 + ddir)
         self.data['DDir'] = ddirs
+        print('\n Mean wave direction: {} \n'.format(self.data.DDir.mean()))
         self.data['DDir'] = self.data['DDir'] * np.pi / 180
           # wind
         ddirssw = self.data['DirW'] - self.angle
@@ -112,14 +114,13 @@ class Slopes(object):
                 ddirsw.append(ddirw - 360)
             elif ddirw>0:
                 ddirsw.append(ddirw)
-            elif ddirw>-180:
+            elif ddirw>(-180):
                 ddirsw.append(ddirw)
             else:
                 ddirsw.append(360 + ddirw)
         self.data['DDirW'] = ddirsw
-        self.data['DDirW'] = self.data['DDirW'] * np.pi / 180
-        print('\n Mean wave direction: {} \n'.format(self.data.DDir.mean()))
         print('\n Mean wind direction: {} \n'.format(self.data.DDirW.mean()))
+        self.data['DDirW'] = self.data['DDirW'] * np.pi / 180
         
         # 3. Tides and omega joining
         self.data = self.data.join(np.abs(tides-tides.max()), how='inner')
@@ -152,8 +153,8 @@ class Slopes(object):
         print('\n Heights asomerament difference: Hb / Hs : {} \n'.format(
                 (self.data['H_break']/self.data['Hs']).mean()))
         
-        return colored('\n Slopes main object constructed!! \n', 'red', 
-                       attrs=['blink'])
+        print(colored('\n Slopes main object constructed!! \n', 'red', 
+                      attrs=['blink']))
         
         
     def perform_propagation(self, profile_type='biparabolic'):
@@ -178,7 +179,7 @@ class Slopes(object):
                 D = 0.22 * np.exp(-0.83 * self.data.iloc[wave].Omega)
                 # Asomerament height
                 h = self.data.iloc[wave].H_break + \
-                    self.data.iloc[wave].Tide_height
+                    self.data.iloc[wave].ocean_tide
                 h_values = np.linspace(h, h+slope_range, 30)
                 hr = 1.1 * self.data.iloc[wave].Hs + self.TR
                 # Lines for the profile
@@ -225,11 +226,13 @@ class Slopes(object):
                                             np.sqrt(self.data['H_break'] / \
                                             ((9.8/2*np.pi)*self.data['Tp']**2))
                              
-            # Print the constructed data
-            print(self.data.info())
+        # Print the constructed data
+        print(colored('\n Slopes main object finally constructed!! \n', 
+                      'red', attrs=['blink']))
+        print(self.data.info())
             
             
-    def plot_profile(self, year):
+    def plot_profile(self, year=2018):
         """
             Plots the profile features for the selected year
         """
@@ -271,7 +274,7 @@ class Slopes(object):
         axs[3].set_xticklabels(months, fontsize=12, fontweight='bold')
         
         
-    def moving_profile(self, year):
+    def moving_profile(self, year=2018):
         """
             A function to see how the profile can variate along a year
         """
@@ -304,7 +307,7 @@ class Slopes(object):
         ax1.tick_params(direction='in')
         ax1.set_xticklabels([])
         ax2 = fig.add_subplot(gs[2, :])
-        ax2.plot(slopes_list['Actual_Slope'], color='darkgreen', linewidth=1, label='Actual tide slope')
+        ax2.plot(slopes_list['Slope'], color='darkgreen', linewidth=1, label='Actual tide slope')
         ax2.legend(fontsize=10)
         ax2.grid()
         ax2.set_xlim(ini, end)
@@ -312,7 +315,7 @@ class Slopes(object):
         ax2.tick_params(direction='in')
         ax2.set_xticklabels([])
         ax3 = fig.add_subplot(gs[3, :])
-        ax3.plot(slopes_list['Actual_Iribarren'], color='darkred', linewidth=1, label='nº Iribarren')
+        ax3.plot(slopes_list['Iribarren'], color='darkred', linewidth=1, label='nº Iribarren')
         ax3.legend(fontsize=10)
         ax3.grid()
         ax3.set_xlim(ini, end)
