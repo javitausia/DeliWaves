@@ -130,7 +130,7 @@ def spectra(data, gamma_values=False):
     if len(data)>20:
         timesteps = int(len(data)/20)
     else:
-        timesteps = 1
+        timesteps = 10
     timestep = int(len(data)/timesteps)
     print('Concatinating final spectrums in groups of {}...'.format(timestep))
     timestep_list = [ [], [], [], [] ]
