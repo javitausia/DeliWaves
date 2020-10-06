@@ -2,7 +2,7 @@
 
 # DeliWaves
 
-### Calibration and validation of hindcast information
+### Useful actions to perform over wave reanalysis data
 
 DeliWaves is an open-source software toolkit written in python that enables the users to perform different actions with wave reanalysis data. A description of what has been done can be seen in this paper:
 
