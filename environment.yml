@@ -2,6 +2,7 @@ channels:
         - defaults
         - conda-forge
         - plotly
+        - anaconda
 dependencies:
         - python
         - numpy
