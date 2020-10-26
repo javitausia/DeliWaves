@@ -2,7 +2,7 @@
 *ipynb_checkpoints
 /slopes/*
 /data/profiles/*
-/data/reconstructed/*
+/data/reconstructed/rec*
 /data/spectra/*
 /data/projects-swan/*
 /data/tides/*
