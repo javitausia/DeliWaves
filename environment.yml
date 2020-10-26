@@ -24,3 +24,5 @@ dependencies:
         - dash
         - plotly
         - cftime
+        - gunicorn
+        - django
