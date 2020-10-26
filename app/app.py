@@ -12,7 +12,7 @@ from datetime import datetime
 
 app = dash.Dash()
 
-# server = app.server
+server = app.server
 
 data       = pd.read_pickle('../data/reconstructed/surfbreaks_reconstructed_final_reduced.pkl')
 data['Index'] = data['Index'].where(data['Index']<1, 1) * 10
@@ -118,13 +118,13 @@ app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/
                                           height=390), 
                                  html.Img(id='image-som', 
                                           src=encode_image('../images/app/lasom.png'), 
-                                          height=400)]),
+                                          height=420)]),
                        html.Div([html.Img(id='image-months', 
                                           src=encode_image('../images/app/sommonths.png'), 
                                           height=450),
                                  html.Img(id='image-index',
                                           src=encode_image('../images/app/sombeaches.png'),
-                                          height=450),
+                                          height=440),
                                  html.Hr(),
                                  dcc.Markdown(message_months, style={'fontSize':24})]),
                        html.Hr(),
@@ -174,7 +174,7 @@ app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/
                                 style={'display':'inline-block'}),
                        html.Div([html.Button(id='submit-button',
                                              n_clicks=0,
-                                             children='Submit',
+                                             children='Mostrar',
                                              style={'fontSize':24, 'marginLeft':'30px'})], 
                                 style={'display':'inline-block'}),
                        dcc.Graph(id='time-series')
@@ -225,7 +225,7 @@ def callback_fig_prob_day(beach):
                             histcolor)},
                         nbins=366, range_y=[0,1],
                         labels={'level_0': 'Day of year'},
-                        title='Beach: ' + beach, width=1000, height=400)
+                        title='Beach: ' + beach, width=1500, height=500)
 
 @app.callback(Output('prob-period', 'figure'),
               [Input('radio-sf', 'value'),
@@ -247,7 +247,7 @@ def callback_fig_prob_period(beach, grouper):
                             histcolor)},
                         range_y=[0,1], nbins=len(data[grouper].unique()),
                         labels={'level_0': grouper},
-                        title='Beach: ' + beach, width=1000, height=400)
+                        title='Beach: ' + beach, width=1500, height=500)
     
 @app.callback(Output('prob-time', 'figure'),
               [Input('radio-sf', 'value'),
@@ -273,7 +273,7 @@ def callback_fig_prob_years(beach, years):
                             histcolor)},
                         nbins=12*int(end_year-ini_year + 1), range_y=[0,1],
                         labels={'level_0': 'Historical month'},
-                        title='Beach: ' + beach, width=1000, height=400)
+                        title='Beach: ' + beach, width=1500, height=500)
 
 @app.callback(Output('time-series', 'figure'),
               [Input('submit-button', 'n_clicks')],
@@ -285,7 +285,7 @@ def update_graph(n_clicks, variables, beach, start_date, end_date):
     data_series = data.where(data['beach']==beach).dropna(how='all', axis=0).copy()
     return px.line(data_series, x=data_series.index, y=variables, range_x=[start_date[:10],
                                                                            end_date[:10]],
-                   title='Beach: ' + beach, width=1000, height=400)
+                   title='Beach: ' + beach, width=1500, height=500)
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
