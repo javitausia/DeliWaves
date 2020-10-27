@@ -288,4 +288,4 @@ def update_graph(n_clicks, variables, beach, start_date, end_date):
                    title='Beach: ' + beach, width=1500, height=500)
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
