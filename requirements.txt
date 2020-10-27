@@ -7,11 +7,6 @@ scikit-learn
 scipy
 statsmodels
 cmocean
-basemap
-basemap-data-hires
-termcolor
-imageio
-ipyleaflet
 dash
 plotly
 cftime
