@@ -5,12 +5,12 @@ numpy
 pandas
 xarray
 netcdf4
-matplotlib=3.3.1
+matplotlib
 scikit-learn
 scipy
 statsmodels
 cmocean
-basemap=1.2.1
+basemap
 basemap-data-hires
 spyder
 notebook
