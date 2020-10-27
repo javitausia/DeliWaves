@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 import plotly.express as px
 import pandas as pd
+import numpy as np
 import base64
 
 from datetime import datetime
@@ -14,7 +15,7 @@ app = dash.Dash()
 
 server = app.server
 
-data       = pd.read_pickle('../data/reconstructed/surfbreaks_reconstructed_final_reduced.pkl')
+data       = pd.read_pickle('data/reconstructed/surfbreaks_reconstructed_final.pkl')
 data['Index'] = data['Index'].where(data['Index']<1, 1) * 10
 data = data.dropna(how='any', axis=0)
 
@@ -25,6 +26,7 @@ def encode_image(image_file):
     print(encoded)
     return 'data:image/png;base64,{}'.format(encoded.decode())
 
+
 message = '''
         En este boceto de app web se van a mostrar y explicar las caracterísiticas principales
         encontradas en las rompientes de la región más conocidas por el surfista local.
@@ -32,7 +34,8 @@ message = '''
         que se han calculado para las diferentes rompientes, tanto de forma cualitativa, 
         que es la opinión subjetiva de los riders locales, como de forma cuantitativa, a través de 
         un índice de surfeabilidad cuya construcción, así como mayores detalles a cerca 
-        de todo lo existente puede consultarse en github/javitausia o escribiendo a jtausiahoyal@gmail.com.
+        de todo lo existente puede consultarse en github/javitausia/DeliWaves o escribiendo a 
+        jtausiahoyal@gmail.com o tausiaj@unican.es
         
         
         En estas primeras gráficas, además de este mapa global de notas por rompientes,
@@ -40,15 +43,15 @@ message = '''
         resultado conseguido al haber aplicado técnicas de machine learning sobre un conjunto
         de datos cerca del millón de entradas temporales, y no es más que la separación en diferentes grupos de las
         diferentes condiciones de surf que han llegado a la costa de Cantabria durante los
-        últimos 40 años. 
+        últimos 40 años
         
         
         Una explicación rápida de los resultados obtenidos en estas gráficas es la siguiente:
-        En la figura con colores y flechas, el color del hexágono grande es la altura de ola,
-        el color del hexágono pequeño se asocia con la rotura, siendo de negro a blanco, de ola
-        baba a cerrote, y las flechas indican la dirección del viento (negro, intensidad del mismo
-        relacionada con la longitud de la flecha), y la dirección con la que llegan las olas a la
-        playa (color, que dependiendo de este la dispersión del oleaje varía).
+        En la figura con colores y flechas, el color del hexágono grande es la altura de ola de rotura,
+        el color del hexágono pequeño se asocia con el tipo de rotura, siendo de negro a blanco, de ola
+        baba (spilling) a cerrote (collapsing), y las flechas indican la dirección del viento (negro, 
+        intensidad del mismo relacionada con la longitud de la flecha), y la dirección con la que llegan las olas a la
+        playa (color, que dependiendo de este la dispersión del oleaje varía)
         
         De este modo, las dos gráficas que siguen al map de notas, identificarán las
         condicones de surf y las notas asociadas a cada cluster (grupo), mientras que las gráficas
@@ -76,7 +79,7 @@ message_months = '''
 message_probs_day = '''
         Una vez se ha seleccionado la rompiente de interés, se muestran tres gráficas dónde puede verse
         la probabilidad de encontrar las distintas condiciones de surf, a lo largo de un año, en los
-        diferentes meses/estaciones/años, o en cada mes a lo largo de los años elegidos
+        diferentes meses/estaciones/años, o en cada mes a lo largo de los años seleccionados
         
         * Nótese que las probabilidades no siempre llegan a 1, aunque esto debería ser así, pero esto
         se debe a la forma en la que se construye la función de agrupación, pues no es del todo completa,
@@ -92,7 +95,7 @@ top_message  = 'Modelo de reducción de escala híbrido, junto que técnicas de 
 top_message += ' capaz de resolver las condiciones de surf en Cantabria'
         
 
-app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/app/geoocean.png'),
+app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('images/app/geoocean.png'),
                                                     style={'height': '150px',
                                                            'width': 'auto',
                                                            'margin-bottom': '10px'})],
@@ -101,11 +104,11 @@ app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/
                                                              style={'margin-bottom': '5px'}),
                                                      html.H2(top_message, style={'margin-top': '5px'})])],
                                           className='one-half column', id='title'),
-                                 html.Div([html.A(html.Button('github/javitausia', id='learn-more-button'),
+                                 html.Div([html.A(html.Button('  github/javitausia/DeliWaves  ', id='learn-more-button'),
                                                   href='https://github.com/javitausia/DeliWaves'),
-                                           html.A(html.Button('Paper oficial', id='learn-more-pdf'),
+                                           html.A(html.Button('  Paper oficial (pdf)  ', id='learn-more-pdf'),
                                                   href='https://github.com/javitausia/DeliWaves/blob/master/TausiaHoyalJavier-Surfing.pdf'),
-                                           html.A(html.Button('Resumen ppt', id='learn-more-ppt'),
+                                           html.A(html.Button('  Resumen ppt (Google Docs)  ', id='learn-more-ppt'),
                                                   href='https://docs.google.com/presentation/d/16N6wJ6zxbf6WDiyEYXN92jBhmhsJwfLXozHU3S2t4LY/edit?usp=sharing')],
                                           id='button', style={'display': 'inline-block'})], 
                                 id='header', className='row flex-display', style={'margin-bottom': '25px',
@@ -114,22 +117,60 @@ app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/
                        dcc.Markdown(message, style={'fontSize':24}),
                        html.Hr(),
                        html.Div([html.Img(id='map',
-                                          src=encode_image('../images/app/map-initial.png'),
+                                          src=encode_image('images/app/map-initial.png'),
                                           height=390), 
                                  html.Img(id='image-som', 
-                                          src=encode_image('../images/app/lasom.png'), 
+                                          src=encode_image('images/app/lasom.png'), 
                                           height=420)]),
                        html.Div([html.Img(id='image-months', 
-                                          src=encode_image('../images/app/sommonths.png'), 
+                                          src=encode_image('images/app/sommonths.png'), 
                                           height=450),
                                  html.Img(id='image-index',
-                                          src=encode_image('../images/app/sombeaches.png'),
+                                          src=encode_image('images/app/sombeaches.png'),
                                           height=440),
                                  html.Hr(),
                                  dcc.Markdown(message_months, style={'fontSize':24})]),
                        html.Hr(),
+                       html.Div([html.Div([html.Div(dcc.Dropdown(id='my-variable-both',
+                                                                 options=[dict(label=var, value=var) for var in data.columns],
+                                                                 multi=False,
+                                                                 value='Hs'), 
+                                                    style={'width': '30%'}),
+                                           html.Div(html.Button(id='submit-button-both',
+                                                                n_clicks=0,
+                                                                children='Mostrar',
+                                                                style={'fontSize':24, 'marginLeft':'30px'}),
+                                                    style={'width': '10%'}),
+                                           html.Div(html.H3('Pulsa Mostrar para ver resultados en BAR y BOX'),
+                                                    style={'width': '40%'})],
+                                          style={'display': 'block',
+                                                 'align': 'center'}),
+                                 html.Div([html.H3('BAR, análisis con diagrama de barras'),
+                                           dcc.Dropdown(id='drop-bar',
+                                                        options=[{'label': 'Momento del día', 'value': 'Day_Moment'},
+                                                                 {'label': 'Hora del día', 'value': 'Hour'},
+                                                                 {'label': 'Mes', 'value': 'Month'},
+                                                                 {'label': 'Estación', 'value': 'Season'},
+                                                                 {'label': 'Año', 'value': 'Year'}],
+                                                        value='Month',
+                                                        style={'margin-top': '20px'}),       
+                                           dcc.Graph(id='graph-bar')], style={'width': '50%', 'display': 'inline-block'}),
+                                 html.Div([html.H3('BOX, análisis con diagrama de cajas'),
+                                           dcc.Dropdown(id='drop-box',
+                                                        options=[{'label': 'TODO', 'value': 'all'},
+                                                                 {'label': 'Verano', 'value': 'Summer'},
+                                                                 {'label': 'Otoño', 'value': 'Autumn'},
+                                                                 {'label': 'Invierno', 'value': 'Winter'},
+                                                                 {'label': 'Primavera', 'value': 'Spring'}],
+                                                        value='Summer',
+                                                        style={'margin-top': '20px'}),       
+                                           dcc.Graph(id='graph-box')], style={'width': '50%', 
+                                                                              'display': 'inline-block',
+                                                                              'align': 'right'})], 
+                                style={'width': '98%', 'display': 'inline-block'}),
+                       html.Hr(),
                        html.H2('SELECCIONAR la rompiente deseada para analizar sus resultados INDIVIDUALES',
-                               style={'width': '65%', 'border': '5px solid #333'}),
+                               style={'width': '50%', 'border': '6px solid #333'}),
                        html.Hr(),
                        html.Div([dcc.RadioItems(
                                     id='radio-sf',
@@ -184,26 +225,64 @@ app.layout = html.Div([html.Div([html.Div([html.Img(src=encode_image('../images/
 @app.callback(Output('map', 'src'),
               [Input('radio-sf', 'value')])
 def callback_image_map(radio_sel_sf):
-    path = '../images/app/'
+    path = 'images/app/'
     return encode_image(path+radio_sel_sf+'slope.png')
 
 @app.callback(Output('image-som', 'src'),
               [Input('radio-sf', 'value')])
 def callback_image_som(radio_sel_sf):
-    path = '../images/app/'
+    path = 'images/app/'
     return encode_image(path+'som'+radio_sel_sf+'.png')
 
 @app.callback(Output('image-months', 'src'),
               [Input('radio-sf', 'value')])
 def callback_image_months(radio_sel_sf):
-    path = '../images/app/'
+    path = 'images/app/'
     return encode_image(path+'som'+radio_sel_sf+'months.png')
 
 @app.callback(Output('image-index', 'src'),
               [Input('radio-sf', 'value')])
 def callback_image_index(radio_sel_sf):
-    path = '../images/app/'
+    path = 'images/app/'
     return encode_image(path+'som'+radio_sel_sf+'index.png')
+
+@app.callback(Output('graph-bar', 'figure'),
+              [Input('submit-button-both', 'n_clicks')],
+              [State('my-variable-both', 'value'),
+               State('drop-bar', 'value')])
+def update_graph_barplot(n_clicks, variable, time):
+    return px.bar(data.groupby([time, 'beach']).mean().reset_index(),
+                  y=variable,
+                  x=time,
+                  color='beach',
+                  barmode='group',
+                  title='Estudio de '+str(variable)+' por '+str(time), 
+                  width=900, height=500)
+
+@app.callback(Output('graph-box', 'figure'),
+              [Input('submit-button-both', 'n_clicks')],
+              [State('my-variable-both', 'value'),
+               State('drop-box', 'value')])
+def update_graph_boxplot(n_clicks, variable, time):
+    data_box = data.copy()
+    if isinstance(time, np.int64):
+        fig = px.box(data_box.where(data_box['Month']==time).dropna(how='all', axis=0), 
+                     x='beach', y=variable,
+                     title='Estudio de '+str(variable)+' en '+str(time), 
+                     width=1000, height=500)
+    elif time=='all':
+        fig = px.box(data_box, x='beach', y=variable, title='Points: '+time)
+    elif time in ['Winter', 'Spring', 'Summer', 'Autumn']:
+        fig = px.box(data_box.where(data_box['Season']==time).dropna(how='all', axis=0), 
+                     x='beach', y=variable,
+                     title='Estudio de '+str(variable)+' en '+str(time), 
+                     width=1000, height=500)
+    else:
+        fig = px.box(data_box.where(data_box['Day_Moment']==time).dropna(how='all', axis=0), 
+                     x='beach', y=variable,
+                     title='Estudio de '+str(variable)+' en '+str(time), 
+                     width=1000, height=500)
+    return fig
 
 @app.callback(Output('prob-day', 'figure'),
               [Input('radio-sf', 'value')])
