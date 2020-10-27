@@ -1,6 +1,3 @@
-plotly        
-anaconda
-python
 numpy
 pandas
 xarray
@@ -12,8 +9,6 @@ statsmodels
 cmocean
 basemap
 basemap-data-hires
-spyder
-notebook
 termcolor
 imageio
 ipyleaflet
