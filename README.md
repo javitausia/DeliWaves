@@ -72,19 +72,9 @@ Download and Compile SWAN numerical model:
   make ser
 ```
 
-now, copy SWAN binary file to module resources and:
+now, copy SWAN binary file to module resources and play with it!!
 
-```bash
-  # Launch a python interpreter
-  $ python
-
-  Python 3.6.9 (default, Apr 18 2020, 01:56:04) 
-  [GCC 8.4.0] on linux
-  Type "help", "copyright", "credits" or "license" for more information.
-  
-  >>> from hywaves import swan
-  >>> swan.set_swan_binary_file('swan.exe')
-```
+If cases do not run correctly, please check the binary file the wrap.py file is looking for!!
 
 ### 3.3 RBF
 
