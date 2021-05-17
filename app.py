@@ -49,11 +49,11 @@ message = '''
         Una explicación rápida de los resultados obtenidos en estas gráficas es la siguiente:
         En la figura con colores y flechas, el color del hexágono grande es la altura de ola de rotura,
         el color del hexágono pequeño se asocia con el tipo de rotura, siendo de negro a blanco, de ola
-        baba (spilling) a cerrote (collapsing), y las flechas indican la dirección del viento (negro, 
+        decrestada (spilling) a cerrote (collapsing), y las flechas indican la dirección del viento (negro, 
         intensidad del mismo relacionada con la longitud de la flecha), y la dirección con la que llegan las olas a la
-        playa (color, que dependiendo de este la dispersión del oleaje varía)
+        playa (color, que dependiendo de este la dispersión o limpieza del oleaje varía)
         
-        De este modo, las dos gráficas que siguen al map de notas, identificarán las
+        De este modo, las dos gráficas que siguen al mapa de notas, identificarán las
         condicones de surf y las notas asociadas a cada cluster (grupo), mientras que las gráficas
         de debajo, darán una idea de cúal es la probabilidad de encontrar esos clusters, tanto
         a lo largo del año, como en las distintas rompientes. Más abajo, una vez seleccionada la
@@ -64,7 +64,7 @@ message_months = '''
         Como ya se ha comentado, las probabilidades de ocurrencia de los distintos clusters se
         muestran en las dos figuras de encima. Nótese que la realidad cuadra con lo esperado,
         pues los meses de invierno presentan como más probables, aquellos clusters donde las olas
-        son más grandes, mientras que los meses de verano presentan mares más suaves, y
+        son más grandes, mientras que los meses de verano presentan oleajes más suaves, y
         claramente influenciados en muchos casos por vientos nordestes. En lo que respecta a las
         rompientes, de nuevo se ve relación clara con las condiciones que los surfistas observan 
         diariamente en sus playas preferidas. A continuación, seleccionar por favor la rompiente
@@ -73,7 +73,7 @@ message_months = '''
         seleccione la playa de interés, aparecerán nuevas imágenes, de fácil comprensión por parte
         del lector, pues son parecidas a las previamente mostradas, pero estarán centradas en una
         única rompiente. Además, se muestran perfiles tipo que pueden aparecer en las playas
-        a lo largo de distintos años años
+        a lo largo de los distintos años
     '''
     
 message_probs_day = '''
