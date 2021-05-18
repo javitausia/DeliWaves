@@ -20,6 +20,9 @@ latex:
 # bibtex_bibfiles:
 #   - references.bib
 
+launch_buttons:
+  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+
 # Information about where the book exists on the web
 repository:
   url: https://github.com/javitausia/DeliWaves  # Online location of your book
