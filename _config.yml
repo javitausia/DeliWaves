@@ -4,7 +4,7 @@
 # basic configurations
 title: DeliWaves
 author: Javier Tausía Hoyal
-logo: media/images/logo.jpeg
+logo: images/data/logo.jpeg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
