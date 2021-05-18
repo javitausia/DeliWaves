@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7. Forecast predictions in offshore and coastal point all over the world &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Forecast predictions in offshore and coastal points in Cantabria, Spain" href="forecast_CAN_notebook.html" />
+    <link rel="prev" title="6. Spectrum and free surface reconstructions" href="../spectra/spectra_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/forecast/forecast_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fforecast/forecast_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/forecast/forecast_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="forecast-predictions-in-offshore-and-coastal-point-all-over-the-world">
+<h1><span class="section-number">7. </span>Forecast predictions in offshore and coastal point all over the world<a class="headerlink" href="#forecast-predictions-in-offshore-and-coastal-point-all-over-the-world" title="Permalink to this headline">¶</a></h1>
+<p>please contact <a class="reference external" href="mailto:jtausiahoyal&#37;&#52;&#48;gmail&#46;com">jtausiahoyal<span>&#64;</span>gmail<span>&#46;</span>com</a> for more information</p>
+<p>With this jupyter notebook, forecasts of the waves can be done all over the world just running all the cells below. Data is downloaded from the <a class="reference external" href="https://www.noaa.gov/">NOAA</a> website and used for the local predictions. In case the methodology followed wanna be studied in detail, refer to the Forecast class in the repository, and to all the available notebooks as they explain step by step the procedure.</p>
+<p>But briefly explained, this notebook download the data, save and plot it and then, reconstruct the predictions using RBF in coastal points using the previously propagated cases with SWAN (refer to the notebooks and the paper in the repo for more information).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># dev library</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Forecast module</span>
+<span class="kn">from</span> <span class="nn">forecast</span> <span class="kn">import</span> <span class="n">Forecast</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date</span>         <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="c1"># today or ex: &#39;20200707&#39;</span>
+<span class="n">date</span>         <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">images_path</span>  <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;forecast&#39;</span><span class="p">)</span> <span class="c1"># save images and GIF</span>
+<span class="n">location</span>     <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># location to see the forecast</span>
+
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">Forecast</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> 
+                    <span class="n">images_path</span><span class="o">=</span><span class="n">images_path</span><span class="p">,</span> 
+                    <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">forecast</span><span class="o">.</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pulling the data from: 
+
+https://nomads.ncep.noaa.gov/dods/wave/mww3/20201026/multi_1.glo_30mext20201026_00z
+
+
+The times with forecast go from 2020-10-27 00:00:00 to 2020-11-03 12:00:00 
+
+Generating images and GIF in &quot;path&quot;... 
+
+
+ 
+
+
+ Number of images to plot from the total? 
+TOTAL: 61, To plot: 
+8
+Plotting time: 2020-10-27 00:00:00...
+Plotting time: 2020-10-27 21:00:00...
+Plotting time: 2020-10-28 18:00:00...
+Plotting time: 2020-10-29 15:00:00...
+Plotting time: 2020-10-30 12:00:00...
+Plotting time: 2020-10-31 09:00:00...
+Plotting time: 2020-11-01 06:00:00...
+Plotting time: 2020-11-02 03:00:00...
+Plotting time: 2020-11-03 00:00:00...
+
+<span class=" -Color -Color-Red"> GIF generated and saved!! </span>
+
+
+
+&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+root group (NETCDF3_CLASSIC data model, file format DAP2):
+    title: Multi-grid wave model: Global 30 arc-min grid from 00Z26oct2020 downloaded Oct 26 04:24 UTC
+    Conventions: COARDS
+GrADS
+    dataType: Grid
+    history: Mon Oct 26 19:05:29 UTC 2020 : imported by GrADS Data Server 2.0
+    dimensions(sizes): lat(336), lon(720), time(61)
+    variables(dimensions): float64 time(time), float64 lat(lat), float64 lon(lon), float32 dirpwsfc(time,lat,lon), float32 htsgwsfc(time,lat,lon), float32 perpwsfc(time,lat,lon), float32 swdir_1(time,lat,lon), float32 swdir_2(time,lat,lon), float32 swell_1(time,lat,lon), float32 swell_2(time,lat,lon), float32 swper_1(time,lat,lon), float32 swper_2(time,lat,lon), float32 ugrdsfc(time,lat,lon), float32 vgrdsfc(time,lat,lon), float32 wdirsfc(time,lat,lon), float32 windsfc(time,lat,lon), float32 wvdirsfc(time,lat,lon), float32 wvhgtsfc(time,lat,lon), float32 wvpersfc(time,lat,lon)
+    groups: 
+</pre></div>
+</div>
+<img alt="../_images/forecast_notebook_3_1.png" src="../_images/forecast_notebook_3_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_location</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">select_precise_location</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Move the marker to the exact position: 
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "70170f3714004730af87c973b8a63f23", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_nc</span><span class="p">,</span> <span class="n">forecast_data</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">select_region</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="n">new_location</span><span class="p">,</span>
+                                                    <span class="n">delta_lon</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> 
+                                                    <span class="n">delta_lat</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                                                    <span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">New location in [43.96514454266273, -3.6584472656250004]!! </span>
+
+These are the coordinates in the selected region: 
+
+[43.5 44.  44.5]
+[356.  356.5 357. ]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2da0f20ebe7c400481fa8f5de3d6eedc", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving the data in the shown region... 
+
+&lt;xarray.Dataset&gt;
+Dimensions:    (lat: 3, lon: 3, time: 61)
+Coordinates:
+  * time       (time) datetime64[ns] 2020-10-27 ... 2020-11-03T12:00:00
+  * lat        (lat) float64 43.5 44.0 44.5
+  * lon        (lon) float64 356.0 356.5 357.0
+Data variables:
+    Hsea       (time, lat, lon) float32 4.02 9.999e+20 ... 9.999e+20 9.999e+20
+    Tpsea      (time, lat, lon) float32 14.88 9.999e+20 ... 9.999e+20 9.999e+20
+    Dirsea     (time, lat, lon) float32 306.66998 9.999e+20 ... 9.999e+20
+    Hswell1    (time, lat, lon) float32 9.999e+20 4.11 4.16 ... 3.25 3.1899998
+    Tpswell1   (time, lat, lon) float32 9.999e+20 14.63 ... 14.34 14.389999
+    Dirswell1  (time, lat, lon) float32 9.999e+20 306.4 ... 290.5 291.19998
+    Hswell2    (time, lat, lon) float32 9.999e+20 9.999e+20 ... 9.999e+20
+    Tpswell2   (time, lat, lon) float32 9.999e+20 9.999e+20 ... 9.999e+20
+    Dirswell2  (time, lat, lon) float32 9.999e+20 9.999e+20 ... 9.999e+20
+    Hs         (time, lat, lon) float32 4.02 4.11 4.16 ... 3.3 3.25 3.1899998
+    Tp         (time, lat, lon) float32 14.88 14.63 14.44 ... 14.34 14.389999
+    Dir        (time, lat, lon) float32 309.27 307.78 306.93 ... 291.78 292.65
+    Uwind      (time, lat, lon) float32 11.65 7.0699997 10.04 ... -4.5 -4.1
+    Vwind      (time, lat, lon) float32 -1.64 0.82 -0.16 ... 0.90999997 1.89
+    WindSpeed  (time, lat, lon) float32 11.7699995 7.12 10.04 ... 4.5899997 4.52
+    DirWind    (time, lat, lon) float32 278.03 263.41 ... 101.409996 114.71
+
+ From the region selected, the closest point will be choosen. Wanna change? 
+
+True | False (let box empy) : 
+
+ Saving the dataframe with the closest coordinates... 
+
+DONE!! 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">forecast</span><span class="o">=</span><span class="n">forecast_data</span><span class="p">,</span>
+                      <span class="n">coast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/forecast_notebook_6_0.png" src="../_images/forecast_notebook_6_0.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<b>Important:</b> In the case that NO propagations have been done using SWAN, then the reconstruction in coast cannot be performed, and the notebook ends here.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_data_swan</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>
+
+<span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;SDR&#39;</span>               <span class="c1"># used name in the SWAN section</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">)</span>   <span class="c1"># used resolution in the SWAN section</span>
+<span class="n">num_cases</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>       <span class="c1"># num cases run in SWAN</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+
+<span class="c1"># Example coordinates for the forecast reconstruction:</span>
+<span class="c1"># Sardinero 43.5, -3.75</span>
+<span class="c1"># Liencres 43.46, -3.97</span>
+<span class="c1"># Jeffrey&#39;s Bay -34.0 24.98</span>
+
+<span class="n">forecast_recon</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">forecast_reconstruction</span><span class="p">(</span><span class="n">p_data_swan</span><span class="o">=</span><span class="n">p_data_swan</span><span class="p">,</span> 
+                                                  <span class="n">forecast_data</span><span class="o">=</span><span class="n">forecast_data</span><span class="p">,</span> 
+                                                  <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> 
+                                                  <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span> 
+                                                  <span class="n">num_cases</span><span class="o">=</span><span class="n">num_cases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">SUBSETS: </span>
+
+<span class=" -Color -Color-Red">SEA</span>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float64
+ 1   per     300 non-null    float64
+ 2   dir     300 non-null    float64
+dtypes: float64(3)
+memory usage: 7.2 KB
+None
+<span class=" -Color -Color-Red">SWELL</span>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float64
+ 1   per     300 non-null    float64
+ 2   dir     300 non-null    float64
+dtypes: float64(3)
+memory usage: 7.2 KB
+None
+
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.46
+Longitude location to obtain the forecast reconstruction: 
+-3.97
+
+
+<span class=" -Color -Color-Blue">TARGETS: </span>
+
+<span class=" -Color -Color-Red">SEA</span>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float32
+ 1   per     300 non-null    float32
+ 2   perM    300 non-null    float32
+ 3   dir     300 non-null    float32
+ 4   spr     300 non-null    float32
+dtypes: float32(5)
+memory usage: 6.0 KB
+None
+<span class=" -Color -Color-Red">SWELL</span>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float32
+ 1   per     300 non-null    float32
+ 2   perM    300 non-null    float32
+ 3   dir     300 non-null    float32
+ 4   spr     300 non-null    float32
+dtypes: float32(5)
+memory usage: 6.0 KB
+None
+
+
+<span class=" -Color -Color-Blue">Forecast in the selected region has the shape: </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 61 entries, 2020-10-27 00:00:00 to 2020-11-03 12:00:00
+Data columns (total 18 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   Hsea       61 non-null     float32
+ 1   Tpsea      61 non-null     float32
+ 2   Dirsea     61 non-null     float32
+ 3   Hswell1    61 non-null     float32
+ 4   Tpswell1   61 non-null     float32
+ 5   Dirswell1  61 non-null     float32
+ 6   Hswell2    61 non-null     float32
+ 7   Tpswell2   61 non-null     float32
+ 8   Dirswell2  61 non-null     float32
+ 9   Hs         61 non-null     float32
+ 10  Tp         61 non-null     float32
+ 11  Dir        61 non-null     float32
+ 12  Uwind      61 non-null     float32
+ 13  Vwind      61 non-null     float32
+ 14  WindSpeed  61 non-null     float32
+ 15  DirWind    61 non-null     float32
+ 16  lat        61 non-null     float64
+ 17  lon        61 non-null     float64
+dtypes: float32(16), float64(2)
+memory usage: 5.2 KB
+None
+
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 4.98 | interpolation: 0.00
+ix_scalar: 1,  optimization: 9.28 | interpolation: 0.00
+ix_scalar: 2,  optimization: 6.29 | interpolation: 0.00
+ix_scalar: 4,  optimization: 9.53 | interpolation: 0.00
+ix_directional: 3,  optimization: 15.76 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.86 | interpolation: 0.01
+ix_scalar: 1,  optimization: 10.84 | interpolation: 0.00
+ix_scalar: 2,  optimization: 10.85 | interpolation: 0.00
+ix_scalar: 4,  optimization: 9.87 | interpolation: 0.00
+ix_directional: 3,  optimization: 15.00 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.40 | interpolation: 0.00
+ix_scalar: 1,  optimization: 9.99 | interpolation: 0.00
+ix_scalar: 2,  optimization: 10.36 | interpolation: 0.00
+ix_scalar: 4,  optimization: 11.35 | interpolation: 0.00
+ix_directional: 3,  optimization: 14.76 | interpolation: 0.01
+
+
+Saving the data in path=&quot;data/reconstructed/..&quot; ... 
+
+                         Hsea      Tpsea      Dirsea   Hswell1   Tpswell1  \
+time                                                                        
+2020-10-27 00:00:00  4.440143  14.500299  326.429110  0.000000   0.000000   
+2020-10-27 03:00:00  4.519804  15.152451  326.552159  0.000000   0.000000   
+2020-10-27 06:00:00  4.437504  15.209333  326.508203  0.000000   0.000000   
+2020-10-27 09:00:00  4.358439  15.040860  326.267339  0.000000   0.000000   
+2020-10-27 12:00:00  4.176344  14.851967  326.207875  0.000000   0.000000   
+...                       ...        ...         ...       ...        ...   
+2020-11-03 00:00:00  0.000000   0.000000    0.000000  1.520127  11.622353   
+2020-11-03 03:00:00  0.000000   0.000000    0.000000  1.649642  11.446942   
+2020-11-03 06:00:00  0.000000   0.000000    0.000000  1.956715  11.758897   
+2020-11-03 09:00:00  0.000000   0.000000    0.000000  2.340782  14.719731   
+2020-11-03 12:00:00  0.000000   0.000000    0.000000  2.485509  14.632953   
+
+                      Dirswell1  Hswell2  Tpswell2  Dirswell2        Hs  \
+time                                                                      
+2020-10-27 00:00:00    0.000000      0.0       0.0        0.0  4.440143   
+2020-10-27 03:00:00    0.000000      0.0       0.0        0.0  4.519804   
+2020-10-27 06:00:00    0.000000      0.0       0.0        0.0  4.437504   
+2020-10-27 09:00:00    0.000000      0.0       0.0        0.0  4.358439   
+2020-10-27 12:00:00    0.000000      0.0       0.0        0.0  4.176344   
+...                         ...      ...       ...        ...       ...   
+2020-11-03 00:00:00  331.894286      0.0       0.0        0.0  1.520127   
+2020-11-03 03:00:00  335.861490      0.0       0.0        0.0  1.649642   
+2020-11-03 06:00:00  333.650244      0.0       0.0        0.0  1.956715   
+2020-11-03 09:00:00  324.718630      0.0       0.0        0.0  2.340782   
+2020-11-03 12:00:00  325.268331      0.0       0.0        0.0  2.485509   
+
+                            Tp         Dir      Uwind  Vwind  WindSpeed  \
+time                                                                      
+2020-10-27 00:00:00  14.500299  326.429110  13.759999  -1.28  13.820000   
+2020-10-27 03:00:00  15.152451  326.552159  12.820000  -2.31  13.020000   
+2020-10-27 06:00:00  15.209333  326.508203  13.469999  -1.98  13.610000   
+2020-10-27 09:00:00  15.040860  326.267339  14.210000  -1.70  14.309999   
+2020-10-27 12:00:00  14.851967  326.207875  12.240000  -1.78  12.370000   
+...                        ...         ...        ...    ...        ...   
+2020-11-03 00:00:00  11.622353  331.894286  -0.890000   0.38   0.960000   
+2020-11-03 03:00:00  11.446942  335.861490  -1.750000  -0.66   1.870000   
+2020-11-03 06:00:00  11.758897  333.650244  -3.350000   1.06   3.520000   
+2020-11-03 09:00:00  14.719731  324.718630  -1.850000   2.20   2.870000   
+2020-11-03 12:00:00  14.632953  325.268331  -4.110000   1.10   4.260000   
+
+                        DirWind  
+time                             
+2020-10-27 00:00:00  275.329987  
+2020-10-27 03:00:00  280.229980  
+2020-10-27 06:00:00  278.369995  
+2020-10-27 09:00:00  276.809998  
+2020-10-27 12:00:00  278.279999  
+...                         ...  
+2020-11-03 00:00:00  113.049995  
+2020-11-03 03:00:00   69.290001  
+2020-11-03 06:00:00  107.610001  
+2020-11-03 09:00:00  139.970001  
+2020-11-03 12:00:00  104.949997  
+
+[61 rows x 16 columns]
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">forecast</span><span class="o">=</span><span class="n">forecast_recon</span><span class="p">,</span>
+                      <span class="n">coast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/forecast_notebook_9_0.png" src="../_images/forecast_notebook_9_0.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./forecast"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../spectra/spectra_notebook.html" title="previous page"><span class="section-number">6. </span>Spectrum and free surface reconstructions</a>
+    <a class='right-next' id="next-link" href="forecast_CAN_notebook.html" title="next page"><span class="section-number">8. </span>Forecast predictions in offshore and coastal points in Cantabria, Spain</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

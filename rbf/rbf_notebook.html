@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Reconstruction of the coastal wave climate with RBF &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Final propagation step to wave breaking" href="../slopes/slopes_notebook.html" />
+    <link rel="prev" title="2. Propagation of the selected cases using SWAN" href="../swan/swan_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/rbf/rbf_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Frbf/rbf_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/rbf/rbf_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results-comparison-hindcast-buoy">
+   3.1. Results comparison - (Hindcast | Buoy)
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reconstruction-of-the-coastal-wave-climate-with-rbf">
+<h1><span class="section-number">3. </span>Reconstruction of the coastal wave climate with RBF<a class="headerlink" href="#reconstruction-of-the-coastal-wave-climate-with-rbf" title="Permalink to this headline">¶</a></h1>
+<p>Cases are already propagated and we now have a lot of different waves with
+different characteristics propagated all along the coast so the reconstruction of the wave climate can be done.</p>
+<p>The reconstruction of the wave climate in shallow waters is carried out by
+an interpolation from the selected case series that have been propagated from
+undefined depths. The interpolation technique used is based on radial basis
+functions (RBF), very suitable for data with high dimensionality and not evenly
+distributed. There is a series of values of the real function
+<span class="math notranslate nohighlight">\(f(x_i) \:\:\: i = 1, ..., N\)</span> in the points <span class="math notranslate nohighlight">\(x_1 , ..., x_N\)</span>. The RBF
+interpolation technique considers that the RBF function approximation consists of a linear combination of symmetrical radial functions centered on the given points. The objective function has the following expression:</p>
+<p>\begin{equation*}
+RBF(x) = p(x) + \sum_{i=1}^{N}a_i\Phi\left ( \left | x-x_i \right | \right )
+\end{equation*}</p>
+<p>interpolating the given values as follows:</p>
+<p>\begin{equation*}
+RBF(x_i) = f_i ::: i = 1 ,…, N
+\end{equation*}</p>
+<p>where <span class="math notranslate nohighlight">\(RBF\)</span> is the interpolation function, <span class="math notranslate nohighlight">\(p(x)\)</span> is the linear polynomial in all the
+variables involved in the problem, <span class="math notranslate nohighlight">\(a_i\)</span> are the RBF adjustment coefficients, <span class="math notranslate nohighlight">\(\Phi\)</span> is the
+basic radial function, <span class="math notranslate nohighlight">\(||\cdot||\)</span> is the Euclidean norm and <span class="math notranslate nohighlight">\(x_i\)</span> are the centres of
+the RBF interpolation.</p>
+<p><img alt="RBF" src="../_images/rbf.png" /></p>
+<p>The polynomial <span class="math notranslate nohighlight">\(p(x)\)</span> in the expression of the RBF interpolation function is defined as a
+monomial base <span class="math notranslate nohighlight">\({p_0, p_1 ,..., p_d}\)</span>. The first is a monomial, consisting of a number of grade one monomials equal to the dimensionality of the data, where <span class="math notranslate nohighlight">\(b = {b_0 , b_1 ,..., b_d}\)</span> are the coefficients of these monomials.</p>
+<p>The radially based functions can have different expressions. Some of these
+radial functions contain a shape parameter that plays a very important role
+in the precision of the technique. In the methodology of propagation of the maritime climate, it has been considered the Gaussian radial function that depend on a shape parameter.</p>
+<p>Notice that the RBF reconstruction is done for each CSIRO reanalysis partition, but all these partitions must be grouped together for the buoy validation and the final estimations of both the profile of the beach and the surfing regional index, which will be added to the repository in the future.</p>
+<p>In this last paragraph, new concepts have been introduced. First, CSIRO is the name that the wave reanalysis receives and last, these two new concepts of profile analysis and surfing regional index will be added, but a detailed explanation can be seen in the attached pdf, (Javier Tausia, 2020).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># common </span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># basic </span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span> <span class="k">as</span> <span class="n">td</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
+
+<span class="c1"># warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># dev library </span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="c1"># RBF module </span>
+<span class="kn">from</span> <span class="nn">rbf_main</span> <span class="kn">import</span> <span class="n">RBF_Reconstruction</span>
+<span class="kn">import</span> <span class="nn">rbf_functions</span> <span class="k">as</span> <span class="nn">rbff</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the modules are imported, the preprocessing must be done, as usually. For this purpose, please just edit the selected parts, as if data is changed, it could not work. If the propagations have not been performed using the proportioned SWAN notebook, the shape of this data must match the used shape.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">p_swan</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>
+
+<span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;BRS&#39;</span>               <span class="c1"># used name in the SWAN section</span>
+<span class="n">name_file</span> <span class="o">=</span> <span class="s1">&#39;laredo-16&#39;</span>     <span class="c1"># name for the file</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">)</span>   <span class="c1"># used resolution in the SWAN section (see the folder name)</span>
+<span class="n">num_cases</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>       <span class="c1"># num cases in the SWAN section</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SUBSETS</span>
+<span class="n">subsetsea</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_swan</span><span class="p">,</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;-SEA-&#39;</span><span class="o">+</span><span class="n">resolution</span><span class="p">,</span>
+                                      <span class="s1">&#39;sea_cases_&#39;</span><span class="o">+</span><span class="n">num_cases</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+<span class="n">subsetsea</span>    <span class="o">=</span> <span class="n">subsetsea</span><span class="p">[[</span><span class="s1">&#39;hs&#39;</span><span class="p">,</span> <span class="s1">&#39;per&#39;</span><span class="p">,</span> <span class="s1">&#39;dir&#39;</span><span class="p">,</span> <span class="s1">&#39;spr&#39;</span><span class="p">]]</span>
+
+<span class="n">subsetswell</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_swan</span><span class="p">,</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;-SWELL-&#39;</span><span class="o">+</span><span class="n">resolution</span><span class="p">,</span>
+                                      <span class="s1">&#39;swell_cases_&#39;</span><span class="o">+</span><span class="n">num_cases</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+<span class="n">subsetswell</span>  <span class="o">=</span> <span class="n">subsetswell</span><span class="p">[[</span><span class="s1">&#39;hs&#39;</span><span class="p">,</span> <span class="s1">&#39;per&#39;</span><span class="p">,</span> <span class="s1">&#39;dir&#39;</span><span class="p">,</span> <span class="s1">&#39;spr&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TARGETS</span>
+<span class="n">targetsea</span>    <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_swan</span><span class="p">,</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;-SEA-&#39;</span><span class="o">+</span><span class="n">resolution</span><span class="p">,</span>
+                                       <span class="s1">&#39;sea_propagated_&#39;</span><span class="o">+</span><span class="n">num_cases</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+<span class="n">targetswell</span>  <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_swan</span><span class="p">,</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;-SWELL-&#39;</span><span class="o">+</span><span class="n">resolution</span><span class="p">,</span>
+                                       <span class="s1">&#39;swell_propagated_&#39;</span><span class="o">+</span><span class="n">num_cases</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reconstruction desired point</span>
+
+<span class="c1"># ------- EDIT THE DESIRED POINT ------- #</span>
+<span class="c1"># - Coordinates as shown in GoogleMaps - #</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mf">43.4233</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.441</span>
+<span class="c1"># -------------------------------------- #</span>
+
+<span class="c1"># if an error occurs, please have a look at the</span>
+<span class="c1"># resolution of the bathymetry/propagations and</span>
+<span class="c1"># edit the reconstruction point</span>
+
+<span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">targetsea</span><span class="o">.</span><span class="n">Y</span><span class="o">.</span><span class="n">values</span><span class="o">&lt;</span><span class="n">lat</span><span class="o">+</span><span class="mf">0.0012</span><span class="p">)</span> <span class="o">&amp;</span> 
+               <span class="p">(</span><span class="n">targetsea</span><span class="o">.</span><span class="n">Y</span><span class="o">.</span><span class="n">values</span><span class="o">&gt;</span><span class="n">lat</span><span class="o">-</span><span class="mf">0.0012</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">targetswell</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="o">&lt;</span><span class="n">lon</span><span class="o">+</span><span class="mf">0.0012</span><span class="p">)</span> <span class="o">&amp;</span>
+               <span class="p">(</span><span class="n">targetswell</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="o">&gt;</span><span class="n">lon</span><span class="o">-</span><span class="mf">0.0012</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">targetsea</span>   <span class="o">=</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Y</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
+<span class="n">targetswell</span> <span class="o">=</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">lon</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Y</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
+<span class="n">targetsea</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;hs&#39;</span><span class="p">:</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">Hsig</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;per&#39;</span><span class="p">:</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">TPsmoo</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;perM&#39;</span><span class="p">:</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">Tm02</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;dir&#39;</span><span class="p">:</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">Dir</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;spr&#39;</span><span class="p">:</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">Dspr</span><span class="o">.</span><span class="n">values</span><span class="p">})</span>
+<span class="n">seaedit</span>         <span class="o">=</span> <span class="n">subsetsea</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">seaedit</span><span class="p">[</span><span class="s1">&#39;perM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">7.0</span>
+<span class="n">targetsea</span>       <span class="o">=</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">seaedit</span><span class="p">)</span>
+<span class="n">targetswell</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;hs&#39;</span><span class="p">:</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">Hsig</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;per&#39;</span><span class="p">:</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">TPsmoo</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;perM&#39;</span><span class="p">:</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">Tm02</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;dir&#39;</span><span class="p">:</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">Dir</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="s1">&#39;spr&#39;</span><span class="p">:</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">Dspr</span><span class="o">.</span><span class="n">values</span><span class="p">})</span>
+<span class="n">swelledit</span>         <span class="o">=</span> <span class="n">subsetswell</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">swelledit</span><span class="p">[</span><span class="s1">&#39;perM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">12.0</span>
+<span class="n">targetswell</span>       <span class="o">=</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">swelledit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATASETS</span>
+<span class="n">dataset_tot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;csiro_dataframe_sat_corr.pkl&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset_tot</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 360840 entries, 1979-01-01 00:00:00 to 2020-02-29 23:00:00
+Data columns (total 29 columns):
+ #   Column     Non-Null Count   Dtype  
+---  ------     --------------   -----  
+ 0   Hs         360840 non-null  float32
+ 1   Tm_01      360839 non-null  float32
+ 2   Tm_02      360840 non-null  float32
+ 3   Tp         360839 non-null  float32
+ 4   DirM       360839 non-null  float32
+ 5   DirP       360839 non-null  float32
+ 6   Spr        360839 non-null  float32
+ 7   Nwp        360840 non-null  float32
+ 8   U10        360840 non-null  float32
+ 9   V10        360840 non-null  float32
+ 10  W          360840 non-null  float64
+ 11  DirW       360832 non-null  float64
+ 12  Hsea       360840 non-null  float32
+ 13  Hswell1    360840 non-null  float32
+ 14  Hswell2    360840 non-null  float32
+ 15  Hswell3    360840 non-null  float32
+ 16  Tpsea      172510 non-null  float32
+ 17  Tpswell1   321377 non-null  float32
+ 18  Tpswell2   138960 non-null  float32
+ 19  Tpswell3   46833 non-null   float32
+ 20  Dirsea     172510 non-null  float32
+ 21  Dirswell1  321377 non-null  float32
+ 22  Dirswell2  138960 non-null  float32
+ 23  Dirswell3  46833 non-null   float32
+ 24  Sprsea     172510 non-null  float32
+ 25  Sprswell1  321377 non-null  float32
+ 26  Sprswell2  138960 non-null  float32
+ 27  Sprswell3  46833 non-null   float32
+ 28  Hs_cal     360840 non-null  float32
+dtypes: float32(27), float64(2)
+memory usage: 45.4 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose the seas and swells to perform the reconstruction as shown:</span>
+<span class="c1"># as mentioned in previous notebooks, please edit if more partitions exist</span>
+
+<span class="n">labels_input</span>   <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprsea&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell1&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell2&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell2&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell3&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell3&#39;</span><span class="p">]]</span>
+<span class="n">labels_output</span>  <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprsea&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm_02&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell1&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm_02&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell2&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Tm_02&#39;</span><span class="p">,</span><span class="s1">&#39;Dirswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell3&#39;</span><span class="p">]]</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">ss</span> <span class="ow">in</span> <span class="n">labels_input</span><span class="p">:</span>
+    <span class="n">dataset_ss</span> <span class="o">=</span> <span class="n">dataset_tot</span><span class="p">[</span><span class="n">ss</span><span class="p">]</span>
+    <span class="n">dataset_ss</span> <span class="o">=</span> <span class="n">dataset_ss</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+    <span class="n">datasets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataset_ss</span><span class="p">)</span>
+    
+<span class="n">dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Performing RFB reconstruction... </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># RBF </span>
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">dat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
+    <span class="c1"># Scalar and directional columns</span>
+    <span class="n">ix_scalar_subset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">ix_directional_subset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ix_scalar_target</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">ix_directional_target</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span> 
+    <span class="c1"># RBF for the seas</span>
+    <span class="k">if</span> <span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Calculating subset, target and dataset</span>
+        <span class="n">subset</span>  <span class="o">=</span> <span class="n">subsetsea</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">target</span>  <span class="o">=</span> <span class="n">targetsea</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">dat_index</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="c1"># Performing RBF</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">RBF_Reconstruction</span><span class="p">(</span>
+                    <span class="n">subset</span><span class="p">,</span> <span class="n">ix_scalar_subset</span><span class="p">,</span> <span class="n">ix_directional_subset</span><span class="p">,</span>
+                    <span class="n">target</span><span class="p">,</span> <span class="n">ix_scalar_target</span><span class="p">,</span> <span class="n">ix_directional_target</span><span class="p">,</span>
+                    <span class="n">dataset</span>
+                    <span class="p">)</span>
+        <span class="c1"># Reconstrucing the new dataframe</span>
+        <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels_output</span><span class="p">[</span><span class="n">count</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">output_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">lab</span><span class="p">:</span> <span class="n">output</span><span class="p">[:,</span><span class="n">l</span><span class="p">]},</span> 
+                                                 <span class="n">index</span><span class="o">=</span><span class="n">dat_index</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output_dataframe</span><span class="p">[</span><span class="n">lab</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[:,</span><span class="n">l</span><span class="p">]</span>
+        <span class="c1"># Appending all new dataframes    </span>
+        <span class="n">dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_dataframe</span><span class="p">)</span>
+    <span class="c1"># RBF for the swellls    </span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Calculating subset, target and dataset</span>
+        <span class="n">subset</span>  <span class="o">=</span> <span class="n">subsetswell</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">target</span>  <span class="o">=</span> <span class="n">targetswell</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">dat_index</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="c1"># Performing RBF</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">RBF_Reconstruction</span><span class="p">(</span>
+                    <span class="n">subset</span><span class="p">,</span> <span class="n">ix_scalar_subset</span><span class="p">,</span> <span class="n">ix_directional_subset</span><span class="p">,</span>
+                    <span class="n">target</span><span class="p">,</span> <span class="n">ix_scalar_target</span><span class="p">,</span> <span class="n">ix_directional_target</span><span class="p">,</span>
+                    <span class="n">dataset</span>
+                    <span class="p">)</span>
+        <span class="c1"># Reconstrucing the new dataframe</span>
+        <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels_output</span><span class="p">[</span><span class="n">count</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">output_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">lab</span><span class="p">:</span> <span class="n">output</span><span class="p">[:,</span><span class="n">l</span><span class="p">]},</span> 
+                                                 <span class="n">index</span><span class="o">=</span><span class="n">dat_index</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output_dataframe</span><span class="p">[</span><span class="n">lab</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[:,</span><span class="n">l</span><span class="p">]</span>
+        <span class="c1"># Appending all new dataframes        </span>
+        <span class="n">dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_dataframe</span><span class="p">)</span>
+
+<span class="c1"># Join final file</span>
+<span class="n">reconstructed_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># But we first maintain just one Tm, as they are all the same</span>
+<span class="n">Tm_02</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">reconstructed_dataframe</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">])</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tm_02</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 4.19 | interpolation: 8.03
+ix_scalar: 1,  optimization: 6.23 | interpolation: 8.39
+ix_scalar: 2,  optimization: 4.36 | interpolation: 7.79
+ix_scalar: 4,  optimization: 4.63 | interpolation: 7.96
+ix_directional: 3,  optimization: 8.18 | interpolation: 16.22
+ix_scalar: 0,  optimization: 4.66 | interpolation: 14.92
+ix_scalar: 1,  optimization: 9.58 | interpolation: 15.58
+ix_scalar: 2,  optimization: 9.98 | interpolation: 15.63
+ix_scalar: 4,  optimization: 5.19 | interpolation: 14.97
+ix_directional: 3,  optimization: 8.42 | interpolation: 32.70
+ix_scalar: 0,  optimization: 5.05 | interpolation: 7.15
+ix_scalar: 1,  optimization: 10.08 | interpolation: 7.88
+ix_scalar: 2,  optimization: 10.05 | interpolation: 6.75
+ix_scalar: 4,  optimization: 5.36 | interpolation: 7.06
+ix_directional: 3,  optimization: 8.82 | interpolation: 14.40
+ix_scalar: 0,  optimization: 5.25 | interpolation: 2.43
+ix_scalar: 1,  optimization: 11.07 | interpolation: 2.93
+ix_scalar: 2,  optimization: 11.39 | interpolation: 3.57
+ix_scalar: 4,  optimization: 4.96 | interpolation: 1.94
+ix_directional: 3,  optimization: 8.20 | interpolation: 4.87
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saving</span>
+<span class="c1"># reconstructed_dataframe.to_pickle(op.join(p_data, &#39;reconstructed&#39;,</span>
+<span class="c1">#                                   &#39;reconstructed_partitioned_&#39;+name_file+&#39;.pkl&#39;))</span>
+<span class="c1"># print(reconstructed_dataframe)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the reconstruction has been performed, we now have different partitions propagated in the selected point. These propagations can be added to obtain the requested bulk variables for both the validation with coastal buoys and the creation of the surfing index if wanted. This can be done using two different methods:</p>
+<ul class="simple">
+<li><p>Bulk parameters</p></li>
+<li><p>Spectral parameters</p></li>
+</ul>
+<p>In this case, we will use the bulk reconstruction, as it is easier and much more important, faster, but a notebook is also added that uses the spectral reconstruction, explained in detail there.</p>
+<p>For the bulk or aggregated conditions, the following formulas are used to calculate the significant wave height, the wave peak period and the wave mean direction:</p>
+<p>\begin{equation*}
+H_S=\sqrt{\sum_{i=1}^{N}H_{Si}^{2}}
+\end{equation*}</p>
+<p>\begin{equation*}
+T_P=\sqrt{\frac{\sum_{i=1}^{N}H_{Si}}{\sum_{i=1}^{N}\frac{H_{Si}}{T_{Pi}^{2}}}}
+\end{equation*}</p>
+<p>\begin{equation*}
+\theta_m=\arctan{\frac{\sum_{i=1}^{N}H_{Si}^{2} : T_{Pi} : \sin{\theta_i}}{\sum_{i=1}^{N}H_{Si}^{2} : T_{Pi} : \cos{\theta_i}}}
+\end{equation*}</p>
+<p>where using them, these aggregated parameters can be obtained, leading to a complete reconstructed dataframe in the desired point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First copy to play with NaNs</span>
+<span class="n">agg</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">agg</span><span class="p">[[</span><span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell3&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+    <span class="n">agg</span><span class="p">[[</span><span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="n">agg</span> <span class="o">=</span> <span class="n">agg</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Bulk Hs</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Hs_Agg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+        <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+        <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+        <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+        <span class="p">)</span>
+
+<span class="c1"># Bulk Tp</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Tp_Agg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Hs_Agg&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpsea&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> 
+                          <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell1&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+                          <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell2&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+                          <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell3&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        
+<span class="c1"># Second copy to play with NaNs</span>
+<span class="n">agg</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Bulk Dir</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">))</span> <span class="o">/</span>
+        <span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirsea&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell2&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span> <span class="o">+</span>
+         <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Tpswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;Dirswell3&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">))</span>
+        <span class="p">)</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> 
+                                          <span class="n">reconstructed_dataframe</span><span class="p">[</span><span class="s1">&#39;Dir_Agg&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">360</span><span class="p">)</span>
+
+<span class="c1"># Wind features</span>
+<span class="n">reconstructed_dataframe</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_tot</span><span class="p">[[</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;DirW&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In case coastal buoy exists</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting Buoy information...&#39;</span><span class="p">)</span>
+
+<span class="n">buoy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;dataframe_san.pkl&#39;</span><span class="p">))</span> <span class="c1"># this data is an example</span>
+<span class="c1"># the buoy is located in the north of Spain</span>
+<span class="n">buoy</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">buoy</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">buoy</span> <span class="o">=</span> <span class="n">buoy</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">buoy_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">buoy</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting Buoy information...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 360839 entries, 1979-01-01 01:00:00 to 2020-02-29 23:00:00
+Freq: H
+Data columns (total 22 columns):
+ #   Column     Non-Null Count   Dtype  
+---  ------     --------------   -----  
+ 0   Hsea       172510 non-null  float64
+ 1   Tpsea      172510 non-null  float64
+ 2   Dirsea     172510 non-null  float64
+ 3   Sprsea     172510 non-null  float64
+ 4   Hswell1    321377 non-null  float64
+ 5   Tpswell1   321377 non-null  float64
+ 6   Dirswell1  321377 non-null  float64
+ 7   Sprswell1  321377 non-null  float64
+ 8   Hswell2    138960 non-null  float64
+ 9   Tpswell2   138960 non-null  float64
+ 10  Dirswell2  138960 non-null  float64
+ 11  Sprswell2  138960 non-null  float64
+ 12  Hswell3    46833 non-null   float64
+ 13  Tpswell3   46833 non-null   float64
+ 14  Dirswell3  46833 non-null   float64
+ 15  Sprswell3  46833 non-null   float64
+ 16  Tm_02      360839 non-null  float64
+ 17  Hs_Agg     360839 non-null  float64
+ 18  Tp_Agg     360839 non-null  float64
+ 19  Dir_Agg    360839 non-null  float64
+ 20  W          360839 non-null  float64
+ 21  DirW       360831 non-null  float64
+dtypes: float64(22)
+memory usage: 73.3 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span> <span class="s1">&#39;laredo&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;reconstructed_&#39;</span><span class="o">+</span><span class="n">name_file</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="results-comparison-hindcast-buoy">
+<h2><span class="section-number">3.1. </span>Results comparison - (Hindcast | Buoy)<a class="headerlink" href="#results-comparison-hindcast-buoy" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">buoy</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+
+<span class="n">total_plot</span> <span class="o">=</span> <span class="n">total</span><span class="p">[[</span><span class="s1">&#39;Hs_Buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;Tp_Buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;Dir_Buoy&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Hs_Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Tp_Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Dir_Agg&#39;</span><span class="p">,</span>
+                    <span class="c1"># &#39;Hs_Spec&#39;, &#39;Tp_Spec&#39;, &#39;Dir_Spec&#39;,</span>
+                    <span class="s1">&#39;Hsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirsea&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Hswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirswell1&#39;</span><span class="p">]]</span>
+        
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$H_S$ [m]&#39;</span><span class="p">,</span> <span class="s1">&#39;$T_P$ [s]&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\u03B8</span><span class="s1">$ [$\degree$]&#39;</span><span class="p">]</span>
+
+<span class="n">validation_data</span> <span class="o">=</span> <span class="n">total_plot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">register_matplotlib_converters</span><span class="p">()</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2009</span>
+<span class="n">name_buoy</span> <span class="o">=</span> <span class="s1">&#39;Santoña&#39;</span>
+
+<span class="n">ini</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;-01-01 00:00:00&#39;</span>
+<span class="n">end</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;-12-31 23:00:00&#39;</span>
+<span class="n">total_plot</span> <span class="o">=</span> <span class="n">total_plot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ini</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Year: &#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span><span class="n">name_buoy</span><span class="o">+</span> <span class="s1">&#39; buoy compared with propagated CSIRO&#39;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.94</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;                        Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Mar&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;                        Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;                        May&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Jun&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;                        Jul&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Sep&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;                        Oct&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Nov&#39;</span><span class="p">,</span> <span class="s1">&#39;                        Dec&#39;</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_plot</span><span class="p">[</span><span class="n">total_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_plot</span><span class="p">[</span><span class="n">total_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+6]], &#39;.&#39;, markersize=1, color=&#39;darkgreen&#39;)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+9]], &#39;.&#39;, markersize=1, color=&#39;orange&#39;)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+12]], &#39;.&#39;, markersize=1, color=&#39;purple&#39;)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ini</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ini</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end</span><span class="p">),</span> <span class="n">td</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mf">30.5</span><span class="p">)))</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">months</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_plot</span><span class="p">[</span><span class="n">total_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_plot</span><span class="p">[</span><span class="n">total_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+6]], color=&#39;darkgreen&#39;, linewidth=1)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+9]], color=&#39;orange&#39;, linewidth=1)</span>
+        <span class="c1">#axs[i].plot(total_plot[total_plot.columns.values[i+12]], color=&#39;purple&#39;, linewidth=1)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;CSIRO Agg&#39;</span><span class="p">,</span> 
+                <span class="c1">#&#39;CSIRO Spec&#39;</span>
+               <span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="n">rbff</span><span class="o">.</span><span class="n">buoy_validation</span><span class="p">(</span><span class="n">validation_data</span><span class="p">,</span> <span class="n">name_buoy</span><span class="p">,</span> <span class="s1">&#39;agg&#39;</span><span class="p">)</span>
+<span class="c1"># rbff.buoy_validation(validation_data, name_buoy, &#39;spec&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------
+AGG VALIDATION will be performed
+-------------------------------------------------------- 
+ 
+Validating and plotting validated data... 
+ 
+Length of data to validate: 12802 
+ 
+</pre></div>
+</div>
+<img alt="../_images/rbf_notebook_19_1.png" src="../_images/rbf_notebook_19_1.png" />
+<img alt="../_images/rbf_notebook_19_2.png" src="../_images/rbf_notebook_19_2.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./rbf"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../swan/swan_notebook.html" title="previous page"><span class="section-number">2. </span>Propagation of the selected cases using SWAN</a>
+    <a class='right-next' id="next-link" href="../slopes/slopes_notebook.html" title="next page"><span class="section-number">4. </span>Final propagation step to wave breaking</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

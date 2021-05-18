@@ -1,0 +1,1455 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Slopes analysis, SOM… &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Spectrum and free surface reconstructions" href="../spectra/spectra_notebook.html" />
+    <link rel="prev" title="4. Final propagation step to wave breaking" href="slopes_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/slopes/slopes_analysis_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fslopes/slopes_analysis_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/slopes/slopes_analysis_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="slopes-analysis-som">
+<h1><span class="section-number">5. </span>Slopes analysis, SOM…<a class="headerlink" href="#slopes-analysis-som" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># common </span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># basic </span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span> <span class="k">as</span> <span class="n">td</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
+
+<span class="c1"># interactive</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interactive</span>
+
+<span class="c1"># advanced</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
+<span class="kn">import</span> <span class="nn">dash</span>  <span class="c1"># (version 1.12.0) pip install dash</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+
+<span class="c1"># warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># dev library </span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="c1"># RBF module </span>
+<span class="kn">from</span> <span class="nn">slopes</span> <span class="kn">import</span> <span class="n">Slopes_SOM</span>
+<span class="kn">from</span> <span class="nn">slopes</span> <span class="kn">import</span> <span class="n">consult</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip renders for jupyter book</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;notebook&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span> 
+                              <span class="s1">&#39;surfbreaks_reconstructed_final.pkl&#39;</span><span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 1008091 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 27 columns):
+ #   Column           Non-Null Count    Dtype  
+---  ------           --------------    -----  
+ 0   Hs               1008091 non-null  float64
+ 1   Tp               1008091 non-null  float64
+ 2   Dir              1008091 non-null  float64
+ 3   Spr              1008091 non-null  float64
+ 4   W                1008091 non-null  float64
+ 5   DirW             1008091 non-null  float64
+ 6   DDir             1008091 non-null  float64
+ 7   DDirW            1008091 non-null  float64
+ 8   ocean_tide       1008091 non-null  float64
+ 9   Omega            1008091 non-null  float64
+ 10  H_break          1008091 non-null  float64
+ 11  DDir_R           1008091 non-null  float64
+ 12  Slope            1008091 non-null  float64
+ 13  Iribarren        1008091 non-null  float64
+ 14  Hb_index         1008091 non-null  float64
+ 15  Tp_index         1008091 non-null  float64
+ 16  Spr_index        1008091 non-null  float64
+ 17  Iribarren_index  1008091 non-null  float64
+ 18  Dir_index        1008091 non-null  float64
+ 19  DirW_index       1008091 non-null  float64
+ 20  Index            1008091 non-null  float64
+ 21  Hour             1008091 non-null  int64  
+ 22  Day_Moment       1008091 non-null  object 
+ 23  Month            1008091 non-null  int64  
+ 24  Season           1008091 non-null  object 
+ 25  Year             1008091 non-null  int64  
+ 26  beach            1008091 non-null  object 
+dtypes: float64(21), int64(3), object(3)
+memory usage: 215.4+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">Index</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_4_1.png" src="../_images/slopes_analysis_notebook_4_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">Hb_index</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_5_1.png" src="../_images/slopes_analysis_notebook_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">Index</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_6_1.png" src="../_images/slopes_analysis_notebook_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">consult</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">beaches</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;segunda&#39;</span><span class="p">,</span> <span class="s1">&#39;laredo&#39;</span><span class="p">,</span> <span class="s1">&#39;forta&#39;</span><span class="p">],</span>
+        <span class="n">day</span><span class="o">=</span><span class="s1">&#39;2017-01-13&#39;</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">,</span> <span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="s1">&#39;Index&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>H_break</th>
+      <th>Hb_index</th>
+      <th>Index</th>
+      <th>beach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-13 03:00:00</th>
+      <td>3.857180</td>
+      <td>0.3</td>
+      <td>3.376</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 08:00:00</th>
+      <td>3.926694</td>
+      <td>0.3</td>
+      <td>2.532</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 13:00:00</th>
+      <td>3.804837</td>
+      <td>0.3</td>
+      <td>3.376</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 18:00:00</th>
+      <td>4.560021</td>
+      <td>0.0</td>
+      <td>1.000</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 23:00:00</th>
+      <td>3.389903</td>
+      <td>0.5</td>
+      <td>5.088</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 03:00:00</th>
+      <td>3.747338</td>
+      <td>0.3</td>
+      <td>2.664</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 08:00:00</th>
+      <td>3.819149</td>
+      <td>0.3</td>
+      <td>2.664</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 13:00:00</th>
+      <td>3.717768</td>
+      <td>0.5</td>
+      <td>4.384</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 18:00:00</th>
+      <td>4.273107</td>
+      <td>0.3</td>
+      <td>3.776</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 23:00:00</th>
+      <td>3.435028</td>
+      <td>0.5</td>
+      <td>4.608</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 03:00:00</th>
+      <td>1.646689</td>
+      <td>0.7</td>
+      <td>4.128</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 08:00:00</th>
+      <td>1.679265</td>
+      <td>0.7</td>
+      <td>5.216</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 13:00:00</th>
+      <td>1.637391</td>
+      <td>0.7</td>
+      <td>7.568</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 18:00:00</th>
+      <td>2.068835</td>
+      <td>1.0</td>
+      <td>9.438</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2017-01-13 23:00:00</th>
+      <td>1.480459</td>
+      <td>0.7</td>
+      <td>8.250</td>
+      <td>forta</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">consult</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">beaches</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;segunda&#39;</span><span class="p">,</span> <span class="s1">&#39;laredo&#39;</span><span class="p">,</span> <span class="s1">&#39;forta&#39;</span><span class="p">],</span>
+        <span class="n">day</span><span class="o">=</span><span class="s1">&#39;2019-12-22&#39;</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">,</span> <span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="s1">&#39;Index&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>H_break</th>
+      <th>Hb_index</th>
+      <th>Index</th>
+      <th>beach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-22 01:00:00</th>
+      <td>3.646619</td>
+      <td>0.5</td>
+      <td>4.320</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 06:00:00</th>
+      <td>3.164886</td>
+      <td>0.5</td>
+      <td>4.860</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 11:00:00</th>
+      <td>2.948261</td>
+      <td>0.8</td>
+      <td>6.264</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 16:00:00</th>
+      <td>3.183460</td>
+      <td>0.5</td>
+      <td>4.320</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 21:00:00</th>
+      <td>2.933703</td>
+      <td>0.8</td>
+      <td>5.856</td>
+      <td>segunda</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 01:00:00</th>
+      <td>3.782744</td>
+      <td>0.3</td>
+      <td>3.664</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 06:00:00</th>
+      <td>3.431986</td>
+      <td>0.5</td>
+      <td>5.382</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 11:00:00</th>
+      <td>3.289403</td>
+      <td>0.5</td>
+      <td>5.058</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 16:00:00</th>
+      <td>3.717900</td>
+      <td>0.5</td>
+      <td>4.496</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 21:00:00</th>
+      <td>3.537950</td>
+      <td>0.5</td>
+      <td>4.976</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 01:00:00</th>
+      <td>1.630818</td>
+      <td>0.7</td>
+      <td>4.212</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 06:00:00</th>
+      <td>1.441102</td>
+      <td>0.7</td>
+      <td>4.356</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 11:00:00</th>
+      <td>1.392555</td>
+      <td>0.7</td>
+      <td>4.212</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 16:00:00</th>
+      <td>1.624850</td>
+      <td>0.7</td>
+      <td>4.212</td>
+      <td>forta</td>
+    </tr>
+    <tr>
+      <th>2019-12-22 21:00:00</th>
+      <td>1.505351</td>
+      <td>0.7</td>
+      <td>4.356</td>
+      <td>forta</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">consult</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">beaches</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;brusco&#39;</span><span class="p">,</span> <span class="s1">&#39;canallave&#39;</span><span class="p">,</span> <span class="s1">&#39;laredo&#39;</span><span class="p">],</span>
+        <span class="n">day</span><span class="o">=</span><span class="s1">&#39;2003-06-20&#39;</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">,</span> <span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="s1">&#39;Index&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>H_break</th>
+      <th>Hb_index</th>
+      <th>Index</th>
+      <th>beach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2003-06-20 02:00:00</th>
+      <td>2.131825</td>
+      <td>1.0</td>
+      <td>6.798</td>
+      <td>canallave</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 07:00:00</th>
+      <td>1.979701</td>
+      <td>1.0</td>
+      <td>5.168</td>
+      <td>canallave</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 12:00:00</th>
+      <td>2.064915</td>
+      <td>1.0</td>
+      <td>5.168</td>
+      <td>canallave</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 17:00:00</th>
+      <td>2.103380</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>canallave</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 22:00:00</th>
+      <td>1.854655</td>
+      <td>1.0</td>
+      <td>7.106</td>
+      <td>canallave</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 02:00:00</th>
+      <td>1.792632</td>
+      <td>1.0</td>
+      <td>6.886</td>
+      <td>brusco</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 07:00:00</th>
+      <td>1.678462</td>
+      <td>0.7</td>
+      <td>3.472</td>
+      <td>brusco</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 12:00:00</th>
+      <td>1.858943</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>brusco</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 17:00:00</th>
+      <td>1.997746</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>brusco</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 22:00:00</th>
+      <td>1.703752</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>brusco</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 02:00:00</th>
+      <td>1.234815</td>
+      <td>0.7</td>
+      <td>1.000</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 07:00:00</th>
+      <td>1.291503</td>
+      <td>0.7</td>
+      <td>1.000</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 12:00:00</th>
+      <td>1.678732</td>
+      <td>0.7</td>
+      <td>1.000</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 17:00:00</th>
+      <td>1.842311</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>laredo</td>
+    </tr>
+    <tr>
+      <th>2003-06-20 22:00:00</th>
+      <td>1.498014</td>
+      <td>0.7</td>
+      <td>1.000</td>
+      <td>laredo</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[::</span><span class="mi">100</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_scatter</span><span class="p">,</span> 
+                               <span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                               <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "8293192e4a13467abef1ed654e871fb5", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_bar</span><span class="p">(</span><span class="n">grouper</span><span class="p">,</span> <span class="n">variable</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">grouper</span><span class="p">,</span> <span class="s1">&#39;beach&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+                 <span class="n">y</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
+                 <span class="n">x</span><span class="o">=</span><span class="n">grouper</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span>
+                 <span class="n">barmode</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_bar</span><span class="p">,</span> 
+                               <span class="n">grouper</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="s1">&#39;Day_Moment&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;Season&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+                               <span class="n">variable</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "502996abc5b74be591c364902cb491da", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_box</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">data_box</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">):</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">data_box</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_box</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Month: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">period</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">period</span><span class="o">==</span><span class="s1">&#39;all&#39;</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">data_box</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Points: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">period</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Winter&#39;</span><span class="p">,</span> <span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Autumn&#39;</span><span class="p">]:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">data_box</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_box</span><span class="p">[</span><span class="s1">&#39;Season&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Season: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">data_box</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_box</span><span class="p">[</span><span class="s1">&#39;Day_Moment&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Day moment: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Season</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Month</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Day_Moment</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_box</span><span class="p">,</span>
+                               <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                               <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f449eef994f441a489cb4594f93b999d", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_hist</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">data_hist</span> <span class="o">=</span> <span class="n">data</span><span class="p">[::</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">):</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_hist</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_hist</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                           <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">marginal</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> 
+                           <span class="n">hover_data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Month: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">period</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">period</span><span class="o">==</span><span class="s1">&#39;all&#39;</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_hist</span><span class="p">,</span> 
+                           <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">marginal</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> 
+                           <span class="n">hover_data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Points: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">period</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Winter&#39;</span><span class="p">,</span> <span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Autumn&#39;</span><span class="p">]:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_hist</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_hist</span><span class="p">[</span><span class="s1">&#39;Season&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                           <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">marginal</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> 
+                           <span class="n">hover_data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Season: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_hist</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data_hist</span><span class="p">[</span><span class="s1">&#39;Day_Moment&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">period</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                           <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;beach&#39;</span><span class="p">,</span> <span class="n">marginal</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> 
+                           <span class="n">hover_data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Day moment: &#39;</span><span class="o">+</span><span class="n">period</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Season</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Month</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Day_Moment</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_hist</span><span class="p">,</span>
+                               <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                               <span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1ea846dbe9594d858a784173a17e6b85", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_prob</span><span class="p">(</span><span class="n">beach</span><span class="p">):</span>
+    <span class="n">histcolor</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">beach</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">data_prob</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span> 
+                                   <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+                                          <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>\
+                <span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_prob</span><span class="p">)</span><span class="o">/</span><span class="mi">366</span><span class="p">)</span>
+    <span class="n">data_prob</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Probability of RSI&#39;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+                       <span class="n">x</span><span class="o">=</span><span class="s1">&#39;level_0&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Probability of RSI&#39;</span><span class="p">,</span>
+                       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+                       <span class="n">color_discrete_map</span><span class="o">=</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                           <span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                           <span class="n">histcolor</span><span class="p">)},</span>
+                       <span class="n">nbins</span><span class="o">=</span><span class="mi">366</span><span class="p">,</span> <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                       <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;level_0&#39;</span><span class="p">:</span> <span class="s1">&#39;Day of year&#39;</span><span class="p">},</span>
+                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Beach: &#39;</span> <span class="o">+</span> <span class="n">beach</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_prob</span><span class="p">,</span>
+                               <span class="n">beach</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">beach</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "53c1550bcbd945c3af39057fc6652d5a", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_prob</span><span class="p">(</span><span class="n">beach</span><span class="p">,</span> <span class="n">ini_year</span><span class="p">,</span> <span class="n">end_year</span><span class="p">):</span>
+    <span class="n">histcolor</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">beach</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">ini_year</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_year</span><span class="p">))</span>\
+                <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">),</span> 
+                                   <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+                                          <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>\
+                <span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_prob</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="n">end_year</span><span class="o">-</span><span class="n">ini_year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="n">data_prob</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Probability of RSI&#39;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+                       <span class="n">x</span><span class="o">=</span><span class="s1">&#39;level_0&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Probability of RSI&#39;</span><span class="p">,</span>
+                       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+                       <span class="n">color_discrete_map</span><span class="o">=</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                           <span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                           <span class="n">histcolor</span><span class="p">)},</span>
+                       <span class="n">nbins</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">end_year</span><span class="o">-</span><span class="n">ini_year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                       <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;level_0&#39;</span><span class="p">:</span> <span class="s1">&#39;Historical month&#39;</span><span class="p">},</span>
+                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Beach: &#39;</span> <span class="o">+</span> <span class="n">beach</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_prob</span><span class="p">,</span>
+                               <span class="n">beach</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">beach</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                               <span class="n">ini_year</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                               <span class="n">end_year</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">Year</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f2a541aced5c41e592385c5d69ae3a61", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_prob_grouper</span><span class="p">(</span><span class="n">beach</span><span class="p">,</span> <span class="n">grouper</span><span class="p">):</span>
+    <span class="n">histcolor</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">beach</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">data_prob</span><span class="p">[</span><span class="n">grouper</span><span class="p">],</span> 
+                                   <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
+                                          <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>\
+                <span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_prob</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">grouper</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+    <span class="n">data_prob</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Probability of RSI&#39;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+                       <span class="n">x</span><span class="o">=</span><span class="n">grouper</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Probability of RSI&#39;</span><span class="p">,</span>
+                       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+                       <span class="n">color_discrete_map</span><span class="o">=</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                           <span class="n">data_prob</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                           <span class="n">histcolor</span><span class="p">)},</span>
+                       <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">nbins</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">grouper</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
+                       <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;level_0&#39;</span><span class="p">:</span> <span class="n">grouper</span><span class="p">},</span>
+                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Beach: &#39;</span> <span class="o">+</span> <span class="n">beach</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;Season&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">]</span>
+    
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_prob_grouper</span><span class="p">,</span>
+                               <span class="n">beach</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">beach</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                               <span class="n">grouper</span><span class="o">=</span><span class="n">grouper</span><span class="p">)</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "82abab156aa7401689ebd47effd1ae4a", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_rose</span><span class="p">(</span><span class="n">beach</span><span class="p">):</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">beach</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;Dir&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span>
+                                           <span class="mi">200</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">240</span><span class="p">,</span><span class="mi">260</span><span class="p">,</span><span class="mi">280</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">320</span><span class="p">,</span><span class="mi">340</span><span class="p">,</span><span class="mi">360</span><span class="p">],</span>
+                                          <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+                                   <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">24</span><span class="p">],</span>
+                                          <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;H_break_value&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">data_prob</span> <span class="o">=</span> <span class="n">data_prob</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;Dir&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;Tp&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">},</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar_polar</span><span class="p">(</span><span class="n">data_prob</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="s1">&#39;H_break_value&#39;</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="s1">&#39;Dir&#39;</span><span class="p">,</span>
+                       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Tp&#39;</span><span class="p">,</span> <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Plasma_r</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">interactive_plot</span> <span class="o">=</span> <span class="n">interactive</span><span class="p">(</span><span class="n">plot_rose</span><span class="p">,</span>
+                               <span class="n">beach</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">beach</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">interactive_plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7fe86edc51424bacbc512012889d1f6f", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">80000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">plot_beaches</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained: 
+
+ 
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 1008091 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 27 columns):
+ #   Column           Non-Null Count    Dtype  
+---  ------           --------------    -----  
+ 0   Hs               1008091 non-null  float64
+ 1   Tp               1008091 non-null  float64
+ 2   Dir              1008091 non-null  float64
+ 3   Spr              1008091 non-null  float64
+ 4   W                1008091 non-null  float64
+ 5   DirW             1008091 non-null  float64
+ 6   DDir             1008091 non-null  float64
+ 7   DDirW            1008091 non-null  float64
+ 8   ocean_tide       1008091 non-null  float64
+ 9   Omega            1008091 non-null  float64
+ 10  H_break          1008091 non-null  float64
+ 11  DDir_R           1008091 non-null  float64
+ 12  Slope            1008091 non-null  float64
+ 13  Iribarren        1008091 non-null  float64
+ 14  Hb_index         1008091 non-null  float64
+ 15  Tp_index         1008091 non-null  float64
+ 16  Spr_index        1008091 non-null  float64
+ 17  Iribarren_index  1008091 non-null  float64
+ 18  Dir_index        1008091 non-null  float64
+ 19  DirW_index       1008091 non-null  float64
+ 20  Index            1008091 non-null  float64
+ 21  Hour             1008091 non-null  int64  
+ 22  Day_Moment       1008091 non-null  object 
+ 23  Month            1008091 non-null  int64  
+ 24  Season           1008091 non-null  object 
+ 25  Year             1008091 non-null  int64  
+ 26  beach            1008091 non-null  object 
+dtypes: float64(21), int64(3), object(3)
+memory usage: 215.4+ MB
+None
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_18_1.png" src="../_images/slopes_analysis_notebook_18_1.png" />
+<img alt="../_images/slopes_analysis_notebook_18_2.png" src="../_images/slopes_analysis_notebook_18_2.png" />
+<img alt="../_images/slopes_analysis_notebook_18_3.png" src="../_images/slopes_analysis_notebook_18_3.png" />
+<img alt="../_images/slopes_analysis_notebook_18_4.png" src="../_images/slopes_analysis_notebook_18_4.png" />
+<img alt="../_images/slopes_analysis_notebook_18_5.png" src="../_images/slopes_analysis_notebook_18_5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;farolillo&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: farolillo
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_19_1.png" src="../_images/slopes_analysis_notebook_19_1.png" />
+<img alt="../_images/slopes_analysis_notebook_19_2.png" src="../_images/slopes_analysis_notebook_19_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;bederna&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: bederna
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_20_1.png" src="../_images/slopes_analysis_notebook_20_1.png" />
+<img alt="../_images/slopes_analysis_notebook_20_2.png" src="../_images/slopes_analysis_notebook_20_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;oyambre&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: oyambre
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_21_1.png" src="../_images/slopes_analysis_notebook_21_1.png" />
+<img alt="../_images/slopes_analysis_notebook_21_2.png" src="../_images/slopes_analysis_notebook_21_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;locos&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: locos
+
+ 
+The sum off all probabilities is: 0.9999999999999999
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_22_1.png" src="../_images/slopes_analysis_notebook_22_1.png" />
+<img alt="../_images/slopes_analysis_notebook_22_2.png" src="../_images/slopes_analysis_notebook_22_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;valdearenas&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: valdearenas
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_23_1.png" src="../_images/slopes_analysis_notebook_23_1.png" />
+<img alt="../_images/slopes_analysis_notebook_23_2.png" src="../_images/slopes_analysis_notebook_23_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;canallave&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: canallave
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_24_1.png" src="../_images/slopes_analysis_notebook_24_1.png" />
+<img alt="../_images/slopes_analysis_notebook_24_2.png" src="../_images/slopes_analysis_notebook_24_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;madero&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: madero
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_25_1.png" src="../_images/slopes_analysis_notebook_25_1.png" />
+<img alt="../_images/slopes_analysis_notebook_25_2.png" src="../_images/slopes_analysis_notebook_25_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;segunda&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: segunda
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_26_1.png" src="../_images/slopes_analysis_notebook_26_1.png" />
+<img alt="../_images/slopes_analysis_notebook_26_2.png" src="../_images/slopes_analysis_notebook_26_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;primera&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: primera
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_27_1.png" src="../_images/slopes_analysis_notebook_27_1.png" />
+<img alt="../_images/slopes_analysis_notebook_27_2.png" src="../_images/slopes_analysis_notebook_27_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;pueblo&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: pueblo
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_28_1.png" src="../_images/slopes_analysis_notebook_28_1.png" />
+<img alt="../_images/slopes_analysis_notebook_28_2.png" src="../_images/slopes_analysis_notebook_28_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;curva&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;DirW_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: curva
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_29_1.png" src="../_images/slopes_analysis_notebook_29_1.png" />
+<img alt="../_images/slopes_analysis_notebook_29_2.png" src="../_images/slopes_analysis_notebook_29_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;brusco&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Dir_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: brusco
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_30_1.png" src="../_images/slopes_analysis_notebook_30_1.png" />
+<img alt="../_images/slopes_analysis_notebook_30_2.png" src="../_images/slopes_analysis_notebook_30_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;forta&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Spr_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: forta
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_31_1.png" src="../_images/slopes_analysis_notebook_31_1.png" />
+<img alt="../_images/slopes_analysis_notebook_31_2.png" src="../_images/slopes_analysis_notebook_31_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes_som</span> <span class="o">=</span> <span class="n">Slopes_SOM</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">beach</span><span class="o">=</span><span class="s1">&#39;laredo&#39;</span><span class="p">)</span>
+<span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span> <span class="o">=</span> <span class="n">slopes_som</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">som_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                              <span class="n">num_iteration</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">slopes_som</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">som</span><span class="p">,</span> <span class="n">data_mean</span><span class="p">,</span> <span class="n">data_count</span><span class="p">,</span> <span class="n">second_plot</span><span class="o">=</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">,</span> <span class="n">plot_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following data will be trained in: laredo
+
+ 
+The sum off all probabilities is: 1.0
+</pre></div>
+</div>
+<img alt="../_images/slopes_analysis_notebook_32_1.png" src="../_images/slopes_analysis_notebook_32_1.png" />
+<img alt="../_images/slopes_analysis_notebook_32_2.png" src="../_images/slopes_analysis_notebook_32_2.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./slopes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="slopes_notebook.html" title="previous page"><span class="section-number">4. </span>Final propagation step to wave breaking</a>
+    <a class='right-next' id="next-link" href="../spectra/spectra_notebook.html" title="next page"><span class="section-number">6. </span>Spectrum and free surface reconstructions</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

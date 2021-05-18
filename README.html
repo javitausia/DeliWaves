@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeliWaves &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Maximum Dissimilarity Algorithm (MDA)" href="mda/mda_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/README.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-actions-to-perform-over-wave-reanalysis-data">
+   Useful actions to perform over wave reanalysis data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#description">
+   1. Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-download">
+   2. Data download
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-contents">
+   3. Main contents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mda">
+     3.1 MDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swan">
+     3.2 SWAN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbf">
+     3.3 RBF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectra-and-free-surface-reconstructions">
+     3.4 Spectra and free surface reconstructions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forecast">
+     3.5 Forecast
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   4. Installation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-an-environment-in-conda">
+     4.1 Create an environment in conda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate-conda-environment">
+     4.2 Activate conda environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#play">
+   5. Play
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-support">
+   Additional support:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#author">
+   Author:
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="deliwaves">
+<h1>DeliWaves<a class="headerlink" href="#deliwaves" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="useful-actions-to-perform-over-wave-reanalysis-data">
+<h2>Useful actions to perform over wave reanalysis data<a class="headerlink" href="#useful-actions-to-perform-over-wave-reanalysis-data" title="Permalink to this headline">¶</a></h2>
+<p>DeliWaves is an open-source software toolkit written in python that enables the users to perform different actions with wave reanalysis data. A description of what has been done can be seen in this paper:</p>
+<ul class="simple">
+<li><p>Javier Tausia Hoyal, 2020. (attached)</p></li>
+</ul>
+</div>
+<div class="section" id="description">
+<h2>1. Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in <a class="reference external" href="https://github.com/javitausia/CalValWaves">CalValWaves</a>), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportioned, as once this initial dataframe exists, all the code can be run.</p>
+</div>
+<div class="section" id="data-download">
+<h2>2. Data download<a class="headerlink" href="#data-download" title="Permalink to this headline">¶</a></h2>
+<p>As it has been previously mentioned, the only thing needed is an initial dataframe with the wave historic reanalysis. More information about this downloading will be posted, but while this part is added, the shape of this dataframe must be as the one shown below:</p>
+<p><img alt="dataframe" src="_images/dataframe.png" /></p>
+<p>Notice that not all the variables are extrictly neccessary, but future methods could be added that use these variables, so when the data is downloaded, the saving of all the existent variables is recommended in the case that enough memory space exists.</p>
+</div>
+<div class="section" id="main-contents">
+<h2>3. Main contents<a class="headerlink" href="#main-contents" title="Permalink to this headline">¶</a></h2>
+<p>This repository proportionates code to perform the following actions:</p>
+<ul class="simple">
+<li><p>MDA (Maximum Dissimilarity Algorithm)</p></li>
+<li><p><a class="reference external" href="http://swanmodel.sourceforge.net/download/download.htm">SWAN</a> (Simulating WAves Nearshore)</p></li>
+<li><p>RBF (Radial Basis Functions reconstruction)</p></li>
+<li><p>Spectrum and Free Surface Reconstructions (SAFS)</p></li>
+<li><p>Foecast (Predictions of the 7-days wave climate worldwide)</p></li>
+</ul>
+<div class="section" id="mda">
+<h3>3.1 MDA<a class="headerlink" href="#mda" title="Permalink to this headline">¶</a></h3>
+<p>The main goal of the workflow followed is the reconstruction of the wave climate in coastal areas and for this purpose, the first step is the selection of the maximum dissimilar cases in the initial dataset. This algorithm can be used for other objectives too. This is the first part that has to be performed and is briefly explained in:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="mda/mda_notebook.html"><span class="doc std std-doc">MDA</span></a>: MDA explanatory notebook</p></li>
+</ul>
+<p>With this notebook, an image as the one shown below can be otained:</p>
+<p><img alt="mdass" src="_images/mdass.png" /></p>
+<p>The selection of the most dissimilar cases is essential as a hybrid downscaling method is proposed (see the pdf attached).</p>
+</div>
+<div class="section" id="swan">
+<h3>3.2 SWAN<a class="headerlink" href="#swan" title="Permalink to this headline">¶</a></h3>
+<p>Once the most dissimilar cases have been selected, they are propagated to coastal waters obtaining results as the one shown in a region in the cantabric sea, in the north of Spain:</p>
+<p><img alt="liencres" src="_images/liencres.png" /></p>
+<p>These propagations are performed by running a nummerical model, using the friendly software developed by the <a class="reference external" href="https://www.tudelft.nl/">TU Delft</a> (Delft University of Technology) which is called <a class="reference external" href="http://swanmodel.sourceforge.net/download/download.htm">SWAN</a> (Simulating WAves Nearshore). This software propagates windseas and swells to coast from offshore points as the one required for the development of this entire DeliWaves toolbox. The autocontent notebook can be found in:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="swan/swan_notebook.html"><span class="doc std std-doc">SWAN</span></a>: SWAN explanatory notebook</p></li>
+</ul>
+<p>A bathymetry file is needed for this propagation step, so the downloading of the bathymetry is also explained in the previously mentioned notebook.</p>
+<p>IMPORTANT!! A <code class="docutils literal notranslate"><span class="pre">swan_ser.exe</span></code> is included in path <code class="docutils literal notranslate"><span class="pre">swan/lib/resources/swan_bin/</span></code> that has been compiled in linux, but if this executable file did not work, here is explained how this compilation can be performed:</p>
+<p>Download and Compile SWAN numerical model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># you may need to install a fortran compiler</span>
+  sudo apt install gfortran
+
+  <span class="c1"># download and unpack</span>
+  wget http://swanmodel.sourceforge.net/download/zip/swan4131.tar.gz
+  tar -zxvf swan4131.tar.gz
+
+  <span class="c1"># compile numerical model</span>
+  <span class="nb">cd</span> swan4131/
+  make config
+  make ser
+</pre></div>
+</div>
+<p>now, copy SWAN binary file to module resources and play with it!!</p>
+<p>If cases do not run correctly, please check the binary file the <a class="reference external" href="http://wrap.py">wrap.py</a> file is looking for!!</p>
+</div>
+<div class="section" id="rbf">
+<h3>3.3 RBF<a class="headerlink" href="#rbf" title="Permalink to this headline">¶</a></h3>
+<p>Radial basis function (RBF) interpolation is an advanced method in approximation theory for constructing high-order accurate interpolants of unstructured data, possibly in high-dimensional spaces. The interpolant takes the form of a weighted sum of radial basis functions. RBF interpolation is a mesh-free method, meaning the nodes (points in the domain) need not lie on a structured grid, and does not require the formation of a mesh. It is often spectrally accurate and stable for large numbers of nodes even in high dimensions. The figure below illustrates how various of these radial basis functions form jointly the required final function:</p>
+<p><img alt="RBF" src="_images/rbf.png" /></p>
+<p>This description matches perfectly the purpose of the study, as our goal is to obtain the historical time series but just using the cases propagated, which is an interpolation by definition. The autocontent notebook with all the necessary information can be found at:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="rbf/rbf_notebook.html"><span class="doc std std-doc">RBF</span></a>: RBF explanatory notebook</p></li>
+</ul>
+</div>
+<div class="section" id="spectra-and-free-surface-reconstructions">
+<h3>3.4 Spectra and free surface reconstructions<a class="headerlink" href="#spectra-and-free-surface-reconstructions" title="Permalink to this headline">¶</a></h3>
+<p>The data is propagated nearshore and now, aggregated parameters wanne be obtained as they are useful for the global analysis. For this calculation, bulk equations as the shown in the <a class="reference internal" href="rbf/rbf_notebook.html"><span class="doc std std-doc">RBF</span></a> notebook can be used, but another way to calculate these parameters is using the spectrum described by the sea state. Spectra are essential in almost all coastal engineering studies, as they represent perfectly a sea state. The figure below shows all the neccessary information to understand what a spectrum is: First, it represents the distribution of frequencies and phases existent, also the directions if the 3d spectrum is studied, so given a buoy measure during a finite time period, the spectrum as the one shown can be obtained. The subplot with the different layers represents how all the components existent in one spectrum can be added together to reconstruct the free surface elevation and the big subplot in the right correlates the spectra and their surface elevations. All this is explained in the notebook though:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="spectra/spectra_notebook.html"><span class="doc std std-doc">Spectra</span></a>: Spectrum and free surface explanatory notebook</p></li>
+</ul>
+<p><img alt="sectra" src="_images/spectraexlpa.png" /></p>
+</div>
+<div class="section" id="forecast">
+<h3>3.5 Forecast<a class="headerlink" href="#forecast" title="Permalink to this headline">¶</a></h3>
+<p>Forecast predictions have been also included worldwide. Everyday, thousands of surfers request information from websites such as <a class="reference external" href="https://es.surf-forecast.com/breaks/Liencres/forecasts/latest/six_day">surf forecast</a> or <a class="reference external" href="https://www.windguru.cz/48699">windguru</a>, but these predictions are proportioned in offshore locations, so the actual prediction in the coast is not always the one available offshore. With the scripts existent in the toolbox, coastal forecast with a good resolution can be obtained.</p>
+<ul class="simple">
+<li><p><span class="xref myst">Forecast class</span>: Forecast main class</p></li>
+<li><p><a class="reference internal" href="forecast/forecast_notebook.html"><span class="doc std std-doc">Forecast main notebook</span></a>: Forecast explanatory notebook</p></li>
+</ul>
+<p>Using this code, a GIF as the one shown below will be obtained:</p>
+<p><img alt="FoGIF" src="_images/forecastgit.gif" /></p>
+<p>And the predictions have the next aspect:</p>
+<p><img alt="FoPred" src="_images/forecast.png" /></p>
+<p>A detailed notebook in Cantabria is aldo added, obtaining forecast predictions in different requested beaches along the north shore of Spain with the form:</p>
+<p><img alt="FoGIF" src="_images/forecast_CANgit.gif" /></p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>4. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-an-environment-in-conda">
+<h3>4.1 Create an environment in conda<a class="headerlink" href="#create-an-environment-in-conda" title="Permalink to this headline">¶</a></h3>
+<p>To run the toolbox you first need to install the required Python packages in an environment. To do this we will see <strong>Anaconda</strong>, which can be downloaded freely <a class="reference external" href="https://www.anaconda.com/download/">here</a>.</p>
+<p>Once you have installed it on your PC, open the Anaconda prompt (in Mac and Linux, open a terminal window) and use the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command to go to the folder where you have cloned this repository.</p>
+<p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">deli</span></code> with all the required packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span> <span class="o">-</span><span class="n">n</span> <span class="n">deli</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activate-conda-environment">
+<h3>4.2 Activate conda environment<a class="headerlink" href="#activate-conda-environment" title="Permalink to this headline">¶</a></h3>
+<p>All the required packages have been now installed in an environment called <code class="docutils literal notranslate"><span class="pre">deli</span></code>. Now, activate this new environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deli</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="play">
+<h2>5. Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h2>
+<p>Now everything has been installed, you can now start to play with the python code and the jupyter notebooks. Be careful, as some important parameters can be adjusted during the different processes (construction of the object of the classes, first line code in the jupyter notebook). Nevertheless, parameters used are also shown in the example.</p>
+</div>
+<div class="section" id="additional-support">
+<h2>Additional support:<a class="headerlink" href="#additional-support" title="Permalink to this headline">¶</a></h2>
+<p>Data used in the project and a detailed explanation of the acquisition can be requested from <a class="reference external" href="mailto:jtausiahoyal&#37;&#52;&#48;gmail&#46;com">jtausiahoyal<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p>
+</div>
+<div class="section" id="author">
+<h2>Author:<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Javier Tausía Hoyal</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='right-next' id="next-link" href="mda/mda_notebook.html" title="next page"><span class="section-number">1. </span>Maximum Dissimilarity Algorithm (MDA)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

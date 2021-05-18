@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Propagation of the selected cases using SWAN &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Reconstruction of the coastal wave climate with RBF" href="../rbf/rbf_notebook.html" />
+    <link rel="prev" title="1. Maximum Dissimilarity Algorithm (MDA)" href="../mda/mda_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/swan/swan_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fswan/swan_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/swan/swan_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windseas-can-be-run-below">
+   2.1. Windseas can be run below
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#swells-can-be-run-below">
+   2.2. Swells can be run below
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="propagation-of-the-selected-cases-using-swan">
+<h1><span class="section-number">2. </span>Propagation of the selected cases using SWAN<a class="headerlink" href="#propagation-of-the-selected-cases-using-swan" title="Permalink to this headline">¶</a></h1>
+<p>The cases are already selected and now, these selected cases must be propagated to shallow water so the wave climate can be reconstructed in the desired coast or more precisely, surfbreak, which is defined in (González Trueba, 2012) as an area in which factors such as the swell from the open sea, currents, sea level and variable depth associated with the tides, the seabed and wind, interact to give rise to the formation of a surfable wave. When considering the operation of a surf break, it is necessary to include the swell corridor, located offshore. Thus, a surf break is that strip of the coastal environment in which the combination of marine hydrodynamics, meteorology and coastal morphology generate waves with a form of break suitable for surfing.</p>
+<p>The propagation of the cases is not performed equally for the windeas and the swells, as it was described in the MDA notebook. When the windseas are propagated, wind is taken into account and the parameter <span class="math notranslate nohighlight">\(\gamma\)</span> (named as <em>jonswap_gamma</em> or <em>ws.gamma</em> in the code) takes a constant value of 3. On the other hand, swells are propagated without the effect of the local wind, and its shape parameter <span class="math notranslate nohighlight">\(\gamma\)</span> depends on each individual case. For this purpose, the only thing that must be done so the propagations can run correctly is change the <code>make_input</code> function in the <code>io.py</code> file as it is shown below:</p>
+<p><img alt="io.py" src="../_images/io-file-examples.png" /></p>
+<p>Notice that the <code>io.py</code> file is loaded as a module, so once the seas have been run, the kernel must be restarted, and all the modules must be reloaded again (just follow the notebook and it will be trivial). Run the seas by running all the cells below until the <b>advice</b> cell in blue appears, and then repeat the process for the swells, changing the <code>io.py</code> file first.</p>
+<p>A very important fact in this propagation section is the computational effort that is made, and which is translated into time. The software that is used here is proportioned by the <a class="reference external" href="https://www.tudelft.nl/">Technical Univerity of Delft</a> and is called <a class="reference external" href="http://swanmodel.sourceforge.net/">SWAN</a> (Simulating WAves Nearshore). With SWAN, each individual case is propagated dinamically to each cell or point in the bathymetry grid, resolving phenomenons such as diffraction and refraction. This is very expensive at the computational level, so just a certain number of cases are propagated that will be used later to reconstruct the total historical dataset.</p>
+<p><font color=red>Time wasted running the cases: </font> The time depends on the number of cases that wanna be run and the shape of the bathymetry or region desired, as it is obvious, but as a reference, <strong>100 windseas</strong> cases can take a time of about <strong>3 hours</strong> while <strong>100 swells</strong> can be resolved in <strong>1 hour</strong>, a third of the time, all this in a rectangular bathymetry with 200 m resolution (approx).</p>
+<div class="section" id="windseas-can-be-run-below">
+<h2><span class="section-number">2.1. </span>Windseas can be run below<a class="headerlink" href="#windseas-can-be-run-below" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\textit{Windseas: } \:\: H_S \:\: T_P \:\: \theta_m \:\: \sigma_\theta \:\: W \:\: \theta_W\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># common </span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># basic</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
+
+<span class="c1"># warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># swan wrap module</span>
+<span class="kn">from</span> <span class="nn">lib.wrap</span> <span class="kn">import</span> <span class="n">SwanProject</span><span class="p">,</span> <span class="n">SwanWrap_STAT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data</span>
+<span class="n">num_cases</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># number selected in MDA section</span>
+<span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">))</span>
+<span class="n">p_hind</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">)</span>
+<span class="n">waves</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;sea_cases_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+
+<span class="n">waves</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Hsea&#39;</span>   <span class="p">:</span> <span class="s1">&#39;hs&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Tpsea&#39;</span>  <span class="p">:</span> <span class="s1">&#39;per&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Dirsea&#39;</span> <span class="p">:</span> <span class="s1">&#39;dir&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Sprsea&#39;</span> <span class="p">:</span> <span class="s1">&#39;spr&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;W&#39;</span>      <span class="p">:</span> <span class="s1">&#39;vel&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;DirW&#39;</span>   <span class="p">:</span> <span class="s1">&#39;dirw&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">waves</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 6 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float64
+ 1   per     300 non-null    float64
+ 2   dir     300 non-null    float64
+ 3   spr     300 non-null    float64
+ 4   vel     300 non-null    float64
+ 5   dirw    300 non-null    float64
+dtypes: float64(6)
+memory usage: 14.2 KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p><font color=red>EDIT SECTION BELOW:</font></p>
+<p>Here, the grid where the bathymetry will be run is selected. Notice that the file used for this bathymetry is not the global file proportioned by GEBCO, but a regional file that can be also downloaded from the application in this <a class="reference external" href="https://www.gebco.net/">website</a>. An example of the aspect of this application in the region selected in this notebook is shown below:</p>
+<p><img alt="GEBCO" src="../_images/gebco-example.png" /></p>
+<p>As a recommendation, download a bigger area than the one that wants to be used, as the file size will not be much larger, but it is better to ensure the area you are selecting is valid enough. Once the area is selected, download the file as a netcdf, as it is the one preferred by the community, and it is also used here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># GRID PARAMETERS</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># ----------------  EDIT ONLY THIS PART  ------------------------------------ #</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;BRM&#39;</span> <span class="c1"># please choose a short name (max 3 letters)</span>
+<span class="c1"># Coordinates section</span>
+<span class="c1"># Place the coordinates as they are proportioned in Google Maps</span>
+<span class="n">ini_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.15</span>
+<span class="n">end_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.66</span>
+<span class="n">ini_lat</span> <span class="o">=</span> <span class="mf">50.50</span>
+<span class="n">end_lat</span> <span class="o">=</span> <span class="mf">50.80</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># ----------------  END EDIT  ----------------------------------------------- #</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># depth auto-selection</span>
+<span class="n">p_depth</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;bathymetry&#39;</span><span class="p">,</span> <span class="s1">&#39;gebco_2020_n51.0_s50.3_w-3.0_e-1.0.nc&#39;</span><span class="p">)</span> <span class="c1"># downloaded bathy</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">p_depth</span><span class="p">)</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span><span class="n">end_lat</span><span class="p">))</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span><span class="n">end_lon</span><span class="p">))</span>
+<span class="n">x_point</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">y_point</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lon</span> <span class="o">-</span> <span class="n">ini_lon</span><span class="p">)</span> <span class="o">/</span> <span class="n">x_point</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resolution: </span><span class="si">{}</span><span class="s1"> º&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resolution</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">depth</span><span class="o">.</span><span class="n">elevation</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.1500000000000057, -1.6583333333333314, 50.5, 50.79999999999998)
+</pre></div>
+</div>
+<img alt="../_images/swan_notebook_14_1.png" src="../_images/swan_notebook_14_1.png" />
+</div>
+</div>
+<p>If the figure above do not represent correctly the area you have in mind, please change the input coordinates and have a look at the downloaded bathymetry file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Figure intialization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; selected region where propagations will be done&#39;</span><span class="p">,</span>
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Plot the Basemap</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">llcrnrlon</span><span class="o">=</span><span class="n">ini_lon</span><span class="p">,</span>  <span class="n">llcrnrlat</span><span class="o">=</span><span class="n">ini_lat</span><span class="p">,</span> 
+            <span class="n">urcrnrlon</span><span class="o">=</span><span class="n">end_lon</span><span class="p">,</span> <span class="n">urcrnrlat</span><span class="o">=</span><span class="n">end_lat</span><span class="p">,</span> 
+            <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+ 
+<span class="c1"># Then add element: draw coast line, map boundary, and fill continents:</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fillcontinents</span><span class="p">()</span>
+<span class="n">grid_step_lon</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lon</span> <span class="o">-</span> <span class="n">ini_lon</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">grid_step_lat</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lat</span> <span class="o">-</span> <span class="n">ini_lat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span> <span class="n">end_lon</span><span class="o">+</span><span class="n">grid_step_lon</span><span class="p">,</span> <span class="n">grid_step_lon</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">end_lat</span><span class="o">+</span><span class="n">grid_step_lat</span><span class="p">,</span> <span class="n">grid_step_lat</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The bathymetry will have the shape: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Points in the longitude axis: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x_point</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Points in the latitude axis: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_point</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The bathymetry will have the shape: 
+
+Points in the longitude axis: 118
+Points in the latitude axis: 72
+</pre></div>
+</div>
+<img alt="../_images/swan_notebook_16_1.png" src="../_images/swan_notebook_16_1.png" />
+</div>
+</div>
+<p>Again if the figure above do not represent correctly the area you have in mind, please change the input coordinates and have a look at the downloaded bathymetry file, before running the cases.</p>
+<p><font color=red>RUN THE WINDSEAS IN THE CELL BELOW</font>, just run the cell</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># SWAN project </span>
+<span class="n">p_proj</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>    <span class="c1"># swan projects main directory</span>
+<span class="n">n_proj</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;-SEA-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">resolution</span><span class="p">)</span>    <span class="c1"># project name</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">SwanProject</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">)</span>
+
+<span class="c1"># depth grid description (input bathymetry grid)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">dg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;xpc&#39;</span><span class="p">:</span> <span class="n">ini_lon</span><span class="p">,</span>            <span class="c1"># x origin</span>
+    <span class="s1">&#39;ypc&#39;</span><span class="p">:</span> <span class="n">ini_lat</span><span class="p">,</span>            <span class="c1"># y origin</span>
+    <span class="s1">&#39;alpc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                 <span class="c1"># x-axis direction </span>
+    <span class="s1">&#39;xlenc&#39;</span><span class="p">:</span> <span class="n">end_lon</span><span class="o">-</span><span class="n">ini_lon</span><span class="p">,</span>  <span class="c1"># grid length in x</span>
+    <span class="s1">&#39;ylenc&#39;</span><span class="p">:</span> <span class="n">end_lat</span><span class="o">-</span><span class="n">ini_lat</span><span class="p">,</span>  <span class="c1"># grid length in y</span>
+    <span class="s1">&#39;mxc&#39;</span><span class="p">:</span> <span class="n">x_point</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># number mesh x</span>
+    <span class="s1">&#39;myc&#39;</span><span class="p">:</span> <span class="n">y_point</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># number mesh y</span>
+    <span class="s1">&#39;dxinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>       <span class="c1"># size mesh x</span>
+    <span class="s1">&#39;dyinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>       <span class="c1"># size mesh y</span>
+<span class="p">}</span>
+
+<span class="c1"># depth swan init</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="o">-</span> <span class="n">depth</span><span class="o">.</span><span class="n">elevation</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># computational grid description</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">cg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;xpc&#39;</span><span class="p">:</span> <span class="n">ini_lon</span><span class="p">,</span>
+    <span class="s1">&#39;ypc&#39;</span><span class="p">:</span> <span class="n">ini_lat</span><span class="p">,</span>
+    <span class="s1">&#39;alpc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;xlenc&#39;</span><span class="p">:</span> <span class="n">end_lon</span><span class="o">-</span><span class="n">ini_lon</span><span class="p">,</span>
+    <span class="s1">&#39;ylenc&#39;</span><span class="p">:</span> <span class="n">end_lat</span><span class="o">-</span><span class="n">ini_lat</span><span class="p">,</span>
+    <span class="s1">&#39;mxc&#39;</span><span class="p">:</span> <span class="n">x_point</span><span class="p">,</span>
+    <span class="s1">&#39;myc&#39;</span><span class="p">:</span> <span class="n">y_point</span><span class="p">,</span>
+    <span class="s1">&#39;dxinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>
+    <span class="s1">&#39;dyinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># SWAN parameters (sea level, jonswap gamma)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sea_level&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;jonswap_gamma&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;cdcap&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;coords_spherical&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;waves_period&#39;</span><span class="p">:</span> <span class="s1">&#39;PEAK&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;maxerr&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># SWAN wrap STAT (create case files, launch SWAN num. model, extract output)</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">SwanWrap_STAT</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+
+<span class="c1"># build stationary cases from waves data</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">build_cases</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+
+<span class="c1"># run SWAN</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">run_cases</span><span class="p">()</span>
+
+<span class="c1"># extract output from main mesh </span>
+<span class="n">waves_propagated</span> <span class="o">=</span> <span class="n">sw</span><span class="o">.</span><span class="n">extract_output</span><span class="p">()</span>
+
+<span class="c1"># save to netCDF file and cases propagated to dataframe</span>
+<span class="n">waves</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">,</span> <span class="s1">&#39;sea_cases_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+<span class="n">waves_propagated</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">,</span> <span class="s1">&#39;sea_propagated_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time transcurred: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; h&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the case to plot</span>
+<span class="n">case</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># have a look at the variables in the cell above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+
+<span class="c1"># Plot the Basemap</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">llcrnrlon</span><span class="o">=</span><span class="n">ini_lon</span><span class="p">,</span>  <span class="n">llcrnrlat</span><span class="o">=</span><span class="n">ini_lat</span><span class="p">,</span> 
+            <span class="n">urcrnrlon</span><span class="o">=</span><span class="n">end_lon</span><span class="p">,</span> <span class="n">urcrnrlat</span><span class="o">=</span><span class="n">end_lat</span><span class="p">,</span> 
+            <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+ 
+<span class="c1"># Then add element: draw coast line, map boundary, and fill continents:</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fillcontinents</span><span class="p">()</span>
+<span class="n">grid_step_lon</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lon</span> <span class="o">-</span> <span class="n">ini_lon</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">grid_step_lat</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lat</span> <span class="o">-</span> <span class="n">ini_lat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span> <span class="n">end_lon</span><span class="o">+</span><span class="n">grid_step_lon</span><span class="p">,</span> <span class="n">grid_step_lon</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">end_lat</span><span class="o">+</span><span class="n">grid_step_lat</span><span class="p">,</span> <span class="n">grid_step_lat</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">waves_case</span> <span class="o">=</span> <span class="n">waves</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">case</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">case</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Hsig</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span> <span class="n">end_lon</span><span class="p">,</span> <span class="n">x_point</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">end_lat</span><span class="p">,</span> <span class="n">y_point</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">hsig</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">Hsig</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">hsig</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot_r&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">PC</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">PC</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;$H_</span><span class="si">{S}</span><span class="s1">$ [m]&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Dir, Dspr and Tp</span>
+<span class="n">dir_step</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># not all arrows are plotted</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">dirr</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">Dir</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">dirr</span> <span class="o">=</span> <span class="p">(</span><span class="n">dirr</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)[::</span><span class="n">dir_step</span><span class="p">,::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">TPsmoo</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">perr</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">,::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">U</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dirr</span><span class="p">)</span> <span class="o">*</span> <span class="n">perr</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dirr</span><span class="p">)</span> <span class="o">*</span> <span class="n">perr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">textstr</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+        <span class="sa">r</span><span class="s1">&#39; $H_S$ = </span><span class="si">%.2f</span><span class="s1"> m&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $T_P$ = </span><span class="si">%.2f</span><span class="s1"> s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;per&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\theta _</span><span class="si">{m}</span><span class="s1">$ = </span><span class="si">%.2f</span><span class="s1"> $\degree$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;dir&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\sigma _\theta$ = </span><span class="si">%.2f</span><span class="s1"> $\degree$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;spr&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $W$ = </span><span class="si">%.2f</span><span class="s1"> m/s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\theta _</span><span class="si">{W}</span><span class="s1">$ = </span><span class="si">%.2f</span><span class="s1"> $\degree$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;dirw&#39;</span><span class="p">],</span> <span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="n">textstr</span><span class="p">,</span> 
+         <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span>
+         <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+         <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+         <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.05, 0.88, &#39; $H_S$ = 0.76 m\n $T_P$ = 10.88 s\n $\\theta _{m}$ = 259.00 $\\degree$\n $\\sigma _\\theta$ = 28.40 $\\degree$\n $W$ = 6.44 m/s\n $\\theta _{W}$ = 295.77 $\\degree$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/swan_notebook_21_1.png" src="../_images/swan_notebook_21_1.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<b>Advice:</b> Restart the kernel now so the changed files (<code>make_input</code> function) can be reloaded correctly and the propagations of the swells can work.
+</div></div>
+<div class="section" id="swells-can-be-run-below">
+<h2><span class="section-number">2.2. </span>Swells can be run below<a class="headerlink" href="#swells-can-be-run-below" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\textit{Swells: } \:\: H_S \:\: T_P \:\: \theta_m \:\: \sigma_\theta \:\: \gamma\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># common </span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># basic</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
+
+<span class="c1"># warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># swan wrap module</span>
+<span class="kn">from</span> <span class="nn">lib.wrap</span> <span class="kn">import</span> <span class="n">SwanProject</span><span class="p">,</span> <span class="n">SwanWrap_STAT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># data</span>
+<span class="n">num_cases</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># number selected in MDA section</span>
+<span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">))</span>
+<span class="n">p_hind</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">)</span>
+<span class="n">waves</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;swell_cases_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+
+<span class="n">waves</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Hswell&#39;</span>   <span class="p">:</span> <span class="s1">&#39;hs&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Tpswell&#39;</span>  <span class="p">:</span> <span class="s1">&#39;per&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Dirswell&#39;</span> <span class="p">:</span> <span class="s1">&#39;dir&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Sprswell&#39;</span> <span class="p">:</span> <span class="s1">&#39;spr&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Gamma&#39;</span>    <span class="p">:</span> <span class="s1">&#39;gamma&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">waves</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 300 entries, 0 to 299
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   hs      300 non-null    float64
+ 1   per     300 non-null    float64
+ 2   dir     300 non-null    float64
+ 3   spr     300 non-null    float64
+ 4   gamma   300 non-null    float64
+dtypes: float64(5)
+memory usage: 11.8 KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># GRID PARAMETERS</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># ----------------  EDIT ONLY THIS PART  ------------------------------------ #</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;BRM&#39;</span> <span class="c1"># please choose a short name (max 3 letters)</span>
+<span class="c1"># Coordinates section</span>
+<span class="c1"># Place the coordinates as they are proportioned in Google Maps</span>
+<span class="n">ini_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.15</span>
+<span class="n">end_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.66</span>
+<span class="n">ini_lat</span> <span class="o">=</span> <span class="mf">50.50</span>
+<span class="n">end_lat</span> <span class="o">=</span> <span class="mf">50.80</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># ----------------  END EDIT  ----------------------------------------------- #</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># depth auto-selection</span>
+<span class="n">p_depth</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;bathymetry&#39;</span><span class="p">,</span> <span class="s1">&#39;gebco_2020_n51.0_s50.3_w-3.0_e-1.0.nc&#39;</span><span class="p">)</span> <span class="c1"># downloaded bathy</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">p_depth</span><span class="p">)</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span><span class="n">end_lat</span><span class="p">))</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span><span class="n">end_lon</span><span class="p">))</span>
+<span class="n">x_point</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">y_point</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lon</span> <span class="o">-</span> <span class="n">ini_lon</span><span class="p">)</span> <span class="o">/</span> <span class="n">x_point</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resolution: </span><span class="si">{}</span><span class="s1"> º&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resolution</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolution: 0.0042 º
+</pre></div>
+</div>
+</div>
+</div>
+<p><font color=red>RUN THE SWELLS IN THE CELL BELOW</font>, just run the cell</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># SWAN project </span>
+<span class="n">p_proj</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>    <span class="c1"># swan projects main directory</span>
+<span class="n">n_proj</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;-SWELL-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">resolution</span><span class="p">)</span>  <span class="c1"># project name</span>
+
+<span class="n">sp</span> <span class="o">=</span> <span class="n">SwanProject</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">)</span>
+
+<span class="c1"># depth grid description (input bathymetry grid)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">dg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;xpc&#39;</span><span class="p">:</span> <span class="n">ini_lon</span><span class="p">,</span>            <span class="c1"># x origin</span>
+    <span class="s1">&#39;ypc&#39;</span><span class="p">:</span> <span class="n">ini_lat</span><span class="p">,</span>            <span class="c1"># y origin</span>
+    <span class="s1">&#39;alpc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                 <span class="c1"># x-axis direction </span>
+    <span class="s1">&#39;xlenc&#39;</span><span class="p">:</span> <span class="n">end_lon</span><span class="o">-</span><span class="n">ini_lon</span><span class="p">,</span>  <span class="c1"># grid length in x</span>
+    <span class="s1">&#39;ylenc&#39;</span><span class="p">:</span> <span class="n">end_lat</span><span class="o">-</span><span class="n">ini_lat</span><span class="p">,</span>  <span class="c1"># grid length in y</span>
+    <span class="s1">&#39;mxc&#39;</span><span class="p">:</span> <span class="n">x_point</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># number mesh x</span>
+    <span class="s1">&#39;myc&#39;</span><span class="p">:</span> <span class="n">y_point</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># number mesh y</span>
+    <span class="s1">&#39;dxinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>       <span class="c1"># size mesh x</span>
+    <span class="s1">&#39;dyinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>       <span class="c1"># size mesh y</span>
+<span class="p">}</span>
+
+<span class="c1"># depth swan init</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="o">-</span> <span class="n">depth</span><span class="o">.</span><span class="n">elevation</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># computational grid description</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">mesh_main</span><span class="o">.</span><span class="n">cg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;xpc&#39;</span><span class="p">:</span> <span class="n">ini_lon</span><span class="p">,</span>
+    <span class="s1">&#39;ypc&#39;</span><span class="p">:</span> <span class="n">ini_lat</span><span class="p">,</span>
+    <span class="s1">&#39;alpc&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;xlenc&#39;</span><span class="p">:</span> <span class="n">end_lon</span><span class="o">-</span><span class="n">ini_lon</span><span class="p">,</span>
+    <span class="s1">&#39;ylenc&#39;</span><span class="p">:</span> <span class="n">end_lat</span><span class="o">-</span><span class="n">ini_lat</span><span class="p">,</span>
+    <span class="s1">&#39;mxc&#39;</span><span class="p">:</span> <span class="n">x_point</span><span class="p">,</span>
+    <span class="s1">&#39;myc&#39;</span><span class="p">:</span> <span class="n">y_point</span><span class="p">,</span>
+    <span class="s1">&#39;dxinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>
+    <span class="s1">&#39;dyinp&#39;</span><span class="p">:</span> <span class="n">resolution</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># SWAN parameters (sea level, jonswap gamma)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sea_level&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;cdcap&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;coords_spherical&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;waves_period&#39;</span><span class="p">:</span> <span class="s1">&#39;PEAK&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;maxerr&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># SWAN wrap STAT (create case files, launch SWAN num. model, extract output)</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">SwanWrap_STAT</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+
+<span class="c1"># build stationary cases from waves data</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">build_cases</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+
+<span class="c1"># run SWAN</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">run_cases</span><span class="p">()</span>
+
+<span class="c1"># extract output from main mesh </span>
+<span class="n">waves_propagated</span> <span class="o">=</span> <span class="n">sw</span><span class="o">.</span><span class="n">extract_output</span><span class="p">()</span>
+
+<span class="c1"># save to netCDF file and cases propagated to dataframe</span>
+<span class="n">waves</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">,</span> <span class="s1">&#39;swell_cases_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+<span class="n">waves_propagated</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_proj</span><span class="p">,</span> <span class="n">n_proj</span><span class="p">,</span> 
+                           <span class="s1">&#39;swell_propagated_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num_cases</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time transcurred: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; h&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the case to plot</span>
+<span class="n">case</span> <span class="o">=</span> <span class="mi">290</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+
+<span class="c1"># Plot the Basemap</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">llcrnrlon</span><span class="o">=</span><span class="n">ini_lon</span><span class="p">,</span>  <span class="n">llcrnrlat</span><span class="o">=</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">urcrnrlon</span><span class="o">=</span><span class="n">end_lon</span><span class="p">,</span> <span class="n">urcrnrlat</span><span class="o">=</span><span class="n">end_lat</span><span class="p">,</span> 
+            <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+ 
+<span class="c1"># Then add element: draw coast line, map boundary, and fill continents:</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fillcontinents</span><span class="p">()</span>
+<span class="n">grid_step_lon</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lon</span> <span class="o">-</span> <span class="n">ini_lon</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">grid_step_lat</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">end_lat</span> <span class="o">-</span> <span class="n">ini_lat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span> <span class="n">end_lon</span><span class="o">+</span><span class="n">grid_step_lon</span><span class="p">,</span> <span class="n">grid_step_lon</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">m</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">end_lat</span><span class="o">+</span><span class="n">grid_step_lat</span><span class="p">,</span> <span class="n">grid_step_lat</span><span class="p">),</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">waves_case</span> <span class="o">=</span> <span class="n">waves</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">case</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">case</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Hsig</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ini_lon</span><span class="p">,</span> <span class="n">end_lon</span><span class="p">,</span> <span class="n">x_point</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ini_lat</span><span class="p">,</span> <span class="n">end_lat</span><span class="p">,</span> <span class="n">y_point</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">hsig</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">Hsig</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">hsig</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot_r&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">PC</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">PC</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;$H_</span><span class="si">{S}</span><span class="s1">$ [m]&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+<span class="c1"># Dir, Dspr and Tp</span>
+<span class="n">dir_step</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># not all arrows are plotted</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">dirr</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">Dir</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">dirr</span> <span class="o">=</span> <span class="p">(</span><span class="n">dirr</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)[::</span><span class="n">dir_step</span><span class="p">,::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">waves_propagated</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="p">)</span><span class="o">.</span><span class="n">TPsmoo</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">perr</span><span class="p">[::</span><span class="n">dir_step</span><span class="p">,::</span><span class="n">dir_step</span><span class="p">]</span>
+<span class="n">U</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dirr</span><span class="p">)</span> <span class="o">*</span> <span class="n">perr</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dirr</span><span class="p">)</span> <span class="o">*</span> <span class="n">perr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">textstr</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+        <span class="sa">r</span><span class="s1">&#39; $H_S$ = </span><span class="si">%.2f</span><span class="s1"> m&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $T_P$ = </span><span class="si">%.2f</span><span class="s1"> s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;per&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\theta _</span><span class="si">{m}</span><span class="s1">$ = </span><span class="si">%.2f</span><span class="s1"> $\degree$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;dir&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\sigma _\theta$ = </span><span class="si">%.2f</span><span class="s1"> $\degree$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;spr&#39;</span><span class="p">],</span> <span class="p">),</span>
+        <span class="sa">r</span><span class="s1">&#39; $\gamma$ = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">waves_case</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">],</span> <span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="n">textstr</span><span class="p">,</span> 
+         <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span>
+         <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+         <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+         <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.05, 0.88, &#39; $H_S$ = 1.55 m\n $T_P$ = 6.70 s\n $\\theta _{m}$ = 225.00 $\\degree$\n $\\sigma _\\theta$ = 30.60 $\\degree$\n $\\gamma$ = 27.82&#39;)
+</pre></div>
+</div>
+<img alt="../_images/swan_notebook_31_1.png" src="../_images/swan_notebook_31_1.png" />
+</div>
+</div>
+<p>If you have reached this cell without errors, then the cases have been run correctly and the saved data is stored in data/projects-swan. If an error has occured, you can also have a look at the <em>Error output file</em> in the case’s folders, and also the issues section is available in the repository for this purpose. Be careful with the saving of the data, as new propagations saved with the same name as the previously ones can make conflict, so delete the old propagations if they are not neccessary.</p>
+<p>The propagated files will be used in the reconstruction step (RBF) so please be sure they have been correctly generated.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./swan"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../mda/mda_notebook.html" title="previous page"><span class="section-number">1. </span>Maximum Dissimilarity Algorithm (MDA)</a>
+    <a class='right-next' id="next-link" href="../rbf/rbf_notebook.html" title="next page"><span class="section-number">3. </span>Reconstruction of the coastal wave climate with RBF</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

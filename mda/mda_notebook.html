@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Maximum Dissimilarity Algorithm (MDA) &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Propagation of the selected cases using SWAN" href="../swan/swan_notebook.html" />
+    <link rel="prev" title="DeliWaves" href="../README.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/mda/mda_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fmda/mda_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/mda/mda_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="maximum-dissimilarity-algorithm-mda">
+<h1><span class="section-number">1. </span>Maximum Dissimilarity Algorithm (MDA)<a class="headerlink" href="#maximum-dissimilarity-algorithm-mda" title="Permalink to this headline">¶</a></h1>
+<p>Once the wave reanalysis data has been calibrated and validated (refer to the repository <b>CalValWaves</b> for more detailed information in this way), a hybrid downscaling method to shallower water is proposed so a high resolution wave climate in the coast can be obtained all over the world. This resolution depends on two main factors:</p>
+<ul class="simple">
+<li><p>The resolution of the bathymetry used, which depends on the data available, as a global bathymetry grid is proportioned by GEBCO and will be used here so it can be extended worldwide, but more detailed grids can be obtained (also shown in this project).</p></li>
+<li><p>The computational capacity of the machines used (it will make sense in the propagation step).</p></li>
+</ul>
+<p>In this way, the first step to carry out this downscaling method is the selection of the maximum dissimilar cases, so the posterior propagation of the cases can be performed correctly (Javier Tausia, 2020, main directory of the repository). For this purpose, a certain number of windseas and swells is selected from the total set of 40 years so these two type of waves can be more or less represented. The way this selection is performed is described in the image below and in the previously cited work:</p>
+<p><img alt="MDA croquis" src="../_images/mdacroquis.png" /></p>
+<p>This sketch shows the workflow followed in the selection step. The data is firstly normalized for the correct performance of the algorithm, then the euclidean distance is used for the calculation of the distance between the different vectors in the dataset. Finally, the selected data is de-normalized so it can be used and plotted together with the original information.</p>
+<p>As it can be seen, the variables used in the definition of the windseas and the swells are different, and it is due to the fact that windseas and swells do not propagate equally and their characteristics are not the same. The variables used are:</p>
+<p>\begin{equation*}
+\textit{Windseas: } :: H_S :: T_P :: \theta_m :: \sigma_\theta :: W :: \theta_W
+\end{equation*}</p>
+<p>\begin{equation*}
+\textit{Swells: } :: H_S :: T_P :: \theta_m :: \sigma_\theta :: \gamma
+\end{equation*}</p>
+<p>where <span class="math notranslate nohighlight">\(H_S\)</span> is the significant wave height, <span class="math notranslate nohighlight">\(T_P\)</span> is the peak period, <span class="math notranslate nohighlight">\(\theta_m\)</span> is the mean wave direction, <span class="math notranslate nohighlight">\(\sigma_\theta\)</span> is the dispersion or cleanliness, <span class="math notranslate nohighlight">\(W\)</span> is the wind magnitude, <span class="math notranslate nohighlight">\(\theta_W\)</span> is the wind direction and <span class="math notranslate nohighlight">\(\gamma\)</span> (jonswap) gives an idea about the shape of the wave spectra.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the modules</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mda_functions</span> <span class="kn">import</span> <span class="n">MaxDiss_Simplified_NoThreshold</span> <span class="k">as</span> <span class="n">MDA</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first thing that is done is the selection of the <b>number of cases</b> that will be selected, worth the redundancy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_centroids</span> <span class="o">=</span> <span class="mi">300</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the algorithm will not take too much time even if the number of cases is too large, maybe a few minutes, but when doing the propagations, the computational effort is larger, so be careful. Next, files are loaded and the preprocessing is performed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_hind</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">)</span>
+<span class="n">dataframe_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;csiro_bournemouth_dataframe.pkl&#39;</span><span class="p">))</span>
+<span class="c1"># this sat_corr dataframe is the one obtained in CalValWaves, exactly the same!!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># two copies are done for the selection of the seas and the swells</span>
+<span class="n">sea</span> <span class="o">=</span> <span class="n">dataframe_total</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">swell</span> <span class="o">=</span> <span class="n">dataframe_total</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataframe_total</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 359400 entries, 1979-01-01 00:00:00 to 2019-12-31 23:00:00
+Data columns (total 29 columns):
+ #   Column     Non-Null Count   Dtype  
+---  ------     --------------   -----  
+ 0   Hs         359400 non-null  float32
+ 1   Tm_01      301679 non-null  float32
+ 2   Tm_02      359400 non-null  float32
+ 3   Tp         358865 non-null  float32
+ 4   DirM       359399 non-null  float32
+ 5   DirP       358865 non-null  float32
+ 6   Spr        359399 non-null  float32
+ 7   Nwp        359400 non-null  float32
+ 8   U10        301680 non-null  float32
+ 9   V10        301680 non-null  float32
+ 10  W          301680 non-null  float64
+ 11  DirW       301675 non-null  float64
+ 12  Hsea       359400 non-null  float32
+ 13  Hswell1    359400 non-null  float32
+ 14  Hswell2    359400 non-null  float32
+ 15  Hswell3    359400 non-null  float32
+ 16  Tpsea      242685 non-null  float32
+ 17  Tpswell1   242278 non-null  float32
+ 18  Tpswell2   115218 non-null  float32
+ 19  Tpswell3   32856 non-null   float32
+ 20  Dirsea     242685 non-null  float32
+ 21  Dirswell1  242278 non-null  float32
+ 22  Dirswell2  115218 non-null  float32
+ 23  Dirswell3  32856 non-null   float32
+ 24  Sprsea     242685 non-null  float32
+ 25  Sprswell1  242278 non-null  float32
+ 26  Sprswell2  115218 non-null  float32
+ 27  Sprswell3  32856 non-null   float32
+ 28  Hs_cal     359400 non-null  float32
+dtypes: float32(27), float64(2)
+memory usage: 45.2 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<b>Important:</b> One of the most important things for the correct usage of the software is the shape of the wave reanalysis data (hindcast information), as the variables must have the same names that are defined in the example data file named as <b>'csiro_dataframe_sat_corr.pkl'</b>. More information about the downloading of this hindcast data will be proportioned but at this moment, the data that will be used must have this mentioned shape that can be seen above.
+</div><p>For the <b>preprocessing</b> step, two different sets of data must be used:</p>
+<ul class="simple">
+<li><p>For the seas, a dataframe with the required variables is obtained.</p></li>
+<li><p>For the swells, all the different partitions must be joined (3 in this case), and all the variables must be included in this set.</p></li>
+</ul>
+<p>Here, the code might not be touched except the case that more swells exist in the wave reanalysis that wanna be added in the selection of the swells dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SEA DATAFRAME</span>
+<span class="n">xys_sea</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprsea&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;DirW&#39;</span><span class="p">]</span>
+<span class="n">sea</span> <span class="o">=</span> <span class="n">sea</span><span class="p">[</span><span class="n">xys_sea</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="c1"># limited dispersion threshold so the analysis is coherent</span>
+<span class="n">sea</span><span class="p">[</span><span class="s1">&#39;Sprsea&#39;</span><span class="p">][</span><span class="n">sea</span><span class="p">[</span><span class="s1">&#39;Sprsea&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SWELL DATAFRAME</span>
+<span class="n">xys_swell</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Hswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirswell1&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell1&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Hswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirswell2&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell2&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Hswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirswell3&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell3&#39;</span><span class="p">]</span>
+<span class="n">swell</span> <span class="o">=</span> <span class="n">swell</span><span class="p">[</span><span class="n">xys_swell</span><span class="p">]</span>
+<span class="n">swell</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span>
+                      <span class="s1">&#39;Hswell&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Hswell1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Hswell2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Hswell3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                                               <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                      <span class="s1">&#39;Tpswell&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tpswell1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                 <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tpswell2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                 <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tpswell3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                                                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                      <span class="s1">&#39;Dirswell&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Dirswell1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                  <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Dirswell2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                  <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Dirswell3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                                                 <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                      <span class="s1">&#39;Sprswell&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Sprswell1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                  <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Sprswell2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                                  <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Sprswell3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                                                 <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)})</span>
+<span class="n">swell</span> <span class="o">=</span> <span class="n">swell</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="c1"># limited dispersion threshold so the analysis is coherent</span>
+<span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Sprswell&#39;</span><span class="p">][</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Sprswell&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tpswell&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">/</span>\
+                          <span class="p">(</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Tm_02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mf">1.411</span><span class="p">),</span> 
+                          <span class="o">-</span><span class="mf">12.5439</span><span class="p">)</span>
+<span class="c1"># limited shape of the spectrum threshold so the analysis is coherent</span>
+<span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">][</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">][</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">sea</span><span class="p">,</span> <span class="n">swell</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Hsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirsea&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprsea&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;DirW&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Hswell&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpswell&#39;</span><span class="p">,</span> <span class="s1">&#39;Dirswell&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprswell&#39;</span><span class="p">,</span> <span class="s1">&#39;Gamma&#39;</span><span class="p">]]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;$H_S$ [m]&#39;</span><span class="p">,</span> <span class="s1">&#39;$T_P$ [s]&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\u03B8</span><span class="s1">_</span><span class="si">{m}</span><span class="s1">$ [$\degree$]&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;$\sigma_{</span><span class="se">\u03B8</span><span class="s1">}$ [$\degree$]&#39;</span><span class="p">,</span> <span class="s1">&#39;$W_</span><span class="si">{speed}</span><span class="s1">$ [m/s]&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\u03B8</span><span class="s1">_</span><span class="si">{W}</span><span class="s1">$ [$\degree$]&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;$H_S$ [m]&#39;</span><span class="p">,</span> <span class="s1">&#39;$T_P$ [s]&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\u03B8</span><span class="s1">_</span><span class="si">{m}</span><span class="s1">$ [$\degree$]&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;$\sigma_{</span><span class="se">\u03B8</span><span class="s1">}$ [$\degree$]&#39;</span><span class="p">,</span> <span class="s1">&#39;$\gamma$&#39;</span><span class="p">]]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sea&#39;</span><span class="p">,</span> <span class="s1">&#39;swell&#39;</span><span class="p">]</span>
+<span class="c1"># input values for the MDA algorithm functions in functions.py</span>
+<span class="n">scalars</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<span class="n">directionals</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span>
+    <span class="n">xys</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span>
+    <span class="n">xys_names</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span>
+    <span class="n">scalar</span> <span class="o">=</span> <span class="n">scalars</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span>
+    <span class="n">directional</span> <span class="o">=</span> <span class="n">directionals</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span>
+    
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">xys</span><span class="p">]</span>
+    <span class="n">dataarray</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="c1"># SUBSET</span>
+    <span class="n">subarray</span> <span class="o">=</span> <span class="n">MDA</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">num_centroids</span><span class="p">,</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">directional</span><span class="p">)</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">subarray</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">xys</span><span class="p">)</span>
+
+    <span class="c1"># Scatter plot MDA centroids</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xys</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xys</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Scatter plot for the different variables. </span><span class="se">\n</span><span class="s1"> &#39;</span> <span class="o">+</span> 
+                 <span class="s1">&#39;All points (black) and MDA points (blue) </span><span class="se">\n</span><span class="s1"> &#39;</span> <span class="o">+</span>
+                 <span class="n">title</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xys</span><span class="p">):</span>
+        <span class="n">xys_copy</span> <span class="o">=</span> <span class="n">xys</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">xys_names_copy</span> <span class="o">=</span> <span class="n">xys_names</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">xys_copy</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">xys_names_copy</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">jtem</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xys_copy</span><span class="p">):</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">jtem</span><span class="p">],</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">item</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> 
+                               <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="n">jtem</span><span class="p">],</span> <span class="n">subset</span><span class="p">[</span><span class="n">item</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> 
+                               <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">jtem</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">jtem</span><span class="p">]))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">item</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">item</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xys_names_copy</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
+                                      <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">xys_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
+                                      <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+            <span class="n">len_xys</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xys</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">xys_copy</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+            <span class="k">if</span> <span class="n">len_xys</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_xys</span><span class="p">):</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="c1"># data is saved in the data/hindcast folder         </span>
+    <span class="n">subset</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="n">title</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_cases_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_centroids</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaxDiss waves parameters: 242685 --&gt; 300
+
+   MDA centroids: 050/300
+ 
+Number of centroids computed: 50
+ 
+ 
+   MDA centroids: 100/300
+ 
+Number of centroids computed: 100
+ 
+ 
+   MDA centroids: 150/300
+ 
+Number of centroids computed: 150
+ 
+ 
+   MDA centroids: 200/300
+ 
+Number of centroids computed: 200
+ 
+ 
+   MDA centroids: 250/300
+ 
+Number of centroids computed: 250
+ 
+ 
+   MDA centroids: 300/300
+ 
+Number of centroids computed: 300
+ 
+ 
+
+
+
+MaxDiss waves parameters: 390352 --&gt; 300
+
+   MDA centroids: 050/300
+ 
+Number of centroids computed: 50
+ 
+ 
+   MDA centroids: 100/300
+ 
+Number of centroids computed: 100
+ 
+ 
+   MDA centroids: 150/300
+ 
+Number of centroids computed: 150
+ 
+ 
+   MDA centroids: 200/300
+ 
+Number of centroids computed: 200
+ 
+ 
+   MDA centroids: 250/300
+ 
+Number of centroids computed: 250
+ 
+ 
+   MDA centroids: 300/300
+ 
+Number of centroids computed: 300
+ 
+ 
+</pre></div>
+</div>
+<img alt="../_images/mda_notebook_16_1.png" src="../_images/mda_notebook_16_1.png" />
+<img alt="../_images/mda_notebook_16_2.png" src="../_images/mda_notebook_16_2.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./mda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../README.html" title="previous page">DeliWaves</a>
+    <a class='right-next' id="next-link" href="../swan/swan_notebook.html" title="next page"><span class="section-number">2. </span>Propagation of the selected cases using SWAN</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

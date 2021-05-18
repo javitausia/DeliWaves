@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Forecast predictions in offshore and coastal points in Cantabria, Spain &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="7. Forecast predictions in offshore and coastal point all over the world" href="forecast_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/forecast/forecast_CAN_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fforecast/forecast_CAN_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/forecast/forecast_CAN_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="forecast-predictions-in-offshore-and-coastal-points-in-cantabria-spain">
+<h1><span class="section-number">8. </span>Forecast predictions in offshore and coastal points in Cantabria, Spain<a class="headerlink" href="#forecast-predictions-in-offshore-and-coastal-points-in-cantabria-spain" title="Permalink to this headline">¶</a></h1>
+<p>please contact <a class="reference external" href="mailto:jtausiahoyal&#37;&#52;&#48;gmail&#46;com">jtausiahoyal<span>&#64;</span>gmail<span>&#46;</span>com</a> for more information</p>
+<p>With this jupyter notebook, forecasts of the waves can be done in Cantabria, Spain just running all the cells below. Data is downloaded from the <a class="reference external" href="https://www.noaa.gov/">NOAA</a> website and used for the local predictions. In case the methodology followed wanna be studied in detail, refer to the Forecast_CAN class in the repository, and to all the available notebooks as they explain step by step the procedure.</p>
+<p>But briefly explained, this notebook download the data, save and plot it and then, reconstruct the predictions using RBF in coastal points using the previously propagated cases with SWAN (refer to the notebooks and the paper in the repo for more information).</p>
+<p>This notebook focuses in Cantabria, a very interesting surfing region in the north of Spain. With this interactive notebook, you will be able to reconstruct the forecast wave climate in the next week and all around the coast of this region.</p>
+<p>Because of the constraints on the hybrid method, the SWAN model has been executed in 4 different regions that are shown below:</p>
+<p><img alt="4bathys" src="../_images/totalbat.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># dev library</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Forecast module</span>
+<span class="kn">from</span> <span class="nn">forecast_CAN</span> <span class="kn">import</span> <span class="n">Forecast_CAN</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date</span>         <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="c1"># today or ex: &#39;20200707&#39;</span>
+<span class="n">date</span>         <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">images_path</span>  <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;forecast&#39;</span><span class="p">)</span> <span class="c1"># save images and GIF</span>
+<span class="n">location</span>     <span class="o">=</span> <span class="p">(</span><span class="mf">44.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">)</span> <span class="c1"># location to see the forecast</span>
+<span class="n">delta_lon</span>    <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">delta_lat</span>    <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">Forecast_CAN</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> 
+                        <span class="n">images_path</span><span class="o">=</span><span class="n">images_path</span><span class="p">,</span> 
+                        <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span>
+                        <span class="n">delta_lon</span><span class="o">=</span><span class="n">delta_lon</span><span class="p">,</span>
+                        <span class="n">delta_lat</span><span class="o">=</span><span class="n">delta_lat</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">forecast</span><span class="o">.</span><span class="n">forecast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pulling the data from: 
+
+https://nomads.ncep.noaa.gov/dods/wave/mww3/20200907/multi_1.glo_30mext20200907_00z
+
+
+The times with forecast go from 2020-09-08 00:00:00 to 2020-09-15 12:00:00 
+
+Generating images and GIF in &quot;path&quot;... 
+
+
+
+Number of images to plot from the total? 
+TOTAL: 61, To plot: 
+10
+Plotting time: 2020-09-08 00:00:00...
+Plotting time: 2020-09-08 18:00:00...
+Plotting time: 2020-09-09 12:00:00...
+Plotting time: 2020-09-10 06:00:00...
+Plotting time: 2020-09-11 00:00:00...
+Plotting time: 2020-09-11 18:00:00...
+Plotting time: 2020-09-12 12:00:00...
+Plotting time: 2020-09-13 06:00:00...
+Plotting time: 2020-09-14 00:00:00...
+Plotting time: 2020-09-14 18:00:00...
+Plotting time: 2020-09-15 12:00:00...
+
+<span class=" -Color -Color-Red"> GIF generated and saved!! </span>
+
+
+
+&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+root group (NETCDF3_CLASSIC data model, file format DAP2):
+    title: Multi-grid wave model: Global 30 arc-min grid from 00Z07sep2020 downloaded Sep 07 04:24 UTC
+    Conventions: COARDS
+GrADS
+    dataType: Grid
+    history: Mon Sep 07 08:09:42 UTC 2020 : imported by GrADS Data Server 2.0
+    dimensions(sizes): lat(336), lon(720), time(61)
+    variables(dimensions): float64 time(time), float64 lat(lat), float64 lon(lon), float32 dirpwsfc(time,lat,lon), float32 htsgwsfc(time,lat,lon), float32 perpwsfc(time,lat,lon), float32 swdir_1(time,lat,lon), float32 swdir_2(time,lat,lon), float32 swell_1(time,lat,lon), float32 swell_2(time,lat,lon), float32 swper_1(time,lat,lon), float32 swper_2(time,lat,lon), float32 ugrdsfc(time,lat,lon), float32 vgrdsfc(time,lat,lon), float32 wdirsfc(time,lat,lon), float32 windsfc(time,lat,lon), float32 wvdirsfc(time,lat,lon), float32 wvhgtsfc(time,lat,lon), float32 wvpersfc(time,lat,lon)
+    groups: 
+</pre></div>
+</div>
+<img alt="../_images/forecast_CAN_notebook_5_1.png" src="../_images/forecast_CAN_notebook_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast_data</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">plot_region</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Location in (44.0, -4.0)!! </span>
+
+These are the coordinates in the selected region: 
+
+[44.]
+[355.5 356.  356.5]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2945241eb6ec42938f3e7a03eaa84e58", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> If selected coordinates are not desired, 
+please rerun the notebook with the desired parameters!! 
+
+Saving the data in the shown region... 
+
+&lt;xarray.Dataset&gt;
+Dimensions:    (lat: 1, lon: 3, time: 61)
+Coordinates:
+  * time       (time) datetime64[ns] 2020-09-08 ... 2020-09-15T12:00:00
+  * lat        (lat) float64 44.0
+  * lon        (lon) float64 355.5 356.0 356.5
+Data variables:
+    Hsea       (time, lat, lon) float32 0.62 0.56 9.999e+20 ... 9.999e+20 0.93
+    Tpsea      (time, lat, lon) float32 4.36 4.27 9.999e+20 ... 9.999e+20 4.85
+    Dirsea     (time, lat, lon) float32 28.599998 29.679998 ... 133.31999
+    Hswell1    (time, lat, lon) float32 1.26 1.27 1.38 ... 1.36 1.35 1.3199999
+    Tpswell1   (time, lat, lon) float32 9.83 9.91 10.0199995 ... 11.8 11.88
+    Dirswell1  (time, lat, lon) float32 316.27 315.6 ... 315.0 314.41998
+    Hswell2    (time, lat, lon) float32 9.999e+20 9.999e+20 ... 0.68 9.999e+20
+    Tpswell2   (time, lat, lon) float32 9.999e+20 9.999e+20 ... 4.68 9.999e+20
+    Dirswell2  (time, lat, lon) float32 9.999e+20 9.999e+20 ... 9.999e+20
+    Hs         (time, lat, lon) float32 1.4 1.39 1.38 1.31 ... 1.49 1.51 1.61
+    Tp         (time, lat, lon) float32 9.83 9.91 10.0199995 ... 11.8 11.88
+    Dir        (time, lat, lon) float32 313.27 311.88 ... 315.16 314.75998
+    Uwind      (time, lat, lon) float32 -3.22 -2.09 -0.79999995 ... 0.78 -4.11
+    Vwind      (time, lat, lon) float32 -3.84 -3.77 -3.78 ... 1.5699999 5.5
+    WindSpeed  (time, lat, lon) float32 5.0099998 4.31 3.86 ... 1.75 6.8599997
+    DirWind    (time, lat, lon) float32 40.04 29.07 12.03 ... 206.53 143.22
+
+ DONE!! 
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this plot below, the principal beaches of Cantabria are shown and below this cell, the coordinates of the beaches are also shown:</p>
+<p><img alt="coast" src="../_images/coast.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_data_swan</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>
+
+<span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
+<span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span>       <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SVI&#39;</span><span class="p">,</span> <span class="s1">&#39;SDR&#39;</span><span class="p">,</span> <span class="s1">&#39;BRS&#39;</span><span class="p">],</span> <span class="c1"># used name in the SWAN section</span>
+    <span class="s1">&#39;resolution&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">)],</span> <span class="c1"># used resolution in the SWAN section</span>
+    <span class="s1">&#39;num_cases&#39;</span>  <span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">)]</span> <span class="c1"># num cases run in SWAN</span>
+<span class="p">}</span>     
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+
+<span class="c1"># Example coordinates for the forecast reconstruction:</span>
+<span class="c1"># SanVi           43.41, -4.38</span>
+<span class="c1"># Oyambre         43.41, -4.31</span>
+<span class="c1"># Los Locos       43.44, -4.06</span>
+<span class="c1"># Liencres        43.46, -3.97</span>
+<span class="c1"># La Vaca         43.51, -3.83</span>
+<span class="c1"># Sardinero       43.48, -3.76</span>
+<span class="c1"># Somo            43.47, -3.74</span>
+<span class="c1"># Brusco          43.48, -3.48</span>
+<span class="c1"># Berria          43.48, -3.45</span>
+<span class="c1"># Laredo          43.42, -3.42</span>
+<span class="c1"># Sona-Ori        43.42, -3.31</span>
+
+<span class="n">forecasts_list</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">forecast_reconstruction</span><span class="p">(</span><span class="n">p_data_swan</span><span class="o">=</span><span class="n">p_data_swan</span><span class="p">,</span>
+                                                  <span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">,</span>
+                                                  <span class="n">forecast_data</span><span class="o">=</span><span class="n">forecast_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Select the number of points to reconstruct in GRID 1 : 
+2
+
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 1 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.41
+Longitude location to obtain the forecast reconstruction: 
+-4.38
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 5.75 | interpolation: 0.01
+ix_scalar: 1,  optimization: 15.76 | interpolation: 0.01
+ix_scalar: 2,  optimization: 7.44 | interpolation: 0.00
+ix_scalar: 4,  optimization: 12.42 | interpolation: 0.00
+ix_directional: 3,  optimization: 11.27 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.38 | interpolation: 0.00
+ix_scalar: 1,  optimization: 12.54 | interpolation: 0.00
+ix_scalar: 2,  optimization: 12.42 | interpolation: 0.00
+ix_scalar: 4,  optimization: 6.86 | interpolation: 0.00
+ix_directional: 3,  optimization: 8.55 | interpolation: 0.02
+ix_scalar: 0,  optimization: 4.98 | interpolation: 0.00
+ix_scalar: 1,  optimization: 12.66 | interpolation: 0.00
+ix_scalar: 2,  optimization: 12.50 | interpolation: 0.00
+ix_scalar: 4,  optimization: 6.79 | interpolation: 0.00
+ix_directional: 3,  optimization: 8.62 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 1 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.41
+Longitude location to obtain the forecast reconstruction: 
+-4.31
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 5.03 | interpolation: 0.01
+ix_scalar: 1,  optimization: 18.48 | interpolation: 0.00
+ix_scalar: 2,  optimization: 5.96 | interpolation: 0.01
+ix_scalar: 4,  optimization: 6.93 | interpolation: 0.00
+ix_directional: 3,  optimization: 11.22 | interpolation: 0.01
+ix_scalar: 0,  optimization: 4.66 | interpolation: 0.00
+ix_scalar: 1,  optimization: 12.88 | interpolation: 0.00
+ix_scalar: 2,  optimization: 12.91 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.21 | interpolation: 0.00
+ix_directional: 3,  optimization: 9.83 | interpolation: 0.01
+ix_scalar: 0,  optimization: 7.52 | interpolation: 0.01
+ix_scalar: 1,  optimization: 18.17 | interpolation: 0.00
+ix_scalar: 2,  optimization: 12.80 | interpolation: 0.01
+ix_scalar: 4,  optimization: 5.60 | interpolation: 0.00
+ix_directional: 3,  optimization: 10.47 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+
+ Select the number of points to reconstruct in GRID 2 : 
+5
+
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 2 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.44
+Longitude location to obtain the forecast reconstruction: 
+-4.06
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 4.84 | interpolation: 0.00
+ix_scalar: 1,  optimization: 6.79 | interpolation: 0.00
+ix_scalar: 2,  optimization: 4.88 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.47 | interpolation: 0.00
+ix_directional: 3,  optimization: 9.32 | interpolation: 0.01
+ix_scalar: 0,  optimization: 4.19 | interpolation: 0.00
+ix_scalar: 1,  optimization: 13.95 | interpolation: 0.00
+ix_scalar: 2,  optimization: 8.93 | interpolation: 0.01
+ix_scalar: 4,  optimization: 8.78 | interpolation: 0.00
+ix_directional: 3,  optimization: 12.06 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.26 | interpolation: 0.01
+ix_scalar: 1,  optimization: 17.20 | interpolation: 0.00
+ix_scalar: 2,  optimization: 8.88 | interpolation: 0.00
+ix_scalar: 4,  optimization: 7.50 | interpolation: 0.00
+ix_directional: 3,  optimization: 13.70 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 2 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.46
+Longitude location to obtain the forecast reconstruction: 
+-3.97
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 6.62 | interpolation: 0.01
+ix_scalar: 1,  optimization: 6.89 | interpolation: 0.00
+ix_scalar: 2,  optimization: 5.28 | interpolation: 0.00
+ix_scalar: 4,  optimization: 7.82 | interpolation: 0.01
+ix_directional: 3,  optimization: 16.68 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.68 | interpolation: 0.00
+ix_scalar: 1,  optimization: 6.60 | interpolation: 0.01
+ix_scalar: 2,  optimization: 20.12 | interpolation: 0.01
+ix_scalar: 4,  optimization: 15.53 | interpolation: 0.01
+ix_directional: 3,  optimization: 19.01 | interpolation: 0.01
+ix_scalar: 0,  optimization: 8.42 | interpolation: 0.01
+ix_scalar: 1,  optimization: 13.37 | interpolation: 0.01
+ix_scalar: 2,  optimization: 21.75 | interpolation: 0.00
+ix_scalar: 4,  optimization: 12.42 | interpolation: 0.00
+ix_directional: 3,  optimization: 13.02 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 2 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.51
+Longitude location to obtain the forecast reconstruction: 
+-3.83
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 9.30 | interpolation: 0.01
+ix_scalar: 1,  optimization: 22.60 | interpolation: 0.01
+ix_scalar: 2,  optimization: 9.04 | interpolation: 0.01
+ix_scalar: 4,  optimization: 9.54 | interpolation: 0.01
+ix_directional: 3,  optimization: 16.56 | interpolation: 0.02
+ix_scalar: 0,  optimization: 9.00 | interpolation: 0.01
+ix_scalar: 1,  optimization: 21.69 | interpolation: 0.01
+ix_scalar: 2,  optimization: 22.05 | interpolation: 0.01
+ix_scalar: 4,  optimization: 10.03 | interpolation: 0.01
+ix_directional: 3,  optimization: 19.42 | interpolation: 0.02
+ix_scalar: 0,  optimization: 8.99 | interpolation: 0.00
+ix_scalar: 1,  optimization: 21.98 | interpolation: 0.01
+ix_scalar: 2,  optimization: 22.80 | interpolation: 0.00
+ix_scalar: 4,  optimization: 8.65 | interpolation: 0.01
+ix_directional: 3,  optimization: 13.23 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 2 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.48
+Longitude location to obtain the forecast reconstruction: 
+-3.76
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 6.53 | interpolation: 0.01
+ix_scalar: 1,  optimization: 23.14 | interpolation: 0.01
+ix_scalar: 2,  optimization: 7.41 | interpolation: 0.01
+ix_scalar: 4,  optimization: 8.94 | interpolation: 0.01
+ix_directional: 3,  optimization: 18.02 | interpolation: 0.01
+ix_scalar: 0,  optimization: 8.00 | interpolation: 0.01
+ix_scalar: 1,  optimization: 22.78 | interpolation: 0.01
+ix_scalar: 2,  optimization: 20.45 | interpolation: 0.00
+ix_scalar: 4,  optimization: 7.58 | interpolation: 0.01
+ix_directional: 3,  optimization: 14.83 | interpolation: 0.02
+ix_scalar: 0,  optimization: 8.28 | interpolation: 0.01
+ix_scalar: 1,  optimization: 17.66 | interpolation: 0.01
+ix_scalar: 2,  optimization: 12.68 | interpolation: 0.00
+ix_scalar: 4,  optimization: 9.56 | interpolation: 0.01
+ix_directional: 3,  optimization: 16.11 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 2 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.47
+Longitude location to obtain the forecast reconstruction: 
+-3.74
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 5.49 | interpolation: 0.00
+ix_scalar: 1,  optimization: 10.78 | interpolation: 0.01
+ix_scalar: 2,  optimization: 8.18 | interpolation: 0.01
+ix_scalar: 4,  optimization: 12.32 | interpolation: 0.01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ix_directional: 3,  optimization: 21.60 | interpolation: 0.02
+ix_scalar: 0,  optimization: 8.85 | interpolation: 0.01
+ix_scalar: 1,  optimization: 28.52 | interpolation: 0.01
+ix_scalar: 2,  optimization: 15.32 | interpolation: 0.01
+ix_scalar: 4,  optimization: 9.94 | interpolation: 0.01
+ix_directional: 3,  optimization: 16.33 | interpolation: 0.02
+ix_scalar: 0,  optimization: 7.21 | interpolation: 0.00
+ix_scalar: 1,  optimization: 21.21 | interpolation: 0.01
+ix_scalar: 2,  optimization: 15.32 | interpolation: 0.01
+ix_scalar: 4,  optimization: 11.61 | interpolation: 0.01
+ix_directional: 3,  optimization: 16.15 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+
+ Select the number of points to reconstruct in GRID 3 : 
+4
+
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 3 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.48
+Longitude location to obtain the forecast reconstruction: 
+-3.48
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 9.50 | interpolation: 0.00
+ix_scalar: 1,  optimization: 11.88 | interpolation: 0.01
+ix_scalar: 2,  optimization: 5.14 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.97 | interpolation: 0.00
+ix_directional: 3,  optimization: 13.18 | interpolation: 0.01
+ix_scalar: 0,  optimization: 7.74 | interpolation: 0.00
+ix_scalar: 1,  optimization: 7.71 | interpolation: 0.00
+ix_scalar: 2,  optimization: 8.83 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.70 | interpolation: 0.00
+ix_directional: 3,  optimization: 13.72 | interpolation: 0.01
+ix_scalar: 0,  optimization: 8.32 | interpolation: 0.00
+ix_scalar: 1,  optimization: 11.80 | interpolation: 0.01
+ix_scalar: 2,  optimization: 12.18 | interpolation: 0.01
+ix_scalar: 4,  optimization: 6.26 | interpolation: 0.01
+ix_directional: 3,  optimization: 12.60 | interpolation: 0.02
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 3 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.48
+Longitude location to obtain the forecast reconstruction: 
+-3.45
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 7.72 | interpolation: 0.00
+ix_scalar: 1,  optimization: 23.41 | interpolation: 0.01
+ix_scalar: 2,  optimization: 9.24 | interpolation: 0.01
+ix_scalar: 4,  optimization: 11.01 | interpolation: 0.00
+ix_directional: 3,  optimization: 12.94 | interpolation: 0.01
+ix_scalar: 0,  optimization: 6.40 | interpolation: 0.01
+ix_scalar: 1,  optimization: 15.62 | interpolation: 0.01
+ix_scalar: 2,  optimization: 21.55 | interpolation: 0.01
+ix_scalar: 4,  optimization: 9.26 | interpolation: 0.01
+ix_directional: 3,  optimization: 17.84 | interpolation: 0.01
+ix_scalar: 0,  optimization: 7.42 | interpolation: 0.00
+ix_scalar: 1,  optimization: 18.50 | interpolation: 0.01
+ix_scalar: 2,  optimization: 15.70 | interpolation: 0.00
+ix_scalar: 4,  optimization: 6.67 | interpolation: 0.00
+ix_directional: 3,  optimization: 11.92 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 3 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.42
+Longitude location to obtain the forecast reconstruction: 
+-3.42
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 5.10 | interpolation: 0.00
+ix_scalar: 1,  optimization: 6.25 | interpolation: 0.01
+ix_scalar: 2,  optimization: 6.44 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.66 | interpolation: 0.00
+ix_directional: 3,  optimization: 11.37 | interpolation: 0.01
+ix_scalar: 0,  optimization: 4.93 | interpolation: 0.00
+ix_scalar: 1,  optimization: 9.04 | interpolation: 0.00
+ix_scalar: 2,  optimization: 9.36 | interpolation: 0.00
+ix_scalar: 4,  optimization: 6.91 | interpolation: 0.01
+ix_directional: 3,  optimization: 8.45 | interpolation: 0.01
+ix_scalar: 0,  optimization: 5.02 | interpolation: 0.00
+ix_scalar: 1,  optimization: 7.82 | interpolation: 0.00
+ix_scalar: 2,  optimization: 6.35 | interpolation: 0.01
+ix_scalar: 4,  optimization: 7.33 | interpolation: 0.01
+ix_directional: 3,  optimization: 8.62 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+<span class=" -Color -Color-Blue">Select the desired point to reconstruct in GRID 3 as it is given in Google Maps: </span>
+
+Latitude location to obtain the forecast reconstruction: 43.42
+Longitude location to obtain the forecast reconstruction: 
+-3.31
+
+
+
+<span class=" -Color -Color-Blue"> Forecast in the selected region will be calculated!! </span>
+
+Performing RFB reconstruction... 
+
+ix_scalar: 0,  optimization: 4.55 | interpolation: 0.00
+ix_scalar: 1,  optimization: 11.86 | interpolation: 0.00
+ix_scalar: 2,  optimization: 5.68 | interpolation: 0.00
+ix_scalar: 4,  optimization: 4.76 | interpolation: 0.00
+ix_directional: 3,  optimization: 8.46 | interpolation: 0.01
+ix_scalar: 0,  optimization: 3.77 | interpolation: 0.00
+ix_scalar: 1,  optimization: 6.23 | interpolation: 0.00
+ix_scalar: 2,  optimization: 11.46 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.96 | interpolation: 0.00
+ix_directional: 3,  optimization: 8.89 | interpolation: 0.01
+ix_scalar: 0,  optimization: 3.87 | interpolation: 0.00
+ix_scalar: 1,  optimization: 5.97 | interpolation: 0.00
+ix_scalar: 2,  optimization: 11.59 | interpolation: 0.00
+ix_scalar: 4,  optimization: 5.73 | interpolation: 0.00
+ix_directional: 3,  optimization: 9.16 | interpolation: 0.01
+
+
+Saving the data in list... 
+
+
+<span class=" -Color -Color-Red"> SAVED!!! </span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">forecasts_list</span><span class="o">=</span><span class="n">forecasts_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 
+
+
+ Number of images to plot from the total? 
+TOTAL: 61, To plot: 
+20
+Plotting time: 2020-09-08 00:00:00...
+Plotting time: 2020-09-08 09:00:00...
+Plotting time: 2020-09-08 18:00:00...
+Plotting time: 2020-09-09 03:00:00...
+Plotting time: 2020-09-09 12:00:00...
+Plotting time: 2020-09-09 21:00:00...
+Plotting time: 2020-09-10 06:00:00...
+Plotting time: 2020-09-10 15:00:00...
+Plotting time: 2020-09-11 00:00:00...
+Plotting time: 2020-09-11 09:00:00...
+Plotting time: 2020-09-11 18:00:00...
+Plotting time: 2020-09-12 03:00:00...
+Plotting time: 2020-09-12 12:00:00...
+Plotting time: 2020-09-12 21:00:00...
+Plotting time: 2020-09-13 06:00:00...
+Plotting time: 2020-09-13 15:00:00...
+Plotting time: 2020-09-14 00:00:00...
+Plotting time: 2020-09-14 09:00:00...
+Plotting time: 2020-09-14 18:00:00...
+Plotting time: 2020-09-15 03:00:00...
+Plotting time: 2020-09-15 12:00:00...
+
+<span class=" -Color -Color-Red"> GIF generated and saved!! </span>
+
+</pre></div>
+</div>
+<img alt="../_images/forecast_CAN_notebook_9_1.png" src="../_images/forecast_CAN_notebook_9_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s1">&#39;../images/forecast/forecast_CANgit.gif&#39;</span><span class="p">,</span><span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./forecast"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="forecast_notebook.html" title="previous page"><span class="section-number">7. </span>Forecast predictions in offshore and coastal point all over the world</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

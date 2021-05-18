@@ -1,0 +1,2468 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Final propagation step to wave breaking &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Slopes analysis, SOM…" href="slopes_analysis_notebook.html" />
+    <link rel="prev" title="3. Reconstruction of the coastal wave climate with RBF" href="../rbf/rbf_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../spectra/spectra_notebook.html">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/slopes/slopes_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fslopes/slopes_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/slopes/slopes_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="final-propagation-step-to-wave-breaking">
+<h1><span class="section-number">4. </span>Final propagation step to wave breaking<a class="headerlink" href="#final-propagation-step-to-wave-breaking" title="Permalink to this headline">¶</a></h1>
+<p>All the data could be propagated to the surfbreak, but we still do not know how waves break, as we do not know their significant wave height at break (<span class="math notranslate nohighlight">\(H_B\)</span>). With this purpose, we proportionate a method to calculate the slope of the beaches, in case we are talking about a beachbreak, so the way waves break and their height can be calculated.</p>
+<p>This method uses the law of snell first to propagate waves to the shore and then, knowing the waves that reach the beach, we can estimate the slope that sees the wave when breaking.</p>
+<p>This methodology is explained in the figure below (Javier Tausia, 2020), and running the notebook, it will be more clear.</p>
+<p><img alt="break" src="../_images/rotura.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># common </span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># basic </span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span> <span class="k">as</span> <span class="n">td</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
+
+<span class="c1"># dev library </span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="c1"># RBF module </span>
+<span class="kn">from</span> <span class="nn">slopes</span> <span class="kn">import</span> <span class="n">Slopes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wf_calc</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="n">d50</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">wf</span> <span class="o">=</span> <span class="mi">233</span> <span class="o">*</span> <span class="p">((</span><span class="n">d50</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="o">**</span> <span class="mf">1.1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The values of D50 and wf are, respectively: </span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d50</span><span class="p">,</span> <span class="n">wf</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">wf</span>
+
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">waves</span><span class="p">):</span>
+    
+    <span class="c1"># We first generate the empy lists</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_hb</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_tp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_spr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_iri</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_ddir</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">index_ddirw</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># hours, months and years</span>
+    <span class="n">waves_month</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">waves_hour</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">waves_season</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">waves_day_moment</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">waves_year</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># We now save the grades</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waves</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="k">20000</span>)==0:
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> waves computed...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="c1"># Compute ihb</span>
+        <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">0.7</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">1.0</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">1.8</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">2.2</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;H_break&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="p">(</span><span class="mf">2.6</span><span class="o">*</span><span class="mf">1.7</span><span class="p">):</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ihb</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Compute itp</span>
+        <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">14</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">9</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">itp</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="c1"># Compute ispr</span>
+        <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">15</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">9</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">18</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">22</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ispr</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="c1"># Compute iir</span>
+        <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.3</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.6</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.9</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">1.2</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">1.6</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">1.9</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">2.2</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">iir</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Compute idd</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDir_R&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="n">idd</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDir_R&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="n">idd</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDir_R&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="n">idd</span> <span class="o">=</span> <span class="mf">1.1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">idd</span> <span class="o">=</span> <span class="mf">1.2</span>
+        <span class="c1"># Compute iw</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDir_R&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDirW&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.8</span>
+            <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">14</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.5</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.2</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDirW&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">160</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">1.4</span>
+            <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">14</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">1.2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.9</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DDirW&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">130</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">1.3</span>
+            <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">14</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">1.1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">1.1</span>
+            <span class="k">elif</span> <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">14</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.8</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">iw</span> <span class="o">=</span> <span class="mf">0.6</span>
+
+        <span class="n">index_hb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ihb</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">index_tp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">itp</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">index_spr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ispr</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">index_iri</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iir</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">index_ddir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idd</span><span class="p">)</span>
+        <span class="n">index_ddirw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iw</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ihb</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">itp</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="mf">2.6</span><span class="o">*</span><span class="n">ihb</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">itp</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">ispr</span> <span class="o">+</span> <span class="mf">0.6</span><span class="o">*</span><span class="n">iir</span><span class="p">)</span> <span class="o">/</span> <span class="mi">50</span><span class="p">)</span> <span class="o">*</span> <span class="n">iw</span><span class="p">)</span>
+        
+        <span class="c1"># time groupings</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">waves</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">waves_month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">waves_season</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Winter&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">waves_season</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Spring&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="n">waves_season</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Summer&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">11</span><span class="p">:</span>
+            <span class="n">waves_season</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Autumn&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">waves_season</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Winter&#39;</span><span class="p">)</span>
+        <span class="n">hour</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">waves</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">waves_hour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hour</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">waves_day_moment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;night&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">13</span><span class="p">:</span>
+            <span class="n">waves_day_moment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;morning&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="n">waves_day_moment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;afternoon&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">:</span>
+            <span class="n">waves_day_moment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;evening&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">waves_day_moment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;night&#39;</span><span class="p">)</span>
+        <span class="n">waves_year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">waves</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Hb_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_hb</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Tp_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_tp</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Spr_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_spr</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Iribarren_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_iri</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Dir_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_ddir</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;DirW_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_ddirw</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+    
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">waves_hour</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Day_Moment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">waves_day_moment</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">waves_month</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Season&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">waves_season</span>
+    <span class="n">waves</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">waves_year</span>
+    
+    <span class="k">return</span> <span class="n">waves</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Path to data</span>
+<span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the tides</span>
+<span class="n">tides</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;tides&#39;</span><span class="p">,</span> <span class="s1">&#39;tides_can.nc&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()[</span><span class="s1">&#39;ocean_tide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the surfbreaks historic</span>
+<span class="n">surfbreaks_historic</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span> <span class="s1">&#39;surfbreaks_reconstructed.nc&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">beach</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt, dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;beach&#x27; (beach: 14)&gt;
+array([&#x27;farolillo&#x27;, &#x27;bederna&#x27;, &#x27;oyambre&#x27;, &#x27;locos&#x27;, &#x27;valdearenas&#x27;, &#x27;canallave&#x27;,
+       &#x27;madero&#x27;, &#x27;segunda&#x27;, &#x27;primera&#x27;, &#x27;pueblo&#x27;, &#x27;curva&#x27;, &#x27;brusco&#x27;, &#x27;forta&#x27;,
+       &#x27;laredo&#x27;], dtype=object)
+Coordinates:
+  * beach    (beach) object &#x27;farolillo&#x27; &#x27;bederna&#x27; &#x27;oyambre&#x27; ... &#x27;forta&#x27; &#x27;laredo&#x27;</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'beach'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>beach</span>: 14</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-e7193951-413d-4a49-8207-501f2b95b46d' class='xr-array-in' type='checkbox' checked><label for='section-e7193951-413d-4a49-8207-501f2b95b46d' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>&#x27;farolillo&#x27; &#x27;bederna&#x27; &#x27;oyambre&#x27; &#x27;locos&#x27; ... &#x27;brusco&#x27; &#x27;forta&#x27; &#x27;laredo&#x27;</span></div><div class='xr-array-data'><pre>array([&#x27;farolillo&#x27;, &#x27;bederna&#x27;, &#x27;oyambre&#x27;, &#x27;locos&#x27;, &#x27;valdearenas&#x27;, &#x27;canallave&#x27;,
+       &#x27;madero&#x27;, &#x27;segunda&#x27;, &#x27;primera&#x27;, &#x27;pueblo&#x27;, &#x27;curva&#x27;, &#x27;brusco&#x27;, &#x27;forta&#x27;,
+       &#x27;laredo&#x27;], dtype=object)</pre></div></div></li><li class='xr-section-item'><input id='section-a7ea5713-2856-4d0d-944c-318c3041e352' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a7ea5713-2856-4d0d-944c-318c3041e352' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>beach</span></div><div class='xr-var-dims'>(beach)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;farolillo&#x27; &#x27;bederna&#x27; ... &#x27;laredo&#x27;</div><input id='attrs-3e9a48e5-b300-45b1-a64a-66c9df55ca4d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3e9a48e5-b300-45b1-a64a-66c9df55ca4d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a9745033-fc8c-4a77-93a6-0b5bc656b4a6' class='xr-var-data-in' type='checkbox'><label for='data-a9745033-fc8c-4a77-93a6-0b5bc656b4a6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;farolillo&#x27;, &#x27;bederna&#x27;, &#x27;oyambre&#x27;, &#x27;locos&#x27;, &#x27;valdearenas&#x27;, &#x27;canallave&#x27;,
+       &#x27;madero&#x27;, &#x27;segunda&#x27;, &#x27;primera&#x27;, &#x27;pueblo&#x27;, &#x27;curva&#x27;, &#x27;brusco&#x27;, &#x27;forta&#x27;,
+       &#x27;laredo&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-36b46005-ddb7-4c45-855a-6f03c9d88914' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-36b46005-ddb7-4c45-855a-6f03c9d88914' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;farolillo&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.030</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.2738</span><span class="p">,</span> <span class="mf">0.6157</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">farolillo_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                         <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                         <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                         <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">farolillo_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">farolillo_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2003</span><span class="p">)</span>
+<span class="n">farolillo_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">farolillo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">farolillo_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                                 <span class="n">omega</span><span class="o">=</span><span class="n">farolillo_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                                 <span class="n">diff_sl</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">farolillo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.28456860851215393, 0.02930634178860771
+The wf that will be used is: 0.03
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -26.66167311837447 º 
+
+
+ Mean wind direction: -8.298313693984122 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6919506218738762 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2003-01-01 02:00:00  0.112920  0.002165  0.254160  0.003915  4.853990
+2003-01-21 22:00:00  0.096013  0.000759  0.287974  0.001941  5.699339
+2003-02-11 18:00:00  0.067146  0.000127  0.345707  0.000586  7.142676
+2003-03-04 14:00:00  0.100127  0.000979  0.279746  0.002302  5.493645
+2003-03-25 10:00:00  0.113869  0.002296  0.252262  0.004072  4.806550
+2003-04-15 06:00:00  0.124927  0.004557  0.230145  0.006444  4.253634
+2003-05-06 02:00:00  0.140253  0.011786  0.199494  0.012172  3.487343
+2003-05-26 22:00:00  0.129079  0.005895  0.221842  0.007655  4.046055
+2003-06-16 18:00:00  0.140050  0.011639  0.199900  0.012070  3.497495
+2003-07-07 14:00:00  0.143851  0.014731  0.192298  0.014132  3.307451
+2003-07-28 10:00:00  0.145364  0.016180  0.189272  0.015048  3.231811
+2003-08-18 06:00:00  0.152730  0.025546  0.174540  0.020428  2.863495
+2003-09-08 02:00:00  0.146473  0.017331  0.187055  0.015756  3.176373
+2003-09-28 22:00:00  0.130044  0.006259  0.219912  0.007968  3.997805
+2003-10-19 18:00:00  0.127807  0.005448  0.224387  0.007262  4.109675
+2003-11-09 14:00:00  0.097258  0.000820  0.285484  0.002044  5.637088
+2003-11-30 10:00:00  0.096584  0.000786  0.286833  0.001987  5.670821
+2003-12-21 06:00:00  0.116734  0.002742  0.246532  0.004586  4.663307
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_8_1.png" src="../_images/slopes_notebook_8_1.png" />
+<img alt="../_images/slopes_notebook_8_2.png" src="../_images/slopes_notebook_8_2.png" />
+<img alt="../_images/slopes_notebook_8_3.png" src="../_images/slopes_notebook_8_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;bederna&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">325</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.035</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.2897</span><span class="p">,</span> <span class="mf">0.6585</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">bederna_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                       <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                       <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                       <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">bederna_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">bederna_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2003</span><span class="p">)</span>
+<span class="n">bederna_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">bederna_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">bederna_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                               <span class="n">omega</span><span class="o">=</span><span class="n">bederna_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                               <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">bederna_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.3014229959588681, 0.031221225164497008
+The wf that will be used is: 0.035
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: 4.603694521931204 º 
+
+
+ Mean wind direction: 9.78515820491844 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6398351228743209 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       71990 non-null  float64
+ 13  Iribarren   71990 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2003-01-01 02:00:00  0.089398  0.000504  0.301205  0.001475  6.030117
+2003-01-21 22:00:00  0.068436  0.000137  0.343128  0.000618  7.078191
+2003-02-11 18:00:00  0.047007  0.000036  0.385987  0.000254  8.149669
+2003-03-04 14:00:00  0.077318  0.000238  0.325364  0.000893  6.634088
+2003-03-25 10:00:00  0.092558  0.000613  0.294884  0.001682  5.872091
+2003-04-15 06:00:00  0.119680  0.003292  0.240639  0.005183  4.515987
+2003-05-06 02:00:00  0.127292  0.005277  0.225417  0.007108  4.135419
+2003-05-26 22:00:00  0.114032  0.002319  0.251936  0.004100  4.798410
+2003-06-16 18:00:00  0.124607  0.004468  0.230786  0.006359  4.269641
+2003-07-07 14:00:00  0.130185  0.006314  0.219629  0.008015  3.990737
+2003-07-28 10:00:00  0.132091  0.007106  0.215818  0.008675  3.895439
+2003-08-18 06:00:00  0.141475  0.012714  0.197049  0.012805  3.426227
+2003-09-08 02:00:00  0.140785  0.012181  0.198429  0.012444  3.460733
+2003-09-28 22:00:00  0.124238  0.004366  0.231525  0.006262  4.288119
+2003-10-19 18:00:00  0.122649  0.003957  0.234702  0.005862  4.367559
+2003-11-09 14:00:00  0.084930  0.000382  0.310140  0.001225  6.253495
+2003-11-30 10:00:00  0.075471  0.000212  0.329058  0.000828  6.726451
+2003-12-21 06:00:00  0.101779  0.001085  0.276443  0.002466  5.411067
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_9_1.png" src="../_images/slopes_notebook_9_1.png" />
+<img alt="../_images/slopes_notebook_9_2.png" src="../_images/slopes_notebook_9_2.png" />
+<img alt="../_images/slopes_notebook_9_3.png" src="../_images/slopes_notebook_9_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;oyambre&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.028</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.2483</span><span class="p">,</span> <span class="mf">0.5039</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">oyambre_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                       <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                       <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                       <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">oyambre_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">oyambre_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2004</span><span class="p">)</span>
+<span class="n">oyambre_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">oyambre_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">oyambre_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                               <span class="n">omega</span><span class="o">=</span><span class="n">oyambre_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                               <span class="n">diff_sl</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">oyambre_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.2264985199706587, 0.022799631428169796
+The wf that will be used is: 0.028
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -73.41482525749146 º 
+
+
+ Mean wind direction: -31.01464226066187 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.1295916525429373 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       71873 non-null  float64
+ 13  Iribarren   71873 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2004-01-01 02:00:00  0.087112  0.000437  0.305775  0.001342  6.144377
+2004-01-21 22:00:00  0.051242  0.000047  0.377515  0.000303  7.937877
+2004-02-11 18:00:00  0.069639  0.000148  0.340723  0.000650  7.018075
+2004-03-03 14:00:00  0.093988  0.000669  0.292024  0.001784  5.800602
+2004-03-24 10:00:00  0.069459  0.000146  0.341082  0.000645  7.027045
+2004-04-14 06:00:00  0.070758  0.000159  0.338484  0.000681  6.962093
+2004-05-05 02:00:00  0.076791  0.000230  0.326419  0.000874  6.660466
+2004-05-25 22:00:00  0.092178  0.000598  0.295643  0.001655  5.891086
+2004-06-15 18:00:00  0.119842  0.003325  0.240317  0.005218  4.507924
+2004-07-06 14:00:00  0.113164  0.002198  0.253672  0.003955  4.841796
+2004-07-27 10:00:00  0.116768  0.002748  0.246464  0.004593  4.661609
+2004-08-17 06:00:00  0.128833  0.005806  0.222334  0.007578  4.058348
+2004-09-07 02:00:00  0.112122  0.002060  0.255756  0.003787  4.893903
+2004-09-27 22:00:00  0.094122  0.000675  0.291757  0.001794  5.793920
+2004-10-18 18:00:00  0.088863  0.000487  0.302273  0.001443  6.056836
+2004-11-08 14:00:00  0.092139  0.000597  0.295723  0.001653  5.893072
+2004-11-29 10:00:00  0.090884  0.000552  0.298233  0.001569  5.955817
+2004-12-20 06:00:00  0.092031  0.000593  0.295939  0.001645  5.898465
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_10_1.png" src="../_images/slopes_notebook_10_1.png" />
+<img alt="../_images/slopes_notebook_10_2.png" src="../_images/slopes_notebook_10_2.png" />
+<img alt="../_images/slopes_notebook_10_3.png" src="../_images/slopes_notebook_10_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;locos&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">295</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.1104</span><span class="p">,</span> <span class="mf">0.6681</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">locos_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                     <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                     <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                     <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                     <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">locos_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">locos_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2005</span><span class="p">)</span>
+<span class="n">locos_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">locos_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">locos_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                             <span class="n">omega</span><span class="o">=</span><span class="n">locos_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+                             <span class="n">diff_sl</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">locos_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.4010634305424647, 0.042745489201382075
+The wf that will be used is: 0.042745489201382075
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: 25.465238302667395 º 
+
+
+ Mean wind direction: 20.764539648217408 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.437117075964364 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2005-01-01 03:00:00  0.083862  0.000357  0.312275  0.001172  6.306885
+2005-01-21 23:00:00  0.067415  0.000129  0.345170  0.000592  7.129255
+2005-02-11 19:00:00  0.089726  0.000514  0.300548  0.001495  6.013688
+2005-03-04 15:00:00  0.104526  0.001286  0.270948  0.002763  5.273689
+2005-03-25 11:00:00  0.133113  0.007570  0.213774  0.009050  3.844349
+2005-04-15 07:00:00  0.130679  0.006510  0.218641  0.008181  3.966025
+2005-05-06 03:00:00  0.111825  0.002023  0.256351  0.003741  4.908763
+2005-05-26 23:00:00  0.136775  0.009500  0.206450  0.010536  3.661256
+2005-06-16 19:00:00  0.137647  0.010028  0.204706  0.010924  3.617645
+2005-07-07 15:00:00  0.136048  0.009081  0.207903  0.010223  3.697580
+2005-07-28 11:00:00  0.130001  0.006242  0.219998  0.007954  3.999961
+2005-08-18 07:00:00  0.142733  0.013745  0.194533  0.013492  3.363330
+2005-09-08 03:00:00  0.134033  0.008015  0.211934  0.009403  3.798354
+2005-09-28 23:00:00  0.127229  0.005256  0.225542  0.007090  4.138552
+2005-10-19 19:00:00  0.124242  0.004368  0.231516  0.006263  4.287894
+2005-11-09 15:00:00  0.111395  0.001969  0.257210  0.003675  4.930256
+2005-11-30 11:00:00  0.085916  0.000406  0.308168  0.001277  6.204204
+2005-12-21 07:00:00  0.089390  0.000503  0.301221  0.001474  6.030516
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_11_1.png" src="../_images/slopes_notebook_11_1.png" />
+<img alt="../_images/slopes_notebook_11_2.png" src="../_images/slopes_notebook_11_2.png" />
+<img alt="../_images/slopes_notebook_11_3.png" src="../_images/slopes_notebook_11_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;valdearenas&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">340</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">0.9602</span><span class="p">,</span> <span class="mf">0.6247</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">valdearenas_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                           <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                           <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                           <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                           <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2010</span><span class="p">)</span>
+<span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                                   <span class="n">omega</span><span class="o">=</span><span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                                   <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.4787036282026754, 0.051931314061067546
+The wf that will be used is: 0.051931314061067546
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -8.975274244111828 º 
+
+
+ Mean wind direction: 2.467233362883188 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6330347632186633 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2010-01-01 04:00:00  0.122626  0.003951  0.234748  0.005857  4.368698
+2010-01-22 00:00:00  0.135601  0.008833  0.208798  0.010035  3.719946
+2010-02-11 20:00:00  0.122388  0.003893  0.235224  0.005799  4.380606
+2010-03-04 16:00:00  0.128429  0.005662  0.223143  0.007452  4.078564
+2010-03-25 12:00:00  0.142843  0.013839  0.194314  0.013553  3.357839
+2010-04-15 08:00:00  0.131460  0.006833  0.217080  0.008451  3.926988
+2010-05-06 04:00:00  0.149519  0.020935  0.180961  0.017880  3.024026
+2010-05-27 00:00:00  0.151618  0.023844  0.176764  0.019507  2.919088
+2010-06-16 20:00:00  0.151592  0.023806  0.176816  0.019486  2.920393
+2010-07-07 16:00:00  0.144790  0.015615  0.190419  0.014694  3.260479
+2010-07-28 12:00:00  0.146194  0.017035  0.187612  0.015575  3.190304
+2010-08-18 08:00:00  0.156596  0.032465  0.166809  0.023983  2.670219
+2010-09-08 04:00:00  0.159764  0.039512  0.160472  0.027353  2.511790
+2010-09-29 00:00:00  0.149721  0.021198  0.180558  0.018030  3.013951
+2010-10-19 20:00:00  0.136887  0.009566  0.206226  0.010585  3.655660
+2010-11-09 16:00:00  0.124922  0.004556  0.230157  0.006442  4.253917
+2010-11-30 12:00:00  0.104905  0.001317  0.270191  0.002807  5.254764
+2010-12-21 08:00:00  0.136646  0.009424  0.206709  0.010479  3.667721
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_12_1.png" src="../_images/slopes_notebook_12_1.png" />
+<img alt="../_images/slopes_notebook_12_2.png" src="../_images/slopes_notebook_12_2.png" />
+<img alt="../_images/slopes_notebook_12_3.png" src="../_images/slopes_notebook_12_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;canallave&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">350</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">0.9852</span><span class="p">,</span> <span class="mf">0.6154</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">canallave_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                         <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                         <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                         <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">canallave_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">canallave_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2010</span><span class="p">)</span>
+<span class="n">canallave_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">canallave_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">canallave_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                                 <span class="n">omega</span><span class="o">=</span><span class="n">canallave_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                                 <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">canallave_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.4545577597672397, 0.04905732967163039
+The wf that will be used is: 0.04905732967163039
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -27.102964299627416 º 
+
+
+ Mean wind direction: -2.2949881203226643 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6833531174171443 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2010-01-01 04:00:00  0.125007  0.004580  0.229986  0.006465  4.249651
+2010-01-22 00:00:00  0.136861  0.009551  0.206278  0.010574  3.656953
+2010-02-11 20:00:00  0.127676  0.005404  0.224649  0.007222  4.116221
+2010-03-04 16:00:00  0.130211  0.006324  0.219578  0.008024  3.989451
+2010-03-25 12:00:00  0.143327  0.014260  0.193347  0.013828  3.333663
+2010-04-15 08:00:00  0.136592  0.009393  0.206816  0.010456  3.670390
+2010-05-06 04:00:00  0.146953  0.017855  0.186094  0.016073  3.152359
+2010-05-27 00:00:00  0.148901  0.020147  0.182198  0.017427  3.054960
+2010-06-16 20:00:00  0.152936  0.025874  0.174129  0.020603  2.853215
+2010-07-07 16:00:00  0.145556  0.016374  0.188887  0.015168  3.222180
+2010-07-28 12:00:00  0.149128  0.020433  0.181743  0.017592  3.043586
+2010-08-18 08:00:00  0.156612  0.032498  0.166775  0.024000  2.669385
+2010-09-08 04:00:00  0.158363  0.036223  0.163275  0.025808  2.581867
+2010-09-29 00:00:00  0.150734  0.022572  0.178533  0.018804  2.963313
+2010-10-19 20:00:00  0.139571  0.011298  0.200859  0.011832  3.521470
+2010-11-09 16:00:00  0.128376  0.005644  0.223248  0.007435  4.081194
+2010-11-30 12:00:00  0.111883  0.002030  0.256234  0.003750  4.905853
+2010-12-21 08:00:00  0.132263  0.007182  0.215474  0.008737  3.886852
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_13_1.png" src="../_images/slopes_notebook_13_1.png" />
+<img alt="../_images/slopes_notebook_13_2.png" src="../_images/slopes_notebook_13_2.png" />
+<img alt="../_images/slopes_notebook_13_3.png" src="../_images/slopes_notebook_13_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;madero&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">350</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.047</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.1839</span><span class="p">,</span> <span class="mf">0.6660</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">madero_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                      <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                      <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                      <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                      <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">madero_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">madero_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2010</span><span class="p">)</span>
+<span class="n">madero_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">madero_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">madero_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                              <span class="n">omega</span><span class="o">=</span><span class="n">madero_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>  
+                              <span class="n">diff_sl</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">madero_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.3581236801815413, 0.03773916297995551
+The wf that will be used is: 0.047
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -25.106096208720885 º 
+
+
+ Mean wind direction: -2.2949881203226643 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6907088860620965 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2010-01-01 04:00:00  0.120485  0.003460  0.239030  0.005359  4.475759
+2010-01-22 00:00:00  0.133903  0.007950  0.212194  0.009352  3.804844
+2010-02-11 20:00:00  0.122325  0.003878  0.235351  0.005784  4.383772
+2010-03-04 16:00:00  0.126877  0.005143  0.226246  0.006987  4.156147
+2010-03-25 12:00:00  0.141653  0.012855  0.196694  0.012900  3.417343
+2010-04-15 08:00:00  0.132431  0.007257  0.215137  0.008798  3.878433
+2010-05-06 04:00:00  0.146467  0.017326  0.187066  0.015753  3.176641
+2010-05-27 00:00:00  0.147943  0.018986  0.184114  0.016748  3.102854
+2010-06-16 20:00:00  0.150505  0.022254  0.178990  0.018627  2.974742
+2010-07-07 16:00:00  0.142602  0.013634  0.194795  0.013418  3.369883
+2010-07-28 12:00:00  0.145157  0.015974  0.189685  0.014919  3.242127
+2010-08-18 08:00:00  0.153997  0.027634  0.172006  0.021531  2.800146
+2010-09-08 04:00:00  0.157049  0.033390  0.165902  0.024439  2.647545
+2010-09-29 00:00:00  0.148136  0.019215  0.183727  0.016883  3.093179
+2010-10-19 20:00:00  0.135595  0.008829  0.208811  0.010032  3.720272
+2010-11-09 16:00:00  0.123322  0.004125  0.233357  0.006028  4.333920
+2010-11-30 12:00:00  0.103756  0.001226  0.272487  0.002677  5.312185
+2010-12-21 08:00:00  0.130846  0.006578  0.218307  0.008238  3.957678
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_14_1.png" src="../_images/slopes_notebook_14_1.png" />
+<img alt="../_images/slopes_notebook_14_2.png" src="../_images/slopes_notebook_14_2.png" />
+<img alt="../_images/slopes_notebook_14_3.png" src="../_images/slopes_notebook_14_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;segunda&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.022</span> 
+<span class="n">wf_calulated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.0988</span><span class="p">,</span> <span class="mf">0.5929</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">segunda_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                       <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                       <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                       <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">segunda_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">segunda_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2013</span><span class="p">)</span>
+<span class="n">segunda_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">segunda_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">segunda_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                               <span class="n">omega</span><span class="o">=</span><span class="n">segunda_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                               <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">segunda_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.36423679473213266, 0.038448386404837304
+The wf that will be used is: 0.022
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -76.70821460688457 º 
+
+
+ Mean wind direction: -31.46026913129706 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.120889300470879 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2013-01-01 00:00:00  0.089860  0.000518  0.300279  0.001504  6.006979
+2013-01-21 20:00:00  0.095151  0.000719  0.289698  0.001873  5.742447
+2013-02-11 16:00:00  0.045701  0.000034  0.388598  0.000241  8.214954
+2013-03-04 12:00:00  0.052279  0.000050  0.375442  0.000316  7.886053
+2013-03-25 08:00:00  0.098028  0.000860  0.283944  0.002110  5.598598
+2013-04-15 04:00:00  0.106385  0.001444  0.267230  0.002985  5.180760
+2013-05-06 00:00:00  0.097257  0.000820  0.285487  0.002044  5.637167
+2013-05-26 20:00:00  0.089153  0.000496  0.301693  0.001460  6.042336
+2013-06-16 16:00:00  0.107085  0.001508  0.265830  0.003073  5.145753
+2013-07-07 12:00:00  0.120836  0.003536  0.238328  0.005437  4.458205
+2013-07-28 08:00:00  0.120967  0.003565  0.238067  0.005467  4.451669
+2013-08-18 04:00:00  0.142079  0.013199  0.195842  0.013130  3.396053
+2013-09-08 00:00:00  0.117472  0.002870  0.245056  0.004729  4.626408
+2013-09-28 20:00:00  0.117354  0.002849  0.245293  0.004706  4.632323
+2013-10-19 16:00:00  0.137517  0.009947  0.204965  0.010866  3.624133
+2013-11-09 12:00:00  0.099490  0.000941  0.281020  0.002242  5.525489
+2013-11-30 08:00:00  0.044355  0.000031  0.391291  0.000227  8.282264
+2013-12-21 04:00:00  0.079418  0.000271  0.321165  0.000975  6.529124
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_15_1.png" src="../_images/slopes_notebook_15_1.png" />
+<img alt="../_images/slopes_notebook_15_2.png" src="../_images/slopes_notebook_15_2.png" />
+<img alt="../_images/slopes_notebook_15_3.png" src="../_images/slopes_notebook_15_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;primera&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.024</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.1364</span><span class="p">,</span> <span class="mf">0.6160</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">primera_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                       <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                       <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                       <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">primera_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">primera_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2014</span><span class="p">)</span>
+<span class="n">primera_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">primera_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">primera_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                               <span class="n">omega</span><span class="o">=</span><span class="n">primera_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                               <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">primera_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.3558959439550598, 0.03748100810819603
+The wf that will be used is: 0.024
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -33.93958535504187 º 
+
+
+ Mean wind direction: -31.01464226066187 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.8970812974240645 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2014-01-01 00:00:00  0.134871  0.008442  0.210258  0.009735  3.756461
+2014-01-21 20:00:00  0.132496  0.007286  0.215009  0.008822  3.875221
+2014-02-11 16:00:00  0.117328  0.002845  0.245345  0.004701  4.633625
+2014-03-04 12:00:00  0.119054  0.003166  0.241892  0.005050  4.547308
+2014-03-25 08:00:00  0.134796  0.008403  0.210409  0.009705  3.760221
+2014-04-15 04:00:00  0.145040  0.015858  0.189920  0.014847  3.248006
+2014-05-06 00:00:00  0.152356  0.024961  0.175288  0.020114  2.882198
+2014-05-26 20:00:00  0.150069  0.021661  0.179862  0.018293  2.996546
+2014-06-16 16:00:00  0.156880  0.033041  0.166241  0.024267  2.656024
+2014-07-07 12:00:00  0.154936  0.029290  0.170128  0.022387  2.753212
+2014-07-28 08:00:00  0.167682  0.064555  0.144635  0.037995  2.115884
+2014-08-18 04:00:00  0.171126  0.079920  0.137748  0.043831  1.943709
+2014-09-08 00:00:00  0.161622  0.044335  0.156756  0.029545  2.418911
+2014-09-28 20:00:00  0.156087  0.031458  0.167825  0.023482  2.695632
+2014-10-19 16:00:00  0.155749  0.030804  0.168503  0.023155  2.712565
+2014-11-09 12:00:00  0.152279  0.024841  0.175442  0.020049  2.886058
+2014-11-30 08:00:00  0.146758  0.017640  0.186485  0.015944  3.162119
+2014-12-21 04:00:00  0.120761  0.003520  0.238478  0.005421  4.461961
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_16_1.png" src="../_images/slopes_notebook_16_1.png" />
+<img alt="../_images/slopes_notebook_16_2.png" src="../_images/slopes_notebook_16_2.png" />
+<img alt="../_images/slopes_notebook_16_3.png" src="../_images/slopes_notebook_16_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pueblo&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">355</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.032</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.2887</span><span class="p">,</span> <span class="mf">0.6627</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">pueblo_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                      <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                      <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                      <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                      <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">pueblo_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">pueblo_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2015</span><span class="p">)</span>
+<span class="n">pueblo_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">pueblo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">pueblo_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                              <span class="n">omega</span><span class="o">=</span><span class="n">pueblo_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                              <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+<span class="n">pueblo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.3041813281790857, 0.03153564572726523
+The wf that will be used is: 0.032
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -12.683316823428534 º 
+
+
+ Mean wind direction: -4.301971825011723 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.8018422576128574 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2015-01-01 00:00:00  0.101167  0.001045  0.277665  0.002404  5.441625
+2015-01-21 20:00:00  0.120115  0.003382  0.239769  0.005277  4.494235
+2015-02-11 16:00:00  0.088018  0.000462  0.303965  0.001393  6.099114
+2015-03-04 12:00:00  0.097590  0.000837  0.284819  0.002072  5.620484
+2015-03-25 08:00:00  0.109832  0.001787  0.260337  0.003444  5.008424
+2015-04-15 04:00:00  0.128527  0.005697  0.222947  0.007482  4.073669
+2015-05-06 00:00:00  0.154751  0.028956  0.170498  0.022216  2.762450
+2015-05-26 20:00:00  0.137588  0.009991  0.204823  0.010898  3.620584
+2015-06-16 16:00:00  0.136344  0.009249  0.207312  0.010349  3.682798
+2015-07-07 12:00:00  0.148028  0.019086  0.183945  0.016807  3.098620
+2015-07-28 08:00:00  0.150152  0.021773  0.179696  0.018356  2.992397
+2015-08-18 04:00:00  0.136741  0.009480  0.206519  0.010521  3.662973
+2015-09-08 00:00:00  0.139256  0.011080  0.201487  0.011679  3.537180
+2015-09-28 20:00:00  0.138622  0.010652  0.202757  0.011375  3.568919
+2015-10-19 16:00:00  0.139670  0.011368  0.200660  0.011881  3.516488
+2015-11-09 12:00:00  0.147854  0.018882  0.184291  0.016686  3.107278
+2015-11-30 08:00:00  0.128094  0.005546  0.223813  0.007349  4.095315
+2015-12-21 04:00:00  0.128014  0.005518  0.223972  0.007324  4.099303
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_17_1.png" src="../_images/slopes_notebook_17_1.png" />
+<img alt="../_images/slopes_notebook_17_2.png" src="../_images/slopes_notebook_17_2.png" />
+<img alt="../_images/slopes_notebook_17_3.png" src="../_images/slopes_notebook_17_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;curva&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">340</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.036</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">0.9663</span><span class="p">,</span> <span class="mf">0.5801</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">curva_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                     <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                     <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                     <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                     <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">curva_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">curva_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2016</span><span class="p">)</span>
+<span class="n">curva_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">curva_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">curva_slope</span><span class="o">.</span><span class="n">validate_profile</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;profiles&#39;</span><span class="p">),</span>
+                             <span class="n">omega</span><span class="o">=</span><span class="n">curva_slope</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">Omega</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+                             <span class="n">diff_sl</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">curva_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.44761270134600556, 0.048233476184614384
+The wf that will be used is: 0.036
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: 5.63806551783085 º 
+
+
+ Mean wind direction: 2.467233362883188 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.6539946516381308 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2016-01-01 00:00:00  0.106525  0.001456  0.266949  0.003002  5.173732
+2016-01-21 20:00:00  0.071100  0.000162  0.337801  0.000690  6.945019
+2016-02-11 16:00:00  0.070220  0.000153  0.339561  0.000665  6.989020
+2016-03-03 12:00:00  0.047452  0.000037  0.385095  0.000259  8.127384
+2016-03-24 08:00:00  0.072943  0.000182  0.334113  0.000745  6.852837
+2016-04-14 04:00:00  0.093063  0.000632  0.293873  0.001717  5.846836
+2016-05-05 00:00:00  0.116427  0.002690  0.247147  0.004528  4.678666
+2016-05-25 20:00:00  0.134188  0.008092  0.211623  0.009463  3.790587
+2016-06-15 16:00:00  0.139028  0.010924  0.201943  0.011569  3.548583
+2016-07-06 12:00:00  0.125598  0.004751  0.228803  0.006626  4.220082
+2016-07-27 08:00:00  0.128462  0.005674  0.223076  0.007462  4.076888
+2016-08-17 04:00:00  0.133461  0.007736  0.213077  0.009182  3.826926
+2016-09-07 00:00:00  0.122524  0.003926  0.234951  0.005832  4.373778
+2016-09-27 20:00:00  0.114604  0.002403  0.250793  0.004198  4.769820
+2016-10-18 16:00:00  0.120664  0.003499  0.238673  0.005399  4.466822
+2016-11-08 12:00:00  0.125399  0.004693  0.229201  0.006571  4.230032
+2016-11-29 08:00:00  0.097240  0.000819  0.285520  0.002042  5.637996
+2016-12-20 04:00:00  0.117339  0.002847  0.245321  0.004703  4.633029
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_18_1.png" src="../_images/slopes_notebook_18_1.png" />
+<img alt="../_images/slopes_notebook_18_2.png" src="../_images/slopes_notebook_18_2.png" />
+<img alt="../_images/slopes_notebook_18_3.png" src="../_images/slopes_notebook_18_3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;brusco&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.034</span> 
+<span class="n">wf_calculated</span> <span class="o">=</span> <span class="n">wf_calc</span><span class="p">(</span><span class="mf">1.2148</span><span class="p">,</span> <span class="mf">0.5176</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">brusco_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                      <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                      <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                      <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                      <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">brusco_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">brusco_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2018</span><span class="p">)</span>
+<span class="n">brusco_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">brusco_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">brusco_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The values of D50 and wf are, respectively: 0.2513298194182252, 0.02556373707462448
+The wf that will be used is: 0.034
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -15.81709037026866 º 
+
+
+ Mean wind direction: -9.365157724579399 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.4433399236199291 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2018-01-01 01:00:00  0.063627  0.000102  0.352746  0.000506  7.318644
+2018-01-21 21:00:00  0.038216  0.000021  0.403569  0.000176  8.589214
+2018-02-11 17:00:00  0.039716  0.000023  0.400567  0.000188  8.514182
+2018-03-04 13:00:00  0.044543  0.000031  0.390915  0.000229  8.272871
+2018-03-25 09:00:00  0.092727  0.000619  0.294546  0.001694  5.863638
+2018-04-15 05:00:00  0.084101  0.000363  0.311798  0.001184  6.294939
+2018-05-06 01:00:00  0.101759  0.001084  0.276482  0.002464  5.412057
+2018-05-26 21:00:00  0.110248  0.001834  0.259504  0.003504  4.987605
+2018-06-16 17:00:00  0.136723  0.009469  0.206554  0.010513  3.663846
+2018-07-07 13:00:00  0.129032  0.005878  0.221937  0.007640  4.048414
+2018-07-28 09:00:00  0.138501  0.010573  0.202998  0.011318  3.574942
+2018-08-18 05:00:00  0.122457  0.003910  0.235086  0.005816  4.377151
+2018-09-08 01:00:00  0.113809  0.002287  0.252381  0.004062  4.809534
+2018-09-28 21:00:00  0.114619  0.002405  0.250762  0.004201  4.769058
+2018-10-19 17:00:00  0.107080  0.001507  0.265840  0.003072  5.146002
+2018-11-09 13:00:00  0.087969  0.000461  0.304062  0.001390  6.101549
+2018-11-30 09:00:00  0.086523  0.000421  0.306954  0.001309  6.173860
+2018-12-21 05:00:00  0.075109  0.000208  0.329782  0.000815  6.744557
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_19_1.png" src="../_images/slopes_notebook_19_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;laredo&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.025</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">laredo_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                      <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                      <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                      <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                      <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">laredo_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">laredo_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">)</span>
+<span class="n">laredo_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">laredo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">laredo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The wf that will be used is: 0.025
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -34.66056423091623 º 
+
+
+ Mean wind direction: -31.01464226066187 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.8196771203517437 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2019-01-01 01:00:00  0.135799  0.008942  0.208401  0.010118  3.710035
+2019-01-21 21:00:00  0.140397  0.011891  0.199207  0.012245  3.480172
+2019-02-11 17:00:00  0.116678  0.002733  0.246644  0.004576  4.666093
+2019-03-04 13:00:00  0.143701  0.014595  0.192598  0.014044  3.314953
+2019-03-25 09:00:00  0.138092  0.010308  0.203816  0.011128  3.595408
+2019-04-15 05:00:00  0.134205  0.008101  0.211589  0.009470  3.789737
+2019-05-06 01:00:00  0.141445  0.012690  0.197111  0.012789  3.427763
+2019-05-26 21:00:00  0.132953  0.007496  0.214093  0.008991  3.852328
+2019-06-16 17:00:00  0.155161  0.029701  0.169678  0.022597  2.741962
+2019-07-07 13:00:00  0.144832  0.015656  0.190335  0.014720  3.258378
+2019-07-28 09:00:00  0.155168  0.029714  0.169665  0.022603  2.741620
+2019-08-18 05:00:00  0.157863  0.035119  0.164273  0.025279  2.606830
+2019-09-08 01:00:00  0.147527  0.018503  0.184945  0.016461  3.123633
+2019-09-28 21:00:00  0.133445  0.007728  0.213110  0.009176  3.827753
+2019-10-19 17:00:00  0.146626  0.017498  0.186747  0.015857  3.168678
+2019-11-09 13:00:00  0.132743  0.007399  0.214513  0.008913  3.862831
+2019-11-30 09:00:00  0.115677  0.002568  0.248646  0.004390  4.716141
+2019-12-21 05:00:00  0.120995  0.003571  0.238009  0.005474  4.450229
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_20_1.png" src="../_images/slopes_notebook_20_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the surfbreak</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;forta&#39;</span>
+<span class="n">surfbreak</span> <span class="o">=</span> <span class="n">surfbreaks_historic</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">beach</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">delta_angle</span> <span class="o">=</span> <span class="mi">180</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="mf">0.015</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The wf that will be used is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wf</span><span class="p">))</span>
+<span class="n">reconstructed_depth</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">forta_slope</span> <span class="o">=</span> <span class="n">Slopes</span><span class="p">(</span><span class="n">reconstructed_data</span><span class="o">=</span><span class="n">surfbreak</span><span class="p">,</span>
+                     <span class="n">tides</span><span class="o">=</span><span class="n">tides</span><span class="p">,</span>
+                     <span class="n">delta_angle</span><span class="o">=</span><span class="n">delta_angle</span><span class="p">,</span>
+                     <span class="n">wf</span><span class="o">=</span><span class="n">wf</span><span class="p">,</span>
+                     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                     <span class="n">reconstructed_depth</span><span class="o">=</span><span class="n">reconstructed_depth</span><span class="p">)</span>
+<span class="n">forta_slope</span><span class="o">.</span><span class="n">perform_propagation</span><span class="p">()</span>
+<span class="n">forta_slope</span><span class="o">.</span><span class="n">moving_profile</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">)</span>
+<span class="n">forta_slope</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">forta_slope</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">forta_slope</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;beach&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The wf that will be used is: 0.015
+
+ Rolling mean and Ω calculated!! 
+
+
+ Mean wave direction: -116.51880098209135 º 
+
+
+ Mean wind direction: 9.269694287392666 º 
+
+
+ Heights asomerament difference: Hb / Hs : 1.0 
+
+
+<span class=" -Color -Color-Red"> Slopes main object constructed!! </span>
+
+
+<span class=" -Color -Color-Red"> Slopes main object finally constructed!! </span>
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 72019 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 14 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   Hs          72019 non-null  float64
+ 1   Tp          72019 non-null  float64
+ 2   Dir         72019 non-null  float64
+ 3   Spr         72019 non-null  float64
+ 4   W           72019 non-null  float64
+ 5   DirW        72019 non-null  float64
+ 6   DDir        72019 non-null  float64
+ 7   DDirW       72019 non-null  float64
+ 8   ocean_tide  72019 non-null  float64
+ 9   Omega       72019 non-null  float64
+ 10  H_break     72019 non-null  float64
+ 11  DDir_R      72019 non-null  float64
+ 12  Slope       72019 non-null  float64
+ 13  Iribarren   72019 non-null  float64
+dtypes: float64(14)
+memory usage: 8.2 MB
+None
+
+ 
+
+The values of the profiles plotted are: 
+
+                            A         B         C         D     Omega
+2019-01-01 01:00:00  0.128805  0.005796  0.222390  0.007569  4.059748
+2019-01-21 21:00:00  0.134640  0.008322  0.210721  0.009642  3.768020
+2019-02-11 17:00:00  0.111211  0.001947  0.257579  0.003647  4.939470
+2019-03-04 13:00:00  0.136840  0.009538  0.206320  0.010564  3.658000
+2019-03-25 09:00:00  0.132296  0.007196  0.215409  0.008749  3.885223
+2019-04-15 05:00:00  0.127901  0.005480  0.224198  0.007290  4.104940
+2019-05-06 01:00:00  0.134644  0.008324  0.210712  0.009644  3.767808
+2019-05-26 21:00:00  0.128048  0.005530  0.223904  0.007335  4.097592
+2019-06-16 17:00:00  0.155580  0.030483  0.168840  0.022993  2.721004
+2019-07-07 13:00:00  0.144004  0.014872  0.191991  0.014222  3.299780
+2019-07-28 09:00:00  0.154929  0.029277  0.170143  0.022380  2.753572
+2019-08-18 05:00:00  0.156040  0.031365  0.167920  0.023436  2.698010
+2019-09-08 01:00:00  0.143375  0.014303  0.193251  0.013855  3.331266
+2019-09-28 21:00:00  0.127429  0.005322  0.225143  0.007149  4.128573
+2019-10-19 17:00:00  0.142970  0.013948  0.194060  0.013625  3.351503
+2019-11-09 13:00:00  0.130809  0.006562  0.218383  0.008225  3.959571
+2019-11-30 09:00:00  0.111088  0.001932  0.257824  0.003628  4.945598
+2019-12-21 05:00:00  0.113364  0.002225  0.253272  0.003988  4.831794
+
+ 0 waves computed...
+
+ 20000 waves computed...
+
+ 40000 waves computed...
+
+ 60000 waves computed...
+</pre></div>
+</div>
+<img alt="../_images/slopes_notebook_21_1.png" src="../_images/slopes_notebook_21_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">farolillo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">bederna_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">oyambre_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                  <span class="n">locos_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">canallave_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">valdearenas_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">madero_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                  <span class="n">segunda_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">primera_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                  <span class="n">pueblo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">curva_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                  <span class="n">brusco_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">laredo_slope</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">forta_slope</span><span class="o">.</span><span class="n">data</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 1008266 entries, 1979-02-01 02:00:00 to 2020-02-29 20:00:00
+Data columns (total 27 columns):
+ #   Column           Non-Null Count    Dtype  
+---  ------           --------------    -----  
+ 0   Hs               1008266 non-null  float64
+ 1   Tp               1008266 non-null  float64
+ 2   Dir              1008266 non-null  float64
+ 3   Spr              1008266 non-null  float64
+ 4   W                1008266 non-null  float64
+ 5   DirW             1008266 non-null  float64
+ 6   DDir             1008266 non-null  float64
+ 7   DDirW            1008266 non-null  float64
+ 8   ocean_tide       1008266 non-null  float64
+ 9   Omega            1008266 non-null  float64
+ 10  H_break          1008266 non-null  float64
+ 11  DDir_R           1008266 non-null  float64
+ 12  Slope            1008091 non-null  float64
+ 13  Iribarren        1008091 non-null  float64
+ 14  Hb_index         1008266 non-null  float64
+ 15  Tp_index         1008266 non-null  float64
+ 16  Spr_index        1008266 non-null  float64
+ 17  Iribarren_index  1008266 non-null  float64
+ 18  Dir_index        1008266 non-null  float64
+ 19  DirW_index       1008266 non-null  float64
+ 20  Index            1008266 non-null  float64
+ 21  Hour             1008266 non-null  int64  
+ 22  Day_Moment       1008266 non-null  object 
+ 23  Month            1008266 non-null  int64  
+ 24  Season           1008266 non-null  object 
+ 25  Year             1008266 non-null  int64  
+ 26  beach            1008266 non-null  object 
+dtypes: float64(21), int64(3), object(3)
+memory usage: 215.4+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span> <span class="s1">&#39;surfbreaks_reconstructed_final.pkl&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./slopes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../rbf/rbf_notebook.html" title="previous page"><span class="section-number">3. </span>Reconstruction of the coastal wave climate with RBF</a>
+    <a class='right-next' id="next-link" href="slopes_analysis_notebook.html" title="next page"><span class="section-number">5. </span>Slopes analysis, SOM…</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

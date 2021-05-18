@@ -1,0 +1,950 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. Spectrum and free surface reconstructions &#8212; DeliWaves</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Forecast predictions in offshore and coastal point all over the world" href="../forecast/forecast_notebook.html" />
+    <link rel="prev" title="5. Slopes analysis, SOM…" href="../slopes/slopes_analysis_notebook.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">DeliWaves</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   DeliWaves
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mda/mda_notebook.html">
+   1. Maximum Dissimilarity Algorithm (MDA)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../swan/swan_notebook.html">
+   2. Propagation of the selected cases using SWAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rbf/rbf_notebook.html">
+   3. Reconstruction of the coastal wave climate with RBF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_notebook.html">
+   4. Final propagation step to wave breaking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slopes/slopes_analysis_notebook.html">
+   5. Slopes analysis, SOM…
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. Spectrum and free surface reconstructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_notebook.html">
+   7. Forecast predictions in offshore and coastal point all over the world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
+   8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/spectra/spectra_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/javitausia/DeliWaves"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/javitausia/DeliWaves/issues/new?title=Issue%20on%20page%20%2Fspectra/spectra_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/javitausia/DeliWaves/master?urlpath=tree/spectra/spectra_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wave-partitions-windseas-and-swells">
+   6.1. Wave partitions: Windseas and Swells
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#have-a-look-at-the-code-spectra-functions-py-code-if-things-must-be-editted">
+     6.1.1. Have a look at the
+     <code>
+      spectra_functions.py
+     </code>
+     if things must be editted.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="spectrum-and-free-surface-reconstructions">
+<h1><span class="section-number">6. </span>Spectrum and free surface reconstructions<a class="headerlink" href="#spectrum-and-free-surface-reconstructions" title="Permalink to this headline">¶</a></h1>
+<p>The aim of describing ocean waves with a spectrum is not so much to describe
+in detail one observation of the sea surface (i.e., one time record), but rather to
+describe the sea surface as a stochastic process and to characterise all possible
+observations (time records) that could have been made under the conditions of
+the actual observation. An observation is thus formally treated as one realisation
+of a stochastic process. Here, we base this treatment on the
+random-phase/amplitude model (Holthuijsen, 2007), which leads to the wave spectrum, which is the
+most important form in which ocean waves are described. The basic concept of the wave spectrum is simple, but its many aspects make it
+seem rather complicated. To distinguish the essence from these additional aspects,
+consider first a wave record, the surface elevation <span class="math notranslate nohighlight">\(\eta(t)\)</span> at one location as a
+function of time, with duration <span class="math notranslate nohighlight">\(D\)</span>, obtained at sea with a wave buoy or a wave pole (see Figure below).</p>
+<p><img alt="specexpla" src="../_images/specexpla.png" /></p>
+<p>We can exactly reproduce that record as the sum of a large number of harmonic
+wave components (a Fourier series):</p>
+<p>\begin{equation}
+\eta(t) = \sum_{i=1}^{N}a_i\cos(2\pi f_i t + \alpha_i)
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(a_i\)</span> and <span class="math notranslate nohighlight">\(\alpha_i\)</span> are the amplitude and phase, respectively, of each frequency
+<span class="math notranslate nohighlight">\(f_i = i/D\)</span> (i = 1, 2, 3, …; the frequency interval is therefore <span class="math notranslate nohighlight">\(\Delta f = 1/D\)</span>). With
+a Fourier analysis, we can determine the values of the amplitude and phase for
+each frequency and this would give us the amplitude and phase spectrum for this
+record. By substituting these computed amplitudes and phases into
+the previous equation, we exactly reproduce the record.</p>
+<p>For most wave records, the phases turn out to have any value between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span>
+without any preference for any one value. Since this is almost always the case in deep water (not for very steep waves), we will ignore the phase spectrum (just keep this
+uniform distribution in mind and apply that knowledge when called for).</p>
+<p>The above one-dimensional variance density spectrum characterises the stationary,
+Gaussian surface elevation as a function of time (at one geographic location). To
+describe the actual, three-dimensional, moving waves, the horizontal dimension
+has to be added. To that end we expand the random phase-amplitude model by
+considering a harmonic wave that propagates in x, y-space, in direction <span class="math notranslate nohighlight">\(\theta\)</span> relative
+to the positive x-axis (we use <span class="math notranslate nohighlight">\(w\)</span> instead of <span class="math notranslate nohighlight">\(f\)</span> for the sake of brevity in the notation):</p>
+<p>\begin{equation}
+\eta : (x,y,t) = a \cos{(\omega t - k : x\cos{\theta} - k : y\sin{\theta} + \alpha)}
+\end{equation}</p>
+<p>where the wave number <span class="math notranslate nohighlight">\(k = 2\pi /L\)</span> (where <span class="math notranslate nohighlight">\(L\)</span> is the wave length of the harmonic
+wave) and <span class="math notranslate nohighlight">\(\theta\)</span> is the direction of wave propagation (i.e.,
+normal to the wave crest of each individual component). Analogously to the
+one-dimensional model, the corresponding three-dimensional random phase-amplitude model (in x, y and t-space) is the sum of a large number of such propagating harmonic waves:</p>
+<p>\begin{equation}
+\eta : (x,y,t) = \sum_{i=1}^{N}\sum_{j=1}^{M} : a_{i,j}\cos{(\omega_it - k_i : x\cos{\theta_j} - k_i : y\sin{\theta_j} + \alpha_{i,j})}
+\end{equation}</p>
+<p>where every individual wave component in this
+three-dimensional model has a random amplitude <span class="math notranslate nohighlight">\(a_{i,j}\)</span> (Rayleigh distributed) and a
+random phase <span class="math notranslate nohighlight">\(\alpha_{i,j}\)</span> (uniformly distributed). Furthermore, this two-dimensional random phase-amplitude model represents
+a Gaussian process that is stationary in time and homogeneous in x, y-space: a
+spatial pattern of chaotically moving surface elevations, seen as the sum of many
+wave components propagating with various amplitudes, phases and frequencies (or
+wave lengths) in various directions across the ocean surface. The effect is a realistic
+representation of random, short-crested waves.</p>
+<p>The amplitude spectrum provides enough information to describe the sea-surface
+elevation realistically as a stationary, Gaussian process. However, for several reasons, it is more relevant to present the information in this spectrum
+in a different way: consider the variance <span class="math notranslate nohighlight">\(E \left \{ \frac{1}{2} a_i^2 \right \}\)</span> rather than the expectation of the amplitude <span class="math notranslate nohighlight">\(E \left \{ a_i \right \}\)</span>. In other words, consider the variance spectrum instead of the amplitude spectrum. This seems
+trivial and also enough to characterise the sea-surface elevation. However, both the
+amplitude and the variance spectrum are based on discrete frequencies and directions, whereas
+Nature does not select such discrete quantities. All frequencies and directions are present at sea.
+The random phase-amplitude model needs therefore to be modified. This is done
+by distributing the variance <span class="math notranslate nohighlight">\(E \left \{ \frac{1}{2} a_i^2 \right \}\)</span> over the frequency interval <span class="math notranslate nohighlight">\(\Delta f_i\)</span> at frequency <span class="math notranslate nohighlight">\(f_i\)</span> and the direction interval <span class="math notranslate nohighlight">\(\Delta \theta_i\)</span> at direction <span class="math notranslate nohighlight">\(\theta_i\)</span>. This spectrum is defined for all
+frequencies and directions, but it still varies discontinuously from one frequency or direction band to the next. A continuous version is obtained by having both widths bands approaching zero:</p>
+<p>\begin{equation}
+E (f, \theta) = \lim_{\Delta f : \rightarrow : 0} ::: \lim_{\Delta \theta : \rightarrow : 0} ::: \frac{1}{\Delta f \Delta \theta} : E \left { \frac{1}{2}a^2 \right }
+\end{equation}</p>
+<p>where the spectrum is calculated in terms of the frequency <span class="math notranslate nohighlight">\(f\)</span> and the direction <span class="math notranslate nohighlight">\(\theta\)</span>. The variance density spectrum gives a complete description of the surface elevation
+of ocean waves in a statistical sense, provided that the surface elevation can be seen
+as a stationary, Gaussian process. This implies that all statistical characteristics
+of the wave field can be expressed in terms of this spectrum.
+The dimension and S.I. unit of the variance density <span class="math notranslate nohighlight">\(E (f, \theta)\)</span> follow directly from
+its definition: the dimension of the amplitude <span class="math notranslate nohighlight">\(a\)</span> is [length] and its S.I.
+unit is [m]; the dimension of the frequency band <span class="math notranslate nohighlight">\(\Delta f\)</span> is [time]<span class="math notranslate nohighlight">\(^{-1}\)</span> and its S.I. unit is
+[s<span class="math notranslate nohighlight">\(^{-1}\)</span>] or rather [Hz]; and the dimension of the direction <span class="math notranslate nohighlight">\(\theta\)</span> is [degree] and its S.I. unit is [radians]. The dimension of <span class="math notranslate nohighlight">\(E (f, \theta)\)</span> is therefore [length<span class="math notranslate nohighlight">\(^{2}\)</span> / (time <span class="math notranslate nohighlight">\(\cdot\)</span> degree)] and
+its unit is [m<span class="math notranslate nohighlight">\(^{2}\)</span> / (Hz <span class="math notranslate nohighlight">\(\cdot\)</span> radians)].</p>
+<p><img alt="specbonito" src="../_images/specbonito.png" /></p>
+<p>The standard way to calculate the spectrum has been presented, as once the free surface elevation is obtained, this variance density spectrum can be easily obtained, but in this work, the spectrum calculation has been performed in coast, where partitioned sea state variables (partitions will be explained below) and not free surface elevations exist. In this way, this spectrum reconstruction is performed using the variables propagated <span class="math notranslate nohighlight">\(H_S\)</span>, <span class="math notranslate nohighlight">\(T_P\)</span>, <span class="math notranslate nohighlight">\(T_m\)</span> and <span class="math notranslate nohighlight">\(\theta_m\)</span>, where <span class="math notranslate nohighlight">\(S(f, \theta) = S(f) \cdot D(\theta)\)</span>, being <span class="math notranslate nohighlight">\(S(f)\)</span> the spectral energy associated to the frequency and <span class="math notranslate nohighlight">\(D(\theta)\)</span> the spectral energy associated to the direction, is the total wave energy of the spectrum. These two energy variables grouped represent the total spectral energy associated to each frequency and direction in a sea state and are calculated using the equations below, which are also very well explained in (Kumar et al., 2017). First, the frequency distributed spectrum is calculated for each frequency as:</p>
+<p>\begin{equation}
+S(f) = \alpha \cdot H_S^2 \cdot T_P^{-4} \cdot f^{-5} \cdot \exp{(-1.25 (T_P \cdot f)^{-4})} \cdot \gamma^{\exp{\frac{-(T_P \cdot f - 1)^2}{2\sigma^2}}}
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> gives an idea about the shape of the spectrum, being high for very disordered spectrums and lower for narrower and more powerful swells, and <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are calculated in the next way:</p>
+<p>\begin{equation}
+\alpha = \frac{0.06238}{0.23 + 0.0336 \cdot \gamma - 0.185 : (1.9 + \gamma)^{-1}}::(1.094 − 0.01915 \cdot \ln{\gamma})
+\end{equation}</p>
+<p>\begin{equation}
+\sigma = 0.07 ::: \text{if} ::: f&lt;f_{P} ::: | ::: \sigma = 0.09 ::: \text{if} ::: f\geq f_{P}
+\end{equation}</p>
+<p>being <span class="math notranslate nohighlight">\(f_P = T_P^{-1}\)</span> the peak frequency of the spectrum. For the directional spectrum, the spectral energy is also calculated for each direction:</p>
+<p>\begin{equation}
+D(\theta) = \frac{2^{2s-1}}{\pi}\frac{\Gamma^2(s+1)}{\Gamma(2s+1)}\cos{\frac{\theta - \theta_S}{2}}^{2s}
+\label{eqn:dt}<br />
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\(s = \frac{2}{\sigma_\theta^2} - 1\)</span> is a shape parameter, <span class="math notranslate nohighlight">\(\theta_S\)</span> is the direction of the peak frequency and <span class="math notranslate nohighlight">\(\int_{0}^{2\pi}D(\theta)d\theta=1\)</span>. Once these spectra are reconstructed we just have to calculate the aggregated parameters (as our surfing index will use bulk parameters), which can be done using some formulas that are explained in (Espejo Hermosa, 2011) and also in (Kumar et al., 2017), but in this case we will use a computational software called <a class="reference external" href="https://github.com/wavespectra/wavespectra">wavespectra</a>.</p>
+<p>This software uses those equations, but it is already validated by different people, and this accompanied with the results obtained in the validation step prove the methodology used. Notice that in this work, we have reconstructed the spectrums in each of the surfbreaks of interest, thus having a historical record of totally explained surfing conditions in those spots. Finally, just comment here the reduction performed in the data in this step as the calculation of the spectrums was a very expensive task at a computational level, so the data was reduced to just daily hours where the sport can be done, which was also one of the ideas that had to be taken into account in the study. This reduces the amount of data to more than a half, but ending up with a total number of observations of about 50000 for each surfbreak, so the subsequently explained neural network has been able to work correctly.</p>
+<p><img alt="specs" src="../_images/specsplot.png" /></p>
+<p>Spectrum and free surface reconstructions are shown. The axis are frequency [Hz], direction [rad] and energy [m<span class="math notranslate nohighlight">\(^2\)</span> / (Hz <span class="math notranslate nohighlight">\(\cdot\)</span> rad)] in the figures in the right and space [m] and elevation [m] in the other ones. As it can be seen, the different subplots show three different sea states. The first one (top of the image) represents a windsea, very spread in frequencies and directions that come from the NE, which is the normal case in the cantabric sea. The free surface associated to it shows a disturbed see state where mean waves appear, generating bad surfing conditions. Second, a very well defined swell coming from the NW is shown. In this case, waves seem clean and the conditions are perfect though. Lastly, in the bottom image, one sea state with a swell coming from the NW but also a windsea approching with NE direction is shown. These are the cases where intelligent surfers can catch good waves, but it is not that easy as in the previous case. Notice that the majority of the swells come always from the W-NW in the cantabric sea, as it is in this direction where the major portion of sea is encountered (“fetch”, this was previously mentioned). Finally, the surface reconstruction shows very different surfing sessions. In the left, a disperse and untidy summer day is shown and in the right, an ordered and epic session is waiting for us.</p>
+<div class="section" id="wave-partitions-windseas-and-swells">
+<h2><span class="section-number">6.1. </span>Wave partitions: Windseas and Swells<a class="headerlink" href="#wave-partitions-windseas-and-swells" title="Permalink to this headline">¶</a></h2>
+<p>Last, having this spectrum explanation (refer to the figures above) it is possible to differentiate between the two main types of waves that a surfer can encounter when approaching the beach. If the spectrum is narrow and energetic, high wave heights form energetic spectrums, thus the train of waves reaching the shore can be considered a swell while broader and less energetic spectrums represent the existence of sea states called windseas, as these waves did not have the time enough to correctly abandon the location where they were formed and did not have time enough to get ordered both in frequencies and directions. These differences are also seen in the way the data from the wave reanalysis that will be explained below is obtained. These numerical models calculate different partitions that are present at the same time in a sea state, thus giving information about a windsea and different swells that can be reaching the shore at the same time. In our case (CSIRO wave reanalysis), one windsea will be always present if wind exists, and a total amount of three swells would be calculated.</p>
+<p>To summarize, spectrums are the best possible option for the study of the wave climate in our days. They actually provide all the necessary information to define a sea state correctly and can be calculated by two different ways. First, based on the free measured surface and second, using the previously described equations and calculating the energy associated to each frequency and direction based on the sea states variables existent in that moment, which is the case we have followed, as the partitioned data we had in the surfbreaks had total, <span class="math notranslate nohighlight">\(H_S\)</span>, <span class="math notranslate nohighlight">\(T_P\)</span>, <span class="math notranslate nohighlight">\(T_m\)</span> and <span class="math notranslate nohighlight">\(\theta_m\)</span>, (bulk is not used here as it is preferred for the total sea state) parameters for each of the different windsea and swell partitions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="c1"># common</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># custom</span>
+<span class="kn">import</span> <span class="nn">spectra_functions</span> <span class="k">as</span> <span class="nn">specfun</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/javitausia/miniconda3/envs/spectra/lib/python3.8/site-packages/xarray/core/merge.py:10: FutureWarning: The Panel class is removed from pandas. Accessing it from the top-level namespace will also be removed in the next version
+  PANDAS_TYPES = (pd.Series, pd.DataFrame, pd.Panel)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pueblo&#39;</span> <span class="c1"># used name in the RBF section</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+
+<span class="n">partitions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;reconstructed_partitioned_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">partitions</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 360839 entries, 1979-01-01 01:00:00 to 2020-02-29 23:00:00
+Freq: H
+Data columns (total 17 columns):
+ #   Column     Non-Null Count   Dtype  
+---  ------     --------------   -----  
+ 0   Hsea       172510 non-null  float64
+ 1   Tpsea      172510 non-null  float64
+ 2   Dirsea     172510 non-null  float64
+ 3   Sprsea     172510 non-null  float64
+ 4   Hswell1    321377 non-null  float64
+ 5   Tpswell1   321377 non-null  float64
+ 6   Dirswell1  321377 non-null  float64
+ 7   Sprswell1  321377 non-null  float64
+ 8   Hswell2    138960 non-null  float64
+ 9   Tpswell2   138960 non-null  float64
+ 10  Dirswell2  138960 non-null  float64
+ 11  Sprswell2  138960 non-null  float64
+ 12  Hswell3    46833 non-null   float64
+ 13  Tpswell3   46833 non-null   float64
+ 14  Dirswell3  46833 non-null   float64
+ 15  Sprswell3  46833 non-null   float64
+ 16  Tm_02      360839 non-null  float64
+dtypes: float64(17)
+memory usage: 49.6 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------- RUN THIS PART FOR DAILY HOURS ----------------------------- #</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1979</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">29</span><span class="p">),</span> 
+                  <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">daylight_dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">8</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span><span class="o">&lt;</span><span class="mi">18</span><span class="p">:</span>
+            <span class="n">daylight_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">7</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">date</span><span class="p">)[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">])</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">:</span>
+            <span class="n">daylight_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+<span class="n">partitions</span> <span class="o">=</span> <span class="n">partitions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">daylight_dates</span><span class="p">][::</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># [::100] edit for tests</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">partitions</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="c1"># -------------------------------------------------------------------------- #</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 52605 entries, 1979-01-01 09:00:00 to 2020-02-28 15:00:00
+Data columns (total 17 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   Hsea       25964 non-null  float64
+ 1   Tpsea      25964 non-null  float64
+ 2   Dirsea     25964 non-null  float64
+ 3   Sprsea     25964 non-null  float64
+ 4   Hswell1    46951 non-null  float64
+ 5   Tpswell1   46951 non-null  float64
+ 6   Dirswell1  46951 non-null  float64
+ 7   Sprswell1  46951 non-null  float64
+ 8   Hswell2    20211 non-null  float64
+ 9   Tpswell2   20211 non-null  float64
+ 10  Dirswell2  20211 non-null  float64
+ 11  Sprswell2  20211 non-null  float64
+ 12  Hswell3    6743 non-null   float64
+ 13  Tpswell3   6743 non-null   float64
+ 14  Dirswell3  6743 non-null   float64
+ 15  Sprswell3  6743 non-null   float64
+ 16  Tm_02      52605 non-null  float64
+dtypes: float64(17)
+memory usage: 7.2 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating spectrums...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">)</span>
+
+<span class="c1"># A maximum of 400 data can be spectrally analyzed at the same time</span>
+
+<span class="c1"># Change test by test if wanted!!</span>
+
+<span class="n">timesteps</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">timestep</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">partitions</span><span class="p">)</span><span class="o">/</span><span class="n">timesteps</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">timesteps</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Group number </span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ts</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">)</span>
+    <span class="n">ts_spec</span> <span class="o">=</span> <span class="n">specfun</span><span class="o">.</span><span class="n">spectra</span><span class="p">(</span><span class="n">partitions</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ts</span><span class="o">*</span><span class="n">timestep</span><span class="p">:(</span><span class="n">ts</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">timestep</span><span class="p">],</span>
+                              <span class="n">gamma_values</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ts_spec</span> <span class="o">=</span> <span class="n">ts_spec</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;partition&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ts</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">specs</span> <span class="o">=</span> <span class="n">ts_spec</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">specs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">specs</span><span class="p">,</span> <span class="n">ts_spec</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+        <span class="n">specs</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;spectra&#39;</span><span class="p">,</span> 
+                                <span class="s1">&#39;spectra_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> joined...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">ts</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">timestep</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;spectra&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;spectra_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">specs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray &#39;efth&#39; (freq: 40, dir: 40, time: 52000)&gt;
+array([[[0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        ...,
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         6.92374583e-016, 9.76450082e-015, 1.25922781e-010],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         1.04774636e-018, 2.12425294e-017, 5.03031863e-013],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         4.53501347e-022, 1.40861247e-020, 6.87066725e-016]],
+
+       [[0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+...
+        [1.56114352e-005, 2.65828559e-006, 1.95737313e-006, ...,
+         1.00076323e-011, 3.08298573e-011, 2.50109494e-010],
+        [4.33619152e-006, 6.23267744e-007, 3.84972177e-007, ...,
+         1.51442018e-014, 6.70699057e-014, 9.99128541e-013],
+        [9.58355069e-007, 1.13104958e-007, 5.68936916e-008, ...,
+         6.55494129e-018, 4.44746968e-017, 1.36466102e-015]],
+
+       [[0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+         0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+        ...,
+        [1.41101535e-005, 2.39733137e-006, 1.76176279e-006, ...,
+         8.90681362e-012, 2.74382286e-011, 2.22578593e-010],
+        [3.91919944e-006, 5.62083817e-007, 3.46499933e-007, ...,
+         1.34783711e-014, 5.96914668e-014, 8.89149073e-013],
+        [8.66194364e-007, 1.02001856e-007, 5.12080133e-008, ...,
+         5.83391140e-018, 3.95819833e-017, 1.21444542e-015]]])
+Coordinates:
+  * freq     (freq) float64 0.03333 0.04103 0.04872 ... 0.3179 0.3256 0.3333
+  * dir      (dir) float64 270.0 260.7 251.4 242.1 ... 300.0 290.0 280.0 270.0
+  * time     (time) datetime64[ns] 1979-01-01T09:00:00 ... 2020-02-23T09:00:00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the obtained spectra now</span>
+<span class="n">specs_plotted</span> <span class="o">=</span> <span class="n">specfun</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">specs</span><span class="p">,</span> <span class="n">time_plots</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1500</span><span class="p">,</span><span class="mi">3000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plotting 4 out of 52000 spectrums... 
+
+Plotting specs: [500, 1000, 1500, 3000]
+</pre></div>
+</div>
+<img alt="../_images/spectra_notebook_11_1.png" src="../_images/spectra_notebook_11_1.png" />
+</div>
+</div>
+<div class="section" id="have-a-look-at-the-code-spectra-functions-py-code-if-things-must-be-editted">
+<h3><span class="section-number">6.1.1. </span>Have a look at the <code>spectra_functions.py</code> if things must be editted.<a class="headerlink" href="#have-a-look-at-the-code-spectra-functions-py-code-if-things-must-be-editted" title="Permalink to this headline">¶</a></h3>
+<p>For the installation of wavespectra, the following two lines can be tried, but there are bugs that could not be corrected already.</p>
+<p>In case the import cell below does not work when executing just the pip install lines, the following steps must be performed.</p>
+<p>First, go to the wavespectra github in the following direction: <a class="reference external" href="https://github.com/wavespectra/wavespectra">https://github.com/wavespectra/wavespectra</a></p>
+<p>Second, git clone the repository in documents:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/wavespectra/wavespectra.git</span></code></p>
+<p>Third, create and environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Create the environment
+conda create --name myenv (myenv =? spectra)
+</pre></div>
+</div>
+<p>Fourth, install cf-json for total functionality:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">metocean</span><span class="o">/</span><span class="n">cf</span><span class="o">-</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>Fifth, install the required libraries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default install, miss some dependencies and functionality</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">/</span><span class="n">default</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Also, for complete install</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">/</span><span class="n">extra</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Sixth, install wavespectra:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install with setup.py</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+
+<span class="c1"># Run pytest integration</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>And now, move the notebook to the wavespectra initial root and run the cells again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spectra module </span>
+<span class="kn">from</span> <span class="nn">wavespectra.specarray</span> <span class="kn">import</span> <span class="n">SpecArray</span>
+<span class="kn">from</span> <span class="nn">wavespectra.specdataset</span> <span class="kn">import</span> <span class="n">SpecDataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pueblo&#39;</span> <span class="c1"># used name in the SWAN section</span>
+<span class="c1"># --------------------------------------------------------------------------- #</span>
+
+<span class="n">specs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;spectra&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;spectra_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.nc&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SpecDataset&gt;
+Dimensions:  (dir: 40, freq: 40, time: 52000)
+Coordinates:
+  * freq     (freq) float64 0.03333 0.04103 0.04872 ... 0.3179 0.3256 0.3333
+  * dir      (dir) float64 270.0 260.7 251.4 242.1 ... 300.0 290.0 280.0 270.0
+  * time     (time) datetime64[ns] 1979-01-01T09:00:00 ... 2020-02-23T09:00:00
+Data variables:
+    efth     (freq, dir, time) float64 ...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hs</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">hs</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tm</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">tm01</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tp</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">tp</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">dm</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spr</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">dspr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Hs_Spec&#39;</span><span class="p">:</span> <span class="n">hs</span><span class="p">,</span>
+                          <span class="s1">&#39;Tm_Spec&#39;</span><span class="p">:</span> <span class="n">tm</span><span class="p">,</span>
+                          <span class="s1">&#39;Tp_Spec&#39;</span><span class="p">:</span> <span class="n">tp</span><span class="p">,</span>
+                          <span class="s1">&#39;Dir_Spec&#39;</span><span class="p">:</span> <span class="n">dm</span><span class="p">,</span>
+                          <span class="s1">&#39;Spr_Spec&#39;</span><span class="p">:</span> <span class="n">spr</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hs_Spec</th>
+      <th>Tm_Spec</th>
+      <th>Tp_Spec</th>
+      <th>Dir_Spec</th>
+      <th>Spr_Spec</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1979-01-01 09:00:00</th>
+      <td>1.168786</td>
+      <td>4.744691</td>
+      <td>4.996442</td>
+      <td>0.422283</td>
+      <td>21.491687</td>
+    </tr>
+    <tr>
+      <th>1979-01-01 12:00:00</th>
+      <td>0.872718</td>
+      <td>4.978519</td>
+      <td>5.187206</td>
+      <td>3.415352</td>
+      <td>20.745879</td>
+    </tr>
+    <tr>
+      <th>1979-01-01 15:00:00</th>
+      <td>0.953891</td>
+      <td>5.062887</td>
+      <td>5.395302</td>
+      <td>5.745816</td>
+      <td>20.047816</td>
+    </tr>
+    <tr>
+      <th>1979-01-02 09:00:00</th>
+      <td>0.578712</td>
+      <td>5.364794</td>
+      <td>5.513106</td>
+      <td>33.734792</td>
+      <td>11.209998</td>
+    </tr>
+    <tr>
+      <th>1979-01-02 12:00:00</th>
+      <td>0.573095</td>
+      <td>5.375522</td>
+      <td>5.503848</td>
+      <td>28.525567</td>
+      <td>16.536728</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-02-21 15:00:00</th>
+      <td>3.497328</td>
+      <td>12.386193</td>
+      <td>12.564064</td>
+      <td>351.749278</td>
+      <td>9.727657</td>
+    </tr>
+    <tr>
+      <th>2020-02-22 09:00:00</th>
+      <td>4.043174</td>
+      <td>13.476856</td>
+      <td>14.826919</td>
+      <td>351.308978</td>
+      <td>8.952616</td>
+    </tr>
+    <tr>
+      <th>2020-02-22 12:00:00</th>
+      <td>4.094893</td>
+      <td>13.473925</td>
+      <td>14.732478</td>
+      <td>350.859837</td>
+      <td>9.101114</td>
+    </tr>
+    <tr>
+      <th>2020-02-22 15:00:00</th>
+      <td>4.249573</td>
+      <td>13.781473</td>
+      <td>15.335543</td>
+      <td>350.235906</td>
+      <td>9.402158</td>
+    </tr>
+    <tr>
+      <th>2020-02-23 09:00:00</th>
+      <td>5.404118</td>
+      <td>14.811041</td>
+      <td>17.282427</td>
+      <td>349.835316</td>
+      <td>9.855161</td>
+    </tr>
+  </tbody>
+</table>
+<p>52000 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 52000 entries, 1979-01-01 09:00:00 to 2020-02-23 09:00:00
+Data columns (total 5 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Hs_Spec   52000 non-null  float64
+ 1   Tm_Spec   51999 non-null  float64
+ 2   Tp_Spec   51998 non-null  float64
+ 3   Dir_Spec  52000 non-null  float64
+ 4   Spr_Spec  51999 non-null  float64
+dtypes: float64(5)
+memory usage: 2.4 MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;spectra&#39;</span><span class="p">,</span> <span class="s1">&#39;spectra_&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./spectra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../slopes/slopes_analysis_notebook.html" title="previous page"><span class="section-number">5. </span>Slopes analysis, SOM…</a>
+    <a class='right-next' id="next-link" href="../forecast/forecast_notebook.html" title="next page"><span class="section-number">7. </span>Forecast predictions in offshore and coastal point all over the world</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Javier Tausía Hoyal<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
