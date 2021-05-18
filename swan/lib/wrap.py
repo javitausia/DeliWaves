@@ -138,7 +138,7 @@ class SwanWrap(object):
 
         # swan bin executable
         p_res = op.join(op.dirname(op.realpath(__file__)), 'resources')
-        self.bin = op.abspath(op.join(p_res, 'swan_bin', 'swan_ser.exe'))
+        self.bin = op.abspath(op.join(p_res, 'swan_bin', 'swan.exe'))
 
     def get_run_folders(self):
         'return sorted list of project cases folders'

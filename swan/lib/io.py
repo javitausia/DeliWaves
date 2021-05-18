@@ -69,7 +69,7 @@ class SwanIO_STAT(SwanIO):
 
         # .swn file parameters
         sea_level = self.proj.params['sea_level']
-        #jonswap_gamma = self.proj.params['jonswap_gamma']
+        # jonswap_gamma = self.proj.params['jonswap_gamma']
         coords_spherical = self.proj.params['coords_spherical']
         waves_period = self.proj.params['waves_period']
 
