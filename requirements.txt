@@ -8,6 +8,7 @@ scipy
 statsmodels
 cmocean
 dash
+dash_auth
 plotly
 cftime
 gunicorn

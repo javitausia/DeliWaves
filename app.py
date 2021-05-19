@@ -2,6 +2,7 @@ import dash
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
+import dash_auth
 
 import plotly.graph_objs as go
 import plotly.express as px
@@ -11,7 +12,11 @@ import base64
 
 from datetime import datetime
 
+USERNAME_PASSWORD_PAIRS = [['geocean','usuar10'],['tausiaj','usuar101']]
+
 app = dash.Dash()
+
+auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 
 server = app.server
 
