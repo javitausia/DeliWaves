@@ -32,6 +32,8 @@ This repository proportionates code to perform the following actions:
 * Spectrum and Free Surface Reconstructions (SAFS)
 * Foecast (Predictions of the 7-days wave climate worldwide)
 
+check the [jupyter-book](https://javitausia.github.io/DeliWaves/README.html)!!
+
 ### 3.1 MDA
 
 The main goal of the workflow followed is the reconstruction of the wave climate in coastal areas and for this purpose, the first step is the selection of the maximum dissimilar cases in the initial dataset. This algorithm can be used for other objectives too. This is the first part that has to be performed and is briefly explained in:
