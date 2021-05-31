@@ -54,6 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Propagation of the selected cases using SWAN" href="../swan/swan_notebook.html" />
@@ -138,6 +139,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
    8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides.html">
+   9. Google slides + PDF links to final work
   </a>
  </li>
 </ul>
@@ -257,12 +263,14 @@
 <p><img alt="MDA croquis" src="../_images/mdacroquis.png" /></p>
 <p>This sketch shows the workflow followed in the selection step. The data is firstly normalized for the correct performance of the algorithm, then the euclidean distance is used for the calculation of the distance between the different vectors in the dataset. Finally, the selected data is de-normalized so it can be used and plotted together with the original information.</p>
 <p>As it can be seen, the variables used in the definition of the windseas and the swells are different, and it is due to the fact that windseas and swells do not propagate equally and their characteristics are not the same. The variables used are:</p>
-<p>\begin{equation*}
-\textit{Windseas: } :: H_S :: T_P :: \theta_m :: \sigma_\theta :: W :: \theta_W
-\end{equation*}</p>
-<p>\begin{equation*}
-\textit{Swells: } :: H_S :: T_P :: \theta_m :: \sigma_\theta :: \gamma
-\end{equation*}</p>
+<div class="math notranslate nohighlight">
+\[
+\textit{Windseas: } \:\: H_S \:\: T_P \:\: \theta_m \:\: \sigma_\theta \:\: W \:\: \theta_W
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\textit{Swells: } \:\: H_S \:\: T_P \:\: \theta_m \:\: \sigma_\theta \:\: \gamma
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(H_S\)</span> is the significant wave height, <span class="math notranslate nohighlight">\(T_P\)</span> is the peak period, <span class="math notranslate nohighlight">\(\theta_m\)</span> is the mean wave direction, <span class="math notranslate nohighlight">\(\sigma_\theta\)</span> is the dispersion or cleanliness, <span class="math notranslate nohighlight">\(W\)</span> is the wind magnitude, <span class="math notranslate nohighlight">\(\theta_W\)</span> is the wind direction and <span class="math notranslate nohighlight">\(\gamma\)</span> (jonswap) gives an idea about the shape of the wave spectra.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -290,7 +298,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_hind</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">)</span>
-<span class="n">dataframe_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;csiro_bournemouth_dataframe.pkl&#39;</span><span class="p">))</span>
+<span class="n">dataframe_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;csiro_dataframe_sat_corr.pkl&#39;</span><span class="p">))</span>
 <span class="c1"># this sat_corr dataframe is the one obtained in CalValWaves, exactly the same!!</span>
 </pre></div>
 </div>

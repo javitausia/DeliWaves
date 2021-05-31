@@ -8,6 +8,8 @@ DeliWaves is an open-source software toolkit written in python that enables the 
 
 * Javier Tausia Hoyal, 2020. (attached)
 
+also the final results in the surfbreaks of interest can be found [here](https://surfcantabria-dash.herokuapp.com/)!!
+
 ## 1. Description
 
 In coastal engineering studies exist some different models and actions that are usually performed but differently by similar investigation groups. The aim of this repository is proportioning the user an easy way to perform these widely used actions worldwide. For the correct usage of the different notebooks and python scripts (it is also required in [CalValWaves](https://github.com/javitausia/CalValWaves)), the only thing needed is an ordered dataframe with the reanalysis information of the location of interest. For the rest, everything is proportioned, as once this initial dataframe exists, all the code can be run.
@@ -29,6 +31,8 @@ This repository proportionates code to perform the following actions:
 * RBF (Radial Basis Functions reconstruction)
 * Spectrum and Free Surface Reconstructions (SAFS)
 * Foecast (Predictions of the 7-days wave climate worldwide)
+
+check the [jupyter-book](https://javitausia.github.io/DeliWaves/README.html)!!
 
 ### 3.1 MDA
 
@@ -113,9 +117,16 @@ A detailed notebook in Cantabria is aldo added, obtaining forecast predictions i
 
 ![FoGIF](/images/forecast/forecast_CANgit.gif)
 
-## 4. Installation
+## 4. Bibliography
 
-### 4.1 Create an environment in conda
+available in the [book](https://javitausia.github.io/DeliWaves/README.html)...
+
+```{bibliography} references.bib
+```
+
+## 5. Installation
+
+### 5.1 Create an environment in conda
 
 To run the toolbox you first need to install the required Python packages in an environment. To do this we will see **Anaconda**, which can be downloaded freely [here](https://www.anaconda.com/download/).
 
@@ -126,7 +137,7 @@ Create a new environment named `deli` with all the required packages:
 ```
 conda env create -f environment.yml -n deli
 ```
-### 4.2 Activate conda environment
+### 5.2 Activate conda environment
 
 All the required packages have been now installed in an environment called `deli`. Now, activate this new environment:
 
@@ -134,7 +145,7 @@ All the required packages have been now installed in an environment called `deli
 conda activate deli
 ```
 
-## 5. Play
+## 6. Play
 
 Now everything has been installed, you can now start to play with the python code and the jupyter notebooks. Be careful, as some important parameters can be adjusted during the different processes (construction of the object of the classes, first line code in the jupyter notebook). Nevertheless, parameters used are also shown in the example.
 

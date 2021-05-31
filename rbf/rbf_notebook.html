@@ -54,6 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Final propagation step to wave breaking" href="../slopes/slopes_notebook.html" />
@@ -138,6 +139,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
    8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides.html">
+   9. Google slides + PDF links to final work
   </a>
  </li>
 </ul>
@@ -271,13 +277,15 @@ functions (RBF), very suitable for data with high dimensionality and not evenly
 distributed. There is a series of values of the real function
 <span class="math notranslate nohighlight">\(f(x_i) \:\:\: i = 1, ..., N\)</span> in the points <span class="math notranslate nohighlight">\(x_1 , ..., x_N\)</span>. The RBF
 interpolation technique considers that the RBF function approximation consists of a linear combination of symmetrical radial functions centered on the given points. The objective function has the following expression:</p>
-<p>\begin{equation*}
-RBF(x) = p(x) + \sum_{i=1}^{N}a_i\Phi\left ( \left | x-x_i \right | \right )
-\end{equation*}</p>
+<div class="math notranslate nohighlight">
+\[
+RBF(x) = p(x) + \sum_{i=1}^{N}a_i\Phi\left ( \left \| x-x_i \right \| \right )
+\]</div>
 <p>interpolating the given values as follows:</p>
-<p>\begin{equation*}
-RBF(x_i) = f_i ::: i = 1 ,…, N
-\end{equation*}</p>
+<div class="math notranslate nohighlight">
+\[
+RBF(x_i) = f_i \:\:\: i = 1 ,..., N
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(RBF\)</span> is the interpolation function, <span class="math notranslate nohighlight">\(p(x)\)</span> is the linear polynomial in all the
 variables involved in the problem, <span class="math notranslate nohighlight">\(a_i\)</span> are the RBF adjustment coefficients, <span class="math notranslate nohighlight">\(\Phi\)</span> is the
 basic radial function, <span class="math notranslate nohighlight">\(||\cdot||\)</span> is the Euclidean norm and <span class="math notranslate nohighlight">\(x_i\)</span> are the centres of
@@ -326,10 +334,10 @@ in the precision of the technique. In the methodology of propagation of the mari
 <span class="n">p_swan</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;projects-swan&#39;</span><span class="p">)</span>
 
 <span class="c1"># -------------- EDIT THIS PART --------------------------------------------- #</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;BRS&#39;</span>               <span class="c1"># used name in the SWAN section</span>
-<span class="n">name_file</span> <span class="o">=</span> <span class="s1">&#39;laredo-16&#39;</span>     <span class="c1"># name for the file</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">)</span>   <span class="c1"># used resolution in the SWAN section (see the folder name)</span>
-<span class="n">num_cases</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>       <span class="c1"># num cases in the SWAN section</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;SDR&#39;</span>                   <span class="c1"># used name in the SWAN section</span>
+<span class="n">name_file</span> <span class="o">=</span> <span class="s1">&#39;virgen-buoy&#39;</span>      <span class="c1"># name for the file</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">0.0024</span><span class="p">)</span>       <span class="c1"># used resolution in the SWAN section (see the folder name)</span>
+<span class="n">num_cases</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>           <span class="c1"># num cases in the SWAN section</span>
 <span class="c1"># --------------------------------------------------------------------------- #</span>
 </pre></div>
 </div>
@@ -366,8 +374,8 @@ in the precision of the technique. In the methodology of propagation of the mari
 
 <span class="c1"># ------- EDIT THE DESIRED POINT ------- #</span>
 <span class="c1"># - Coordinates as shown in GoogleMaps - #</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="mf">43.4233</span>
-<span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.441</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mf">43.49</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.88</span>
 <span class="c1"># -------------------------------------- #</span>
 
 <span class="c1"># if an error occurs, please have a look at the</span>
@@ -545,26 +553,26 @@ None
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing RFB reconstruction... 
 
-ix_scalar: 0,  optimization: 4.19 | interpolation: 8.03
-ix_scalar: 1,  optimization: 6.23 | interpolation: 8.39
-ix_scalar: 2,  optimization: 4.36 | interpolation: 7.79
-ix_scalar: 4,  optimization: 4.63 | interpolation: 7.96
-ix_directional: 3,  optimization: 8.18 | interpolation: 16.22
-ix_scalar: 0,  optimization: 4.66 | interpolation: 14.92
-ix_scalar: 1,  optimization: 9.58 | interpolation: 15.58
-ix_scalar: 2,  optimization: 9.98 | interpolation: 15.63
-ix_scalar: 4,  optimization: 5.19 | interpolation: 14.97
-ix_directional: 3,  optimization: 8.42 | interpolation: 32.70
-ix_scalar: 0,  optimization: 5.05 | interpolation: 7.15
-ix_scalar: 1,  optimization: 10.08 | interpolation: 7.88
-ix_scalar: 2,  optimization: 10.05 | interpolation: 6.75
-ix_scalar: 4,  optimization: 5.36 | interpolation: 7.06
-ix_directional: 3,  optimization: 8.82 | interpolation: 14.40
-ix_scalar: 0,  optimization: 5.25 | interpolation: 2.43
-ix_scalar: 1,  optimization: 11.07 | interpolation: 2.93
-ix_scalar: 2,  optimization: 11.39 | interpolation: 3.57
-ix_scalar: 4,  optimization: 4.96 | interpolation: 1.94
-ix_directional: 3,  optimization: 8.20 | interpolation: 4.87
+ix_scalar: 0,  optimization: 7.11 | interpolation: 9.79
+ix_scalar: 1,  optimization: 14.49 | interpolation: 10.68
+ix_scalar: 2,  optimization: 5.83 | interpolation: 13.65
+ix_scalar: 4,  optimization: 6.96 | interpolation: 16.33
+ix_directional: 3,  optimization: 18.71 | interpolation: 23.13
+ix_scalar: 0,  optimization: 7.27 | interpolation: 19.68
+ix_scalar: 1,  optimization: 13.05 | interpolation: 23.09
+ix_scalar: 2,  optimization: 14.35 | interpolation: 24.45
+ix_scalar: 4,  optimization: 7.09 | interpolation: 21.10
+ix_directional: 3,  optimization: 12.56 | interpolation: 35.68
+ix_scalar: 0,  optimization: 5.95 | interpolation: 7.50
+ix_scalar: 1,  optimization: 12.35 | interpolation: 7.96
+ix_scalar: 2,  optimization: 16.53 | interpolation: 8.52
+ix_scalar: 4,  optimization: 5.47 | interpolation: 7.69
+ix_directional: 3,  optimization: 11.92 | interpolation: 14.93
+ix_scalar: 0,  optimization: 5.62 | interpolation: 2.54
+ix_scalar: 1,  optimization: 12.96 | interpolation: 2.62
+ix_scalar: 2,  optimization: 12.71 | interpolation: 2.65
+ix_scalar: 4,  optimization: 5.06 | interpolation: 2.62
+ix_directional: 3,  optimization: 14.09 | interpolation: 5.05
 </pre></div>
 </div>
 </div>
@@ -586,15 +594,18 @@ ix_directional: 3,  optimization: 8.20 | interpolation: 4.87
 </ul>
 <p>In this case, we will use the bulk reconstruction, as it is easier and much more important, faster, but a notebook is also added that uses the spectral reconstruction, explained in detail there.</p>
 <p>For the bulk or aggregated conditions, the following formulas are used to calculate the significant wave height, the wave peak period and the wave mean direction:</p>
-<p>\begin{equation*}
+<div class="math notranslate nohighlight">
+\[
 H_S=\sqrt{\sum_{i=1}^{N}H_{Si}^{2}}
-\end{equation*}</p>
-<p>\begin{equation*}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 T_P=\sqrt{\frac{\sum_{i=1}^{N}H_{Si}}{\sum_{i=1}^{N}\frac{H_{Si}}{T_{Pi}^{2}}}}
-\end{equation*}</p>
-<p>\begin{equation*}
-\theta_m=\arctan{\frac{\sum_{i=1}^{N}H_{Si}^{2} : T_{Pi} : \sin{\theta_i}}{\sum_{i=1}^{N}H_{Si}^{2} : T_{Pi} : \cos{\theta_i}}}
-\end{equation*}</p>
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\theta_m=\arctan{\frac{\sum_{i=1}^{N}H_{Si}^{2} \: T_{Pi} \: \sin{\theta_i}}{\sum_{i=1}^{N}H_{Si}^{2} \: T_{Pi} \: \cos{\theta_i}}}
+\]</div>
 <p>where using them, these aggregated parameters can be obtained, leading to a complete reconstructed dataframe in the desired point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -649,7 +660,7 @@ T_P=\sqrt{\frac{\sum_{i=1}^{N}H_{Si}}{\sum_{i=1}^{N}\frac{H_{Si}}{T_{Pi}^{2}}}}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In case coastal buoy exists</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting Buoy information...&#39;</span><span class="p">)</span>
 
-<span class="n">buoy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;dataframe_san.pkl&#39;</span><span class="p">))</span> <span class="c1"># this data is an example</span>
+<span class="n">buoy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;buoy&#39;</span><span class="p">,</span> <span class="s1">&#39;dataframe_vir.pkl&#39;</span><span class="p">))</span> <span class="c1"># this data is an example</span>
 <span class="c1"># the buoy is located in the north of Spain</span>
 <span class="n">buoy</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">buoy</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
 <span class="n">buoy</span> <span class="o">=</span> <span class="n">buoy</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
@@ -707,7 +718,7 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span> <span class="s1">&#39;laredo&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reconstructed_dataframe</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_data</span><span class="p">,</span> <span class="s1">&#39;reconstructed&#39;</span><span class="p">,</span>
                                   <span class="s1">&#39;reconstructed_&#39;</span><span class="o">+</span><span class="n">name_file</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -732,7 +743,7 @@ None
 <span class="n">register_matplotlib_converters</span><span class="p">()</span>
 
 <span class="n">year</span> <span class="o">=</span> <span class="mi">2009</span>
-<span class="n">name_buoy</span> <span class="o">=</span> <span class="s1">&#39;Santoña&#39;</span>
+<span class="n">name_buoy</span> <span class="o">=</span> <span class="s1">&#39;Virgen del Mar&#39;</span>
 
 <span class="n">ini</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;-01-01 00:00:00&#39;</span>
 <span class="n">end</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;-12-31 23:00:00&#39;</span>
@@ -785,7 +796,7 @@ AGG VALIDATION will be performed
  
 Validating and plotting validated data... 
  
-Length of data to validate: 12802 
+Length of data to validate: 13843 
  
 </pre></div>
 </div>

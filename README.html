@@ -52,6 +52,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Maximum Dissimilarity Algorithm (MDA)" href="mda/mda_notebook.html" />
@@ -135,6 +136,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="forecast/forecast_CAN_notebook.html">
    8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="slides.html">
+   9. Google slides + PDF links to final work
   </a>
  </li>
 </ul>
@@ -271,25 +277,30 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   4. Bibliography
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#installation">
-   4. Installation
+   5. Installation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-an-environment-in-conda">
-     4.1 Create an environment in conda
+     5.1 Create an environment in conda
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#activate-conda-environment">
-     4.2 Activate conda environment
+     5.2 Activate conda environment
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#play">
-   5. Play
+   6. Play
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -323,6 +334,7 @@
 <ul class="simple">
 <li><p>Javier Tausia Hoyal, 2020. (attached)</p></li>
 </ul>
+<p>also the final results in the surfbreaks of interest can be found <a class="reference external" href="https://surfcantabria-dash.herokuapp.com/">here</a>!!</p>
 </div>
 <div class="section" id="description">
 <h2>1. Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
@@ -344,6 +356,7 @@
 <li><p>Spectrum and Free Surface Reconstructions (SAFS)</p></li>
 <li><p>Foecast (Predictions of the 7-days wave climate worldwide)</p></li>
 </ul>
+<p>check the <a class="reference external" href="https://javitausia.github.io/DeliWaves/README.html">jupyter-book</a>!!</p>
 <div class="section" id="mda">
 <h3>3.1 MDA<a class="headerlink" href="#mda" title="Permalink to this headline">¶</a></h3>
 <p>The main goal of the workflow followed is the reconstruction of the wave climate in coastal areas and for this purpose, the first step is the selection of the maximum dissimilar cases in the initial dataset. This algorithm can be used for other objectives too. This is the first part that has to be performed and is briefly explained in:</p>
@@ -413,10 +426,14 @@
 <p><img alt="FoGIF" src="_images/forecast_CANgit.gif" /></p>
 </div>
 </div>
+<div class="section" id="bibliography">
+<h2>4. Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
+<p>available in the <a class="reference external" href="https://javitausia.github.io/DeliWaves/README.html">book</a>…</p>
+</div>
 <div class="section" id="installation">
-<h2>4. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>5. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-environment-in-conda">
-<h3>4.1 Create an environment in conda<a class="headerlink" href="#create-an-environment-in-conda" title="Permalink to this headline">¶</a></h3>
+<h3>5.1 Create an environment in conda<a class="headerlink" href="#create-an-environment-in-conda" title="Permalink to this headline">¶</a></h3>
 <p>To run the toolbox you first need to install the required Python packages in an environment. To do this we will see <strong>Anaconda</strong>, which can be downloaded freely <a class="reference external" href="https://www.anaconda.com/download/">here</a>.</p>
 <p>Once you have installed it on your PC, open the Anaconda prompt (in Mac and Linux, open a terminal window) and use the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command to go to the folder where you have cloned this repository.</p>
 <p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">deli</span></code> with all the required packages:</p>
@@ -425,7 +442,7 @@
 </div>
 </div>
 <div class="section" id="activate-conda-environment">
-<h3>4.2 Activate conda environment<a class="headerlink" href="#activate-conda-environment" title="Permalink to this headline">¶</a></h3>
+<h3>5.2 Activate conda environment<a class="headerlink" href="#activate-conda-environment" title="Permalink to this headline">¶</a></h3>
 <p>All the required packages have been now installed in an environment called <code class="docutils literal notranslate"><span class="pre">deli</span></code>. Now, activate this new environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deli</span>
 </pre></div>
@@ -433,7 +450,7 @@
 </div>
 </div>
 <div class="section" id="play">
-<h2>5. Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h2>
+<h2>6. Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h2>
 <p>Now everything has been installed, you can now start to play with the python code and the jupyter notebooks. Be careful, as some important parameters can be adjusted during the different processes (construction of the object of the classes, first line code in the jupyter notebook). Nevertheless, parameters used are also shown in the example.</p>
 </div>
 <div class="section" id="additional-support">

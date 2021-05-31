@@ -54,6 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. Forecast predictions in offshore and coastal point all over the world" href="../forecast/forecast_notebook.html" />
@@ -138,6 +139,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../forecast/forecast_CAN_notebook.html">
    8. Forecast predictions in offshore and coastal points in Cantabria, Spain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../slides.html">
+   9. Google slides + PDF links to final work
   </a>
  </li>
 </ul>
@@ -287,9 +293,10 @@ function of time, with duration <span class="math notranslate nohighlight">\(D\)
 <p><img alt="specexpla" src="../_images/specexpla.png" /></p>
 <p>We can exactly reproduce that record as the sum of a large number of harmonic
 wave components (a Fourier series):</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \eta(t) = \sum_{i=1}^{N}a_i\cos(2\pi f_i t + \alpha_i)
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(a_i\)</span> and <span class="math notranslate nohighlight">\(\alpha_i\)</span> are the amplitude and phase, respectively, of each frequency
 <span class="math notranslate nohighlight">\(f_i = i/D\)</span> (i = 1, 2, 3, …; the frequency interval is therefore <span class="math notranslate nohighlight">\(\Delta f = 1/D\)</span>). With
 a Fourier analysis, we can determine the values of the amplitude and phase for
@@ -305,16 +312,18 @@ describe the actual, three-dimensional, moving waves, the horizontal dimension
 has to be added. To that end we expand the random phase-amplitude model by
 considering a harmonic wave that propagates in x, y-space, in direction <span class="math notranslate nohighlight">\(\theta\)</span> relative
 to the positive x-axis (we use <span class="math notranslate nohighlight">\(w\)</span> instead of <span class="math notranslate nohighlight">\(f\)</span> for the sake of brevity in the notation):</p>
-<p>\begin{equation}
-\eta : (x,y,t) = a \cos{(\omega t - k : x\cos{\theta} - k : y\sin{\theta} + \alpha)}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+\eta \: (x,y,t) = a \cos{(\omega t - k \: x\cos{\theta} - k \: y\sin{\theta} + \alpha)}
+\]</div>
 <p>where the wave number <span class="math notranslate nohighlight">\(k = 2\pi /L\)</span> (where <span class="math notranslate nohighlight">\(L\)</span> is the wave length of the harmonic
 wave) and <span class="math notranslate nohighlight">\(\theta\)</span> is the direction of wave propagation (i.e.,
 normal to the wave crest of each individual component). Analogously to the
 one-dimensional model, the corresponding three-dimensional random phase-amplitude model (in x, y and t-space) is the sum of a large number of such propagating harmonic waves:</p>
-<p>\begin{equation}
-\eta : (x,y,t) = \sum_{i=1}^{N}\sum_{j=1}^{M} : a_{i,j}\cos{(\omega_it - k_i : x\cos{\theta_j} - k_i : y\sin{\theta_j} + \alpha_{i,j})}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+\eta \: (x,y,t) = \sum_{i=1}^{N}\sum_{j=1}^{M} \: a_{i,j}\cos{(\omega_it - k_i \: x\cos{\theta_j} - k_i \: y\sin{\theta_j} + \alpha_{i,j})}
+\]</div>
 <p>where every individual wave component in this
 three-dimensional model has a random amplitude <span class="math notranslate nohighlight">\(a_{i,j}\)</span> (Rayleigh distributed) and a
 random phase <span class="math notranslate nohighlight">\(\alpha_{i,j}\)</span> (uniformly distributed). Furthermore, this two-dimensional random phase-amplitude model represents
@@ -332,9 +341,10 @@ Nature does not select such discrete quantities. All frequencies and directions 
 The random phase-amplitude model needs therefore to be modified. This is done
 by distributing the variance <span class="math notranslate nohighlight">\(E \left \{ \frac{1}{2} a_i^2 \right \}\)</span> over the frequency interval <span class="math notranslate nohighlight">\(\Delta f_i\)</span> at frequency <span class="math notranslate nohighlight">\(f_i\)</span> and the direction interval <span class="math notranslate nohighlight">\(\Delta \theta_i\)</span> at direction <span class="math notranslate nohighlight">\(\theta_i\)</span>. This spectrum is defined for all
 frequencies and directions, but it still varies discontinuously from one frequency or direction band to the next. A continuous version is obtained by having both widths bands approaching zero:</p>
-<p>\begin{equation}
-E (f, \theta) = \lim_{\Delta f : \rightarrow : 0} ::: \lim_{\Delta \theta : \rightarrow : 0} ::: \frac{1}{\Delta f \Delta \theta} : E \left { \frac{1}{2}a^2 \right }
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+E (f, \theta) = \lim_{\Delta f \: \rightarrow \: 0} \:\:\: \lim_{\Delta \theta \: \rightarrow \: 0} \:\:\: \frac{1}{\Delta f \Delta \theta} \: E \left \{ \frac{1}{2}a^2 \right \}
+\]</div>
 <p>where the spectrum is calculated in terms of the frequency <span class="math notranslate nohighlight">\(f\)</span> and the direction <span class="math notranslate nohighlight">\(\theta\)</span>. The variance density spectrum gives a complete description of the surface elevation
 of ocean waves in a statistical sense, provided that the surface elevation can be seen
 as a stationary, Gaussian process. This implies that all statistical characteristics
@@ -346,21 +356,25 @@ unit is [m]; the dimension of the frequency band <span class="math notranslate n
 its unit is [m<span class="math notranslate nohighlight">\(^{2}\)</span> / (Hz <span class="math notranslate nohighlight">\(\cdot\)</span> radians)].</p>
 <p><img alt="specbonito" src="../_images/specbonito.png" /></p>
 <p>The standard way to calculate the spectrum has been presented, as once the free surface elevation is obtained, this variance density spectrum can be easily obtained, but in this work, the spectrum calculation has been performed in coast, where partitioned sea state variables (partitions will be explained below) and not free surface elevations exist. In this way, this spectrum reconstruction is performed using the variables propagated <span class="math notranslate nohighlight">\(H_S\)</span>, <span class="math notranslate nohighlight">\(T_P\)</span>, <span class="math notranslate nohighlight">\(T_m\)</span> and <span class="math notranslate nohighlight">\(\theta_m\)</span>, where <span class="math notranslate nohighlight">\(S(f, \theta) = S(f) \cdot D(\theta)\)</span>, being <span class="math notranslate nohighlight">\(S(f)\)</span> the spectral energy associated to the frequency and <span class="math notranslate nohighlight">\(D(\theta)\)</span> the spectral energy associated to the direction, is the total wave energy of the spectrum. These two energy variables grouped represent the total spectral energy associated to each frequency and direction in a sea state and are calculated using the equations below, which are also very well explained in (Kumar et al., 2017). First, the frequency distributed spectrum is calculated for each frequency as:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 S(f) = \alpha \cdot H_S^2 \cdot T_P^{-4} \cdot f^{-5} \cdot \exp{(-1.25 (T_P \cdot f)^{-4})} \cdot \gamma^{\exp{\frac{-(T_P \cdot f - 1)^2}{2\sigma^2}}}
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\gamma\)</span> gives an idea about the shape of the spectrum, being high for very disordered spectrums and lower for narrower and more powerful swells, and <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are calculated in the next way:</p>
-<p>\begin{equation}
-\alpha = \frac{0.06238}{0.23 + 0.0336 \cdot \gamma - 0.185 : (1.9 + \gamma)^{-1}}::(1.094 − 0.01915 \cdot \ln{\gamma})
-\end{equation}</p>
-<p>\begin{equation}
-\sigma = 0.07 ::: \text{if} ::: f&lt;f_{P} ::: | ::: \sigma = 0.09 ::: \text{if} ::: f\geq f_{P}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \frac{0.06238}{0.23 + 0.0336 \cdot \gamma - 0.185 \: (1.9 + \gamma)^{-1}}\:\:(1.094 − 0.01915 \cdot \ln{\gamma})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\sigma = 0.07 \:\:\: \text{if} \:\:\: f&lt;f_{P} \:\:\: | \:\:\: \sigma = 0.09 \:\:\: \text{if} \:\:\: f\geq f_{P}
+\]</div>
 <p>being <span class="math notranslate nohighlight">\(f_P = T_P^{-1}\)</span> the peak frequency of the spectrum. For the directional spectrum, the spectral energy is also calculated for each direction:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 D(\theta) = \frac{2^{2s-1}}{\pi}\frac{\Gamma^2(s+1)}{\Gamma(2s+1)}\cos{\frac{\theta - \theta_S}{2}}^{2s}
-\label{eqn:dt}<br />
-\end{equation}</p>
+\label{eqn:dt}   
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(s = \frac{2}{\sigma_\theta^2} - 1\)</span> is a shape parameter, <span class="math notranslate nohighlight">\(\theta_S\)</span> is the direction of the peak frequency and <span class="math notranslate nohighlight">\(\int_{0}^{2\pi}D(\theta)d\theta=1\)</span>. Once these spectra are reconstructed we just have to calculate the aggregated parameters (as our surfing index will use bulk parameters), which can be done using some formulas that are explained in (Espejo Hermosa, 2011) and also in (Kumar et al., 2017), but in this case we will use a computational software called <a class="reference external" href="https://github.com/wavespectra/wavespectra">wavespectra</a>.</p>
 <p>This software uses those equations, but it is already validated by different people, and this accompanied with the results obtained in the validation step prove the methodology used. Notice that in this work, we have reconstructed the spectrums in each of the surfbreaks of interest, thus having a historical record of totally explained surfing conditions in those spots. Finally, just comment here the reduction performed in the data in this step as the calculation of the spectrums was a very expensive task at a computational level, so the data was reduced to just daily hours where the sport can be done, which was also one of the ideas that had to be taken into account in the study. This reduces the amount of data to more than a half, but ending up with a total number of observations of about 50000 for each surfbreak, so the subsequently explained neural network has been able to work correctly.</p>
 <p><img alt="specs" src="../_images/specsplot.png" /></p>
