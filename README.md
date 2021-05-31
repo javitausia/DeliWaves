@@ -119,6 +119,8 @@ A detailed notebook in Cantabria is aldo added, obtaining forecast predictions i
 
 ## 4. Bibliography
 
+available in the [book](https://javitausia.github.io/DeliWaves/README.html)...
+
 ```{bibliography} references.bib
 ```
 
