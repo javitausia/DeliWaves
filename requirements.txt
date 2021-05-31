@@ -14,3 +14,4 @@ cftime
 gunicorn
 django
 python-dateutil
+jupyter-book

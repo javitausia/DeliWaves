@@ -26,3 +26,4 @@ dependencies:
         - cftime
         - gunicorn
         - django
+        - jupyter-book
