@@ -117,9 +117,14 @@ A detailed notebook in Cantabria is aldo added, obtaining forecast predictions i
 
 ![FoGIF](/images/forecast/forecast_CANgit.gif)
 
-## 4. Installation
+## 4. Bibliography
 
-### 4.1 Create an environment in conda
+```{bibliography} references.bib
+```
+
+## 5. Installation
+
+### 5.1 Create an environment in conda
 
 To run the toolbox you first need to install the required Python packages in an environment. To do this we will see **Anaconda**, which can be downloaded freely [here](https://www.anaconda.com/download/).
 
@@ -130,7 +135,7 @@ Create a new environment named `deli` with all the required packages:
 ```
 conda env create -f environment.yml -n deli
 ```
-### 4.2 Activate conda environment
+### 5.2 Activate conda environment
 
 All the required packages have been now installed in an environment called `deli`. Now, activate this new environment:
 
@@ -138,7 +143,7 @@ All the required packages have been now installed in an environment called `deli
 conda activate deli
 ```
 
-## 5. Play
+## 6. Play
 
 Now everything has been installed, you can now start to play with the python code and the jupyter notebooks. Be careful, as some important parameters can be adjusted during the different processes (construction of the object of the classes, first line code in the jupyter notebook). Nevertheless, parameters used are also shown in the example.
 
