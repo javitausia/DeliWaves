@@ -14,3 +14,4 @@
   - file: spectra/spectra_notebook
   - file: forecast/forecast_notebook
   - file: forecast/forecast_CAN_notebook
+  - file: slides
