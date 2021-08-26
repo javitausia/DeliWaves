@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1. Maximum Dissimilarity Algorithm (MDA) &#8212; DeliWaves</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -59,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Propagation of the selected cases using SWAN" href="../swan/swan_notebook.html" />
     <link rel="prev" title="DeliWaves" href="../README.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -75,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/logo.jpeg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">DeliWaves</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.jpeg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">DeliWaves</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../README.html">
    DeliWaves
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Chapters
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Maximum Dissimilarity Algorithm (MDA)
@@ -148,6 +145,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -213,12 +211,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -289,7 +287,7 @@
 <p>The first thing that is done is the selection of the <b>number of cases</b> that will be selected, worth the redundancy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_centroids</span> <span class="o">=</span> <span class="mi">300</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_centroids</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>
 </div>
 </div>
@@ -298,7 +296,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_hind</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;hindcast&#39;</span><span class="p">)</span>
-<span class="n">dataframe_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;csiro_dataframe_sat_corr.pkl&#39;</span><span class="p">))</span>
+<span class="n">dataframe_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="s1">&#39;csiro_dataframe_oahu_sat_corr.pkl&#39;</span><span class="p">))</span>
 <span class="c1"># this sat_corr dataframe is the one obtained in CalValWaves, exactly the same!!</span>
 </pre></div>
 </div>
@@ -321,41 +319,41 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-DatetimeIndex: 359400 entries, 1979-01-01 00:00:00 to 2019-12-31 23:00:00
+DatetimeIndex: 362304 entries, 1980-01-01 00:00:00 to 2021-04-30 23:00:00
 Data columns (total 29 columns):
  #   Column     Non-Null Count   Dtype  
 ---  ------     --------------   -----  
- 0   Hs         359400 non-null  float32
- 1   Tm_01      301679 non-null  float32
- 2   Tm_02      359400 non-null  float32
- 3   Tp         358865 non-null  float32
- 4   DirM       359399 non-null  float32
- 5   DirP       358865 non-null  float32
- 6   Spr        359399 non-null  float32
- 7   Nwp        359400 non-null  float32
- 8   U10        301680 non-null  float32
- 9   V10        301680 non-null  float32
- 10  W          301680 non-null  float64
- 11  DirW       301675 non-null  float64
- 12  Hsea       359400 non-null  float32
- 13  Hswell1    359400 non-null  float32
- 14  Hswell2    359400 non-null  float32
- 15  Hswell3    359400 non-null  float32
- 16  Tpsea      242685 non-null  float32
- 17  Tpswell1   242278 non-null  float32
- 18  Tpswell2   115218 non-null  float32
- 19  Tpswell3   32856 non-null   float32
- 20  Dirsea     242685 non-null  float32
- 21  Dirswell1  242278 non-null  float32
- 22  Dirswell2  115218 non-null  float32
- 23  Dirswell3  32856 non-null   float32
- 24  Sprsea     242685 non-null  float32
- 25  Sprswell1  242278 non-null  float32
- 26  Sprswell2  115218 non-null  float32
- 27  Sprswell3  32856 non-null   float32
- 28  Hs_cal     359400 non-null  float32
-dtypes: float32(27), float64(2)
-memory usage: 45.2 MB
+ 0   Hs         362304 non-null  float64
+ 1   Tm_01      292920 non-null  float32
+ 2   Tm_02      362304 non-null  float32
+ 3   Tp         362304 non-null  float32
+ 4   DirM       362304 non-null  float32
+ 5   DirP       362304 non-null  float32
+ 6   Spr        362304 non-null  float32
+ 7   Nwp        362304 non-null  float32
+ 8   U10        362304 non-null  float32
+ 9   V10        362304 non-null  float32
+ 10  W          362304 non-null  float64
+ 11  DirW       362298 non-null  float64
+ 12  Hsea       362304 non-null  float64
+ 13  Hswell1    362304 non-null  float64
+ 14  Hswell2    362304 non-null  float64
+ 15  Hswell3    362304 non-null  float64
+ 16  Tpsea      244833 non-null  float32
+ 17  Tpswell1   361904 non-null  float32
+ 18  Tpswell2   345998 non-null  float32
+ 19  Tpswell3   297651 non-null  float32
+ 20  Dirsea     244833 non-null  float32
+ 21  Dirswell1  361904 non-null  float32
+ 22  Dirswell2  345998 non-null  float32
+ 23  Dirswell3  297651 non-null  float32
+ 24  Sprsea     244833 non-null  float32
+ 25  Sprswell1  361904 non-null  float32
+ 26  Sprswell2  345998 non-null  float32
+ 27  Sprswell3  297651 non-null  float32
+ 28  Hs_cal     362304 non-null  float64
+dtypes: float32(21), float64(8)
+memory usage: 53.9 MB
 None
 </pre></div>
 </div>
@@ -414,6 +412,20 @@ None
 <span class="c1"># limited shape of the spectrum threshold so the analysis is coherent</span>
 <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">][</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">][</span><span class="n">swell</span><span class="p">[</span><span class="s1">&#39;Gamma&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-5884f8f5e07d&gt;:31: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  swell[&#39;Gamma&#39;][swell[&#39;Gamma&#39;]&lt;1] = 1
+&lt;ipython-input-7-5884f8f5e07d&gt;:32: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  swell[&#39;Gamma&#39;][swell[&#39;Gamma&#39;]&gt;50] = 50
 </pre></div>
 </div>
 </div>
@@ -484,83 +496,45 @@ None
             <span class="k">if</span> <span class="n">len_xys</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_xys</span><span class="p">):</span>
                     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="c1"># show results</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                    
     <span class="c1"># data is saved in the data/hindcast folder         </span>
-    <span class="n">subset</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="n">title</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_cases_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_centroids</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.pkl&#39;</span><span class="p">))</span>
+    <span class="n">subset</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_hind</span><span class="p">,</span> <span class="n">title</span><span class="p">[</span><span class="n">wave</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_cases_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_centroids</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_oahu.pkl&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaxDiss waves parameters: 242685 --&gt; 300
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaxDiss waves parameters: 244833 --&gt; 100
 
-   MDA centroids: 050/300
+   MDA centroids: 050/100
  
 Number of centroids computed: 50
  
  
-   MDA centroids: 100/300
+   MDA centroids: 100/100
  
 Number of centroids computed: 100
- 
- 
-   MDA centroids: 150/300
- 
-Number of centroids computed: 150
- 
- 
-   MDA centroids: 200/300
- 
-Number of centroids computed: 200
- 
- 
-   MDA centroids: 250/300
- 
-Number of centroids computed: 250
- 
- 
-   MDA centroids: 300/300
- 
-Number of centroids computed: 300
- 
- 
-
-
-
-MaxDiss waves parameters: 390352 --&gt; 300
-
-   MDA centroids: 050/300
- 
-Number of centroids computed: 50
- 
- 
-   MDA centroids: 100/300
- 
-Number of centroids computed: 100
- 
- 
-   MDA centroids: 150/300
- 
-Number of centroids computed: 150
- 
- 
-   MDA centroids: 200/300
- 
-Number of centroids computed: 200
- 
- 
-   MDA centroids: 250/300
- 
-Number of centroids computed: 250
- 
- 
-   MDA centroids: 300/300
- 
-Number of centroids computed: 300
  
  
 </pre></div>
 </div>
 <img alt="../_images/mda_notebook_16_1.png" src="../_images/mda_notebook_16_1.png" />
-<img alt="../_images/mda_notebook_16_2.png" src="../_images/mda_notebook_16_2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaxDiss waves parameters: 1005553 --&gt; 100
+
+   MDA centroids: 050/100
+ 
+Number of centroids computed: 50
+ 
+ 
+   MDA centroids: 100/100
+ 
+Number of centroids computed: 100
+ 
+ 
+</pre></div>
+</div>
+<img alt="../_images/mda_notebook_16_3.png" src="../_images/mda_notebook_16_3.png" />
 </div>
 </div>
 </div>
@@ -603,7 +577,7 @@ Number of centroids computed: 300
         
           By Javier Tausía Hoyal<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -612,11 +586,9 @@ Number of centroids computed: 300
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>
