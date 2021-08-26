@@ -1,17 +1,15 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-
-- file: README
-  numbered: True
-
-- part: Chapters
-  chapters:
-  - file: mda/mda_notebook
-  - file: swan/swan_notebook
-  - file: rbf/rbf_notebook
-  - file: slopes/slopes_notebook
-  - file: slopes/slopes_analysis_notebook
-  - file: spectra/spectra_notebook
-  - file: forecast/forecast_notebook
-  - file: forecast/forecast_CAN_notebook
-  - file: slides
+format: jb-book
+root: README
+options:
+  caption: Chapters
+  numbered: true
+chapters:
+- file: mda/mda_notebook
+- file: swan/swan_notebook
+- file: rbf/rbf_notebook
+- file: slopes/slopes_notebook
+- file: slopes/slopes_analysis_notebook
+- file: spectra/spectra_notebook
+- file: forecast/forecast_notebook
+- file: forecast/forecast_CAN_notebook
+- file: slides
